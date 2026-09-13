@@ -51,13 +51,13 @@ flowchart TD
         AzRes["Azure Resources<br/>(Key Vault, SQL DB, Storage)"]
     end
 
-    Sync -->|Outbound HTTPS (443)| Tenant
-    App -->|1. Authenticate (OIDC)| Tenant
-    Tenant -->|2. Issue ID & Access Tokens| App
-    App -->|3. Bearer Token Request| API
-    API -->|4. Validate Signature & Claims| Tenant
-    API -->|5. Managed Identity Token| AzRes
-    Tenant -->|SAML / SCIM SSO| SaaS
+    Sync -->|"Outbound HTTPS (Port 443)"| Tenant
+    App -->|"1. Authenticate (OIDC)"| Tenant
+    Tenant -->|"2. Issue ID & Access Tokens"| App
+    App -->|"3. Bearer Token Request"| API
+    API -->|"4. Validate Signature & Claims"| Tenant
+    API -->|"5. Managed Identity Token"| AzRes
+    Tenant -->|"SAML / SCIM SSO"| SaaS
 ```
 
 ### 2.2 Core Identity Objects & Hierarchy

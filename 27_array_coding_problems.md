@@ -20,18 +20,18 @@ mindmap
     Memory Model
       Contiguous Array Memory
       Stack vs Heap
-      Span&lt;T&gt; & Memory&lt;T&gt;
+      ["Span<T> and Memory<T>"]
     Control Flow
       Index-based for loop
       Foreach iteration
       Pattern Matching
     Edge Case Defense
       Null Collections
-      Zero / Single Element
+      Zero or Single Element
       Integer Overflow Checked
     Complexity Analysis
-      Time Complexity O(1), O(N), O(N log N)
-      Space Complexity O(1) in-place
+      ["Time Complexity: O(1), O(N), O(N log N)"]
+      ["Space Complexity: O(1) in-place"]
 ```
 
 ### 2. Deep-Dive Architecture & Runtime Internals

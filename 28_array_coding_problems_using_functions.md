@@ -19,16 +19,16 @@ The C# `.NET` Base Class Library provides high-performance, hardware-optimized m
 mindmap
   root((Essential Array APIs))
     Array.Sort
-      IntroSort O(N log N)
+      ["IntroSort: O(N log N)"]
       Dual-pivot QuickSort + HeapSort fallback
     Array.BinarySearch
-      Logarithmic Search O(log N)
+      ["Logarithmic Search: O(log N)"]
       Requires pre-sorted collection
     Array.Copy / CopyTo
       Low-level memmove
       Hardware DMA & SIMD acceleration
     Array.Reverse
-      In-place Two-Pointer swap O(N)
+      ["In-place Two-Pointer swap: O(N)"]
     Array.Fill / Clear
       Memory initialization
       Zeroing buffer security

@@ -21,13 +21,13 @@ mindmap
   root((System.String Essential Methods))
     Inspection & Search
       IndexOf / LastIndexOf
-      Contains (StringComparison)
+      ["Contains (StringComparison)"]
       StartsWith / EndsWith
       IsNullOrEmpty / IsNullOrWhiteSpace
     Slicing & Splitting
-      Substring (Allocates new string)
-      Split (Allocates array)
-      AsSpan (Zero-allocation slice)
+      ["Substring (Allocates new string)"]
+      ["Split (Allocates array)"]
+      ["AsSpan (Zero-allocation slice)"]
     Transformation
       Trim / TrimStart / TrimEnd
       Replace
@@ -35,7 +35,7 @@ mindmap
     Composition
       string.Join
       string.Concat
-      string.Create (Zero-allocation custom builder)
+      ["string.Create (Zero-allocation custom builder)"]
 ```
 
 ### 2. Deep-Dive Architecture & Runtime Internals

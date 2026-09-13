@@ -13,7 +13,7 @@
 ```mermaid
 flowchart LR
     subgraph TightCoupling["Anti-Pattern: Tight Coupling"]
-        OrderService1["OrderService"] -->|new SqlDatabase()| SqlDB["Concrete SqlDatabase"]
+        OrderService1["OrderService"] -->|"new SqlDatabase()"| SqlDB["Concrete SqlDatabase"]
     end
     subgraph LooseCoupling["Pattern: Dependency Injection"]
         Container["IoC Container\n(Service Provider)"]
@@ -242,7 +242,7 @@ mindmap
   root((Advantages of DI))
     Testability
       Isolated Unit Tests
-      Mocking Frameworks (Moq/NSubstitute)
+      ["Mocking Frameworks (Moq / NSubstitute)"]
       No Real Network/DB Required
     Maintainability
       Single Responsibility Principle

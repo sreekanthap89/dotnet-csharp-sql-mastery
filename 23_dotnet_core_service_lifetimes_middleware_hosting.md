@@ -496,7 +496,7 @@ High-performance proxy gateways (like Microsoft's **YARP** - Yet Another Reverse
 flowchart TD
     Req["Incoming Request"] --> Use1["app.Use() (Middleware 1)"]
     Use1 --> BranchCheck{"Path matches /branch?"}
-    BranchCheck -->|Yes: app.Map()| MapBranch["Branched Pipeline\n(Terminal app.Run)"]
+    BranchCheck -->|"Yes: app.Map()"| MapBranch["Branched Pipeline\n(Terminal app.Run)"]
     BranchCheck -->|No| Use2["app.Use() (Middleware 2)"]
     Use2 --> RunTerminal["app.Run() (Terminal Middleware)"]
 ```
@@ -785,9 +785,9 @@ graph LR
     RateLimit --> TotalTimeout["2. Total Pipeline Timeout"]
     TotalTimeout --> RetryLoop["3. Jittered Exponential Retry"]
     RetryLoop --> CircuitBreaker{"4. Circuit Breaker State"}
-    CircuitBreaker -->|Closed (Normal)| Attempt["5. Request Attempt (2s Timeout)"]
-    CircuitBreaker -->|Open (Faulted)| FastFail["Fast-Fail: Reject immediately (Save resources)"]
-    CircuitBreaker -->|Half-Open (Trial)| Trial["Send trial canary probe"]
+    CircuitBreaker -->|"Closed (Normal)"| Attempt["5. Request Attempt (2s Timeout)"]
+    CircuitBreaker -->|"Open (Faulted)"| FastFail["Fast-Fail: Reject immediately (Save resources)"]
+    CircuitBreaker -->|"Half-Open (Trial)"| Trial["Send trial canary probe"]
     Attempt --> DownstreamService["External Downstream Microservice"]
 ```
 
