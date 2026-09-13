@@ -1,0 +1,472 @@
+[
+  {
+    "section_index": 1,
+    "title": "1. Introduction - OOPS and Basics",
+    "question_count": 10,
+    "questions": [
+      "Q1. What is C#? What is the difference between C# and .NET?",
+      "Q2. What is OOPS? What are the main concepts of OOPS?",
+      "Q3. What are the advantages of OOPS?",
+      "Q4. What are the limitations of OOPS?",
+      "Q5. What are Classes and Objects?",
+      "Q6. What are the types of classes in C#?",
+      "Q7. Is it possible to prevent object creation of a class in C#?",
+      "Q8. What is Property?",
+      "Q9. What is the difference between Property and Function?",
+      "Q10. What are Namespaces?"
+    ]
+  },
+  {
+    "section_index": 2,
+    "title": "2. OOPS & C# - Inheritance, Abstraction, Encapsulation",
+    "question_count": 16,
+    "questions": [
+      "Q11. What is Inheritance? When to use Inheritance?",
+      "Q12. What are the different types of Inheritance?",
+      "Q13. Does C# support Multiple Inheritance? How do you implement it?",
+      "Q14. How to prevent a class from being Inherited?",
+      "Q15. Are private class members inherited to the derived class?",
+      "Q16. What is Abstraction? How to implement abstraction in real applications?",
+      "Q17. What is Encapsulation? How to implement encapsulation in real",
+      "Q18. What is the difference between Abstraction and Encapsulation?",
+      "Q19. What is Polymorphism and what are its types? When to use",
+      "Q20. What is Method Overloading? In how many ways can a method be",
+      "Q21. When should you use method overloading in real applications?",
+      "Q22. If two methods have the same signature except return type, are the",
+      "Q23. What is the difference between Overloading and Overriding?",
+      "Q24. Use of Overriding? When should I override a method in real",
+      "Q25. If a method is marked as virtual, do we have to \"override\" it from the",
+      "Q26. What is the difference between Method Overriding and Method Hiding?"
+    ]
+  },
+  {
+    "section_index": 3,
+    "title": "3. OOPS & C# - Abstract Class & Interface",
+    "question_count": 11,
+    "questions": [
+      "Q27. What is the difference between an Abstract class and an Interface?",
+      "Q28. When to use Interface and when Abstract class in real applications?",
+      "Q29. Why create Interfaces in real applications?",
+      "Q30. Can we de\ufb01ne the body of Interface methods?",
+      "Q31. Can you create an instance of an Abstract class or an Interface?",
+      "Q32. Can an Interface have a Constructor?",
+      "Q33. Do abstract classes have Constructors in C#?",
+      "Q34. What is the difference between abstraction and abstract class?",
+      "Q35. Can an Abstract class be Sealed or Static in C#?",
+      "Q36. Can you declare abstract methods as private in C#?",
+      "Q37. Does an Abstract class support multiple Inheritance?"
+    ]
+  },
+  {
+    "section_index": 4,
+    "title": "4. OOPS & C# - Access Speci\ufb01ers, Boxing, Unboxing,",
+    "question_count": 10,
+    "questions": [
+      "Q38. What are Access Speci\ufb01ers?",
+      "Q39. What is an internal access modi\ufb01er? Show example.",
+      "Q40. What is the default access modi\ufb01er in a class?",
+      "Q41. What is Boxing and Unboxing? Where to use them in real applications?",
+      "Q42. Which one is explicit: Boxing or Unboxing?",
+      "Q43. Is Boxing and Unboxing good for performance?",
+      "Q44. What are the basic string operations in C#?",
+      "Q45. What is the difference between \"String\" and \"StringBuilder\"?",
+      "Q46. When to use String and when StringBuilder in real applications?",
+      "Q47. What is String Interpolation in C#?"
+    ]
+  },
+  {
+    "section_index": 5,
+    "title": "5. OOPS & C# - Loops, Conditions, Exception Handling",
+    "question_count": 9,
+    "questions": [
+      "Q48. What are the Loop types in C#? When to use what in real applications?",
+      "Q49. What is the difference between \"continue\" and \"break\" statements?",
+      "Q50. What are the alternative ways of if-else conditions? When to use what?",
+      "Q51. How to implement Exception Handling in C#?",
+      "Q52. Can we execute multiple Catch blocks?",
+      "Q53. When to use Finally in real applications?",
+      "Q54. Can we have only a \"Try\" block without a \"Catch\" block?",
+      "Q55. What is the difference between Finally and Finalize?",
+      "Q56. What is the difference between \"throw ex\" and \"throw\"?"
+    ]
+  },
+  {
+    "section_index": 6,
+    "title": "6. OOPS & C# - Generics & Collections",
+    "question_count": 8,
+    "questions": [
+      "Q57. Explain Generics in C#? When and why to use them?",
+      "Q58. What are Collections in C# and what are their types?",
+      "Q59. What is the difference between Array and ArrayList?",
+      "Q60. What is the difference between ArrayList and Hashtable?",
+      "Q61. What is the difference between List and Dictionary Collections?",
+      "Q62. What is IEnumerable in C#?",
+      "Q63. What is the difference between IEnumerable and IEnumerator in C#?",
+      "Q64. What is the difference between IEnumerable & IQueryable?"
+    ]
+  },
+  {
+    "section_index": 7,
+    "title": "7. OOPS & C# - Constructors",
+    "question_count": 12,
+    "questions": [
+      "Q65. What is a Constructor? When to use constructor in real applications?",
+      "Q66. What are the types of constructors?",
+      "Q67. What is a Default constructor?",
+      "Q68. What is a Parameterized constructor?",
+      "Q69. What is a Static constructor? What is its use in real applications?",
+      "Q70. Can we have parameters or access modi\ufb01ers in a static constructor?",
+      "Q71. What is a Copy constructor?",
+      "Q72. What is a Private constructor? What is its use?",
+      "Q73. What is Constructor overloading?",
+      "Q74. What is a Destructor?",
+      "Q75. Can you create an object of a class with a private constructor in C#?",
+      "Q76. If both base & child classes have constructors, which will be called \ufb01rst?"
+    ]
+  },
+  {
+    "section_index": 8,
+    "title": "8. OOPS & C# - Method Parameters, Delegates & Events",
+    "question_count": 12,
+    "questions": [
+      "Q77. What is a Method in C#?",
+      "Q78. Difference between Pass by Value and Pass by Reference Parameters?",
+      "Q79. How to return more than one value from a method in C#?",
+      "Q80. What is the difference between \"out\" and \"ref\" parameters?",
+      "Q81. What is the \"params\" keyword? When to use params keyword in real",
+      "Q82. What are optional parameters in a method?",
+      "Q83. What are named parameters in a method?",
+      "Q84. What are extension Methods? When to use them? (V. Imp.)",
+      "Q85. What are Delegates in C#? When to use delegates in real applications?",
+      "Q86. What are Multicast Delegates?",
+      "Q87. What are Anonymous Delegates in C#?",
+      "Q88. What are the differences between Events and Delegates?"
+    ]
+  },
+  {
+    "section_index": 9,
+    "title": "9. OOPS & C# - Important Keywords",
+    "question_count": 10,
+    "questions": [
+      "Q89. What is the \"this\" keyword in C#? When to use it in a real application?",
+      "Q90. What is the purpose of the \"using\" keyword in C#?",
+      "Q91. Can we use the Using keyword with other classes apart from DB",
+      "Q92. What is the difference between \"is\" and \"as\" operators?",
+      "Q93. What is the difference between \"Readonly\" and \"Constant\" variables?",
+      "Q94. What is a \"Static\" class? When to use it?",
+      "Q95. What is the difference between \"var\" and \"dynamic\" in C#?",
+      "Q96. What is the Enum keyword used for?",
+      "Q97. Is it possible to inherit Enum in C#?",
+      "Q98. What is the use of the Yield keyword in C#?"
+    ]
+  },
+  {
+    "section_index": 10,
+    "title": "10. OOPS & C# - LINQ",
+    "question_count": 4,
+    "questions": [
+      "Q99. What is LINQ? When to use LINQ in real applications?",
+      "Q100. What are the advantages & disadvantages of LINQ?",
+      "Q101. What are Lambda Expressions? What is their use in real applications?",
+      "Q102. What is the difference between First and FirstOrDefault methods in"
+    ]
+  },
+  {
+    "section_index": 11,
+    "title": "11. .NET Framework - Basics",
+    "question_count": 7,
+    "questions": [
+      "Q103. What are the important components of the .NET framework?",
+      "Q104. What is an Assembly? What are the different types of assembly",
+      "Q105. What is GAC?",
+      "Q106. What is Re\ufb02ection?",
+      "Q107. Serialization and Deserialization? What are the types of serialization?",
+      "Q108. What is meant by Globalization and Localization?",
+      "Q109. What are Windows Services?"
+    ]
+  },
+  {
+    "section_index": 12,
+    "title": "12. .NET Framework - Garbage Collection",
+    "question_count": 5,
+    "questions": [
+      "Q110. What is Garbage Collection (GC)?",
+      "Q111. What are Generations in garbage collection?",
+      "Q112. What is the difference between \"Dispose\" and \"Finalize\"?",
+      "Q113. What is the difference between \"Finalize\" and \"Finally\" methods?",
+      "Q114. Can we force Garbage Collector to run?"
+    ]
+  },
+  {
+    "section_index": 13,
+    "title": "13. .NET Framework - Threading",
+    "question_count": 5,
+    "questions": [
+      "Q115. What is the difference between Process and Thread?",
+      "Q116. Explain Multithreading?",
+      "Q117. What is the difference between synchronous and asynchronous",
+      "Q118. Difference between Threads & Tasks? Advantages of Tasks over",
+      "Q119. What is the role of Async and Await?"
+    ]
+  },
+  {
+    "section_index": 14,
+    "title": "14. SQL - Basics",
+    "question_count": 8,
+    "questions": [
+      "Q120. What is the difference between DBMS and RDBMS?",
+      "Q121. What is a Constraint in SQL? What are its types?",
+      "Q122. What is the difference between Primary key and Unique key?",
+      "Q123. What are Triggers and types of triggers?",
+      "Q124. What is a View?",
+      "Q125. What is the difference between Having clause and Where clause?",
+      "Q126. What is a Sub query or Nested query or Inner query in SQL?",
+      "Q127. What is an Auto Increment / Identity column in SQL Server?"
+    ]
+  },
+  {
+    "section_index": 15,
+    "title": "15. SQL - Joins & Indexes",
+    "question_count": 9,
+    "questions": [
+      "Q128. What are Joins in SQL?",
+      "Q129. What are the types of Joins in SQL Server?",
+      "Q130. What is a Self-Join?",
+      "Q131. What are Indexes in SQL Server?",
+      "Q132. What is a Clustered index?",
+      "Q133. What is a Non-Clustered index?",
+      "Q134. What is the difference between Clustered and Non-Clustered index?",
+      "Q135. How to create Clustered and Non-Clustered index in a table?",
+      "Q136. In which column will you apply indexing to optimize this query?"
+    ]
+  },
+  {
+    "section_index": 16,
+    "title": "16. SQL - Stored Procedures, Functions & Others",
+    "question_count": 9,
+    "questions": [
+      "Q137. What is the difference between Stored Procedures and Functions?",
+      "Q138. How to optimize a Stored Procedure or SQL Query?",
+      "Q139. What is a Cursor? Why avoid them?",
+      "Q140. What is the difference between SCOPE_IDENTITY and @@IDENTITY?",
+      "Q141. What is CTE in SQL Server?",
+      "Q142. What is the difference between Delete, Truncate, and Drop commands?",
+      "Q143. How to get the Nth highest salary of an employee?",
+      "Q144. What are ACID properties?",
+      "Q145. What are Magic Tables in SQL Server?"
+    ]
+  },
+  {
+    "section_index": 17,
+    "title": "17. ADO.NET and Entity Framework",
+    "question_count": 11,
+    "questions": [
+      "Q171. What are the main components of ADO.NET?",
+      "Q172. What is Connected architecture and Disconnected architecture?",
+      "Q173. What are the different Execute Methods of ADO.NET?",
+      "Q174. What are the Authentication techniques used to connect to SQL",
+      "Q175. What is ORM? What are the different types of ORM?",
+      "Q176. What is Entity Framework?",
+      "Q177. How will you differentiate ADO.NET from Entity Framework?",
+      "Q178. How does Entity Framework work? OR How to setup EF?",
+      "Q179. What is meant by DBContext and DBSet?",
+      "Q180. What are the different types of development approaches used with EF?",
+      "Q181. What is the difference between LINQ to SQL and Entity Framework?"
+    ]
+  },
+  {
+    "section_index": 18,
+    "title": "18. Web API - Basics",
+    "question_count": 8,
+    "questions": [
+      "Q182. What is Web API? What is the purpose of Web API?",
+      "Q183. What are Web API advantages over WCF and web services?",
+      "Q184. What are HTTP verbs or HTTP methods?",
+      "Q185. What is the difference between REST API and Web API?",
+      "Q186. What are REST guidelines? What is the difference between Rest and",
+      "Q187. Is it possible to use WCF as Restful services?",
+      "Q188. How to consume Web API from a .NET MVC application?",
+      "Q189. What is the difference between Web API and MVC Controller?"
+    ]
+  },
+  {
+    "section_index": 19,
+    "title": "19. Web API - Authentication & JWT",
+    "question_count": 7,
+    "questions": [
+      "Q190. What are the types of authentication techniques in web API?",
+      "Q191. What is Basic Authentication in Web API?",
+      "Q192. What is API Key Authentication in Web API?",
+      "Q193. What is Token-based authentication?",
+      "Q194. What is JWT Authentication?",
+      "Q195. What are the parts of a JWT token?",
+      "Q196. Where does the JWT token reside in the request?"
+    ]
+  },
+  {
+    "section_index": 20,
+    "title": "20. Web API - More",
+    "question_count": 7,
+    "questions": [
+      "Q197. How to test Web API? What are the tools?",
+      "Q198. What are the main Return Types supported in Web API?",
+      "Q199. What is the difference between HTTPResponseMessage and",
+      "Q200. What is the difference between IActionResult and IHttpActionResult?",
+      "Q201. What is Content Negotiation in Web API?",
+      "Q202. What is MediaTypeFormatter class in Web API?",
+      "Q203. What are Response Codes in Web API?"
+    ]
+  },
+  {
+    "section_index": 21,
+    "title": "21. .NET Core - Basics",
+    "question_count": 9,
+    "questions": [
+      "Q204. What is .NET Core?",
+      "Q205. What is .NET Standard?",
+      "Q206. What are the advantages of .NET Core over .NET framework?",
+      "Q207. What is the role of Program.cs \ufb01le in ASP.NET Core?",
+      "Q208. What is the role of Con\ufb01gureServices method?",
+      "Q209. What is the role of Con\ufb01gure method?",
+      "Q210. Describe the complete Request Processing Pipeline for ASP.NET Core",
+      "Q211. What is the difference between .NET Core and .NET 5?",
+      "Q212. What is Metapackage? What is the name of Metapackage in ASP.NET"
+    ]
+  },
+  {
+    "section_index": 22,
+    "title": "22. .NET Core - Dependency Injection",
+    "question_count": 4,
+    "questions": [
+      "Q213. What is Dependency Injection?",
+      "Q214. How to implement Dependency Injection in .NET Core?",
+      "Q215. What are the advantages of Dependency Injection in .NET Core?",
+      "Q216. How to use Dependency Injection in Views in ASP.NET Core?"
+    ]
+  },
+  {
+    "section_index": 23,
+    "title": "23. .NET Core - Service Lifetimes, Middleware & Hosting",
+    "question_count": 8,
+    "questions": [
+      "Q217. What are the types of Service Lifetimes of an object/instance in",
+      "Q218. What is AddSingleton, AddScoped and AddTransient method?",
+      "Q219. What is Middleware in ASP.NET Core? What is custom middleware?",
+      "Q220. How is ASP.NET Core Middleware different from HttpModule?",
+      "Q221. What is a Request Delegate?",
+      "Q222. What is Run(), Use() and Map() method?",
+      "Q223. What are the types of Hosting in ASP.NET Core? What is In-process and",
+      "Q224. What is Kestrel? What is the difference between Kestrel and IIS?"
+    ]
+  },
+  {
+    "section_index": 24,
+    "title": "24. .NET Core - Routing, Files, CORS & More",
+    "question_count": 9,
+    "questions": [
+      "Q225. What is Routing? Explain attribute routing in ASP.NET Core?",
+      "Q226. Explain default project structure in ASP.NET Core application?",
+      "Q227. How does ASP.NET Core serve static \ufb01les?",
+      "Q228. What are the roles of Appsettings.json and Launchsettings.json \ufb01les?",
+      "Q229. What are the techniques to save con\ufb01guration settings in .NET Core?",
+      "Q230. What is CORS? Why is CORS restriction required? How to \ufb01x CORS",
+      "Q231. What is In-Memory caching & Distributed Caching? When to use what?",
+      "Q232. How to handle errors in ASP.NET Core?",
+      "Q233. What are Razor pages in .NET Core?"
+    ]
+  },
+  {
+    "section_index": 25,
+    "title": "25. SOLID Principles",
+    "question_count": 7,
+    "questions": [
+      "Q234. What are SOLID Principles? How are they different from Design",
+      "Q235. What is the Single Responsibility Principle (SRP)?",
+      "Q236. What is the Open-Closed Principle (OCP)?",
+      "Q237. What is the Liskov Substitution Principle (LSP)?",
+      "Q238. What is the Interface Segregation Principle (ISP)?",
+      "Q239. What is the Dependency Inversion Principle (DIP)?",
+      "Q240. What is the DRY principle?"
+    ]
+  },
+  {
+    "section_index": 26,
+    "title": "26. Design Patterns",
+    "question_count": 10,
+    "questions": [
+      "Q241. What are Design Patterns and what problem do they solve?",
+      "Q242. What are the types of Design Patterns?",
+      "Q243. What are Creational Design Patterns?",
+      "Q244. What are Structural Design Patterns?",
+      "Q245. What are Behavioral Design Patterns?",
+      "Q246. What is the Singleton Design Pattern?",
+      "Q247. How to make the singleton pattern thread-safe?",
+      "Q248. What is the Factory pattern? Why use the factory pattern?",
+      "Q249. How to implement the Factory Method pattern?",
+      "Q250. What is the Abstract Factory pattern?"
+    ]
+  },
+  {
+    "section_index": 27,
+    "title": "27. Array Coding Problems",
+    "question_count": 7,
+    "questions": [
+      "Q251. What are the must-know prerequisites for solving basic coding",
+      "Q252. What is the common approach for solving coding problems?",
+      "Q253. Write a function to calculate the sum of all elements in an array.",
+      "Q254. Write a function to calculate the average of an array of numbers.",
+      "Q255. Write a function to \ufb01nd the smallest number in an array.",
+      "Q256. Write a function to \ufb01nd the largest number in an array.",
+      "Q257. Write a function to \ufb01nd the second largest number in an array."
+    ]
+  },
+  {
+    "section_index": 28,
+    "title": "28. Array Coding Problems Using Functions",
+    "question_count": 5,
+    "questions": [
+      "Q258. What are the top 5 important array functions used in coding problems?",
+      "Q259. Write a function to check whether two arrays are the same or not.",
+      "Q260. Function to check if a given array is sorted in ascending order?",
+      "Q261. Write a function to merge two arrays into a single sorted array.",
+      "Q262. Write a function to remove a speci\ufb01c element from an array."
+    ]
+  },
+  {
+    "section_index": 29,
+    "title": "29. String Coding Problems",
+    "question_count": 4,
+    "questions": [
+      "Q263. Write a function that counts the number of characters in a string?",
+      "Q264. How to iterate a string?",
+      "Q265. Write a function that returns the reverse of a string?",
+      "Q266. Write a function that checks whether a given string is a palindrome?"
+    ]
+  },
+  {
+    "section_index": 30,
+    "title": "30. String Coding Problems Using Functions",
+    "question_count": 5,
+    "questions": [
+      "Q267. What are the important methods of the String class?",
+      "Q268. Write a function that returns the longest word in the sentence.",
+      "Q269. Write a function to remove all whitespace characters from a string.",
+      "Q270. Write a function that counts the number of vowels in a string?",
+      "Q271. Write a function that checks whether two strings are anagrams or not?"
+    ]
+  },
+  {
+    "section_index": 31,
+    "title": "31. Number Coding Problems",
+    "question_count": 7,
+    "questions": [
+      "Q272. Write a function to calculate the factorial of a number.",
+      "Q273. What is the difference between ++i and i++?",
+      "Q274. Write a function that checks whether a number is prime or not?",
+      "Q275. How to swap two numbers in C#?",
+      "Q276. Write a function to calculate the GCD for two numbers.",
+      "Q277. Write a function to sum the digits of a number.",
+      "Q278. Write a function to calculate the Fibonacci sequence up to a given"
+    ]
+  }
+]
