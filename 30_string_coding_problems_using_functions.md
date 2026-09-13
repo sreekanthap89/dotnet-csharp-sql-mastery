@@ -1,11 +1,7 @@
 # Section 30: String Coding Problems Using Functions & Standard Library
 
----
-
-### Navigation
-- **Previous Section**: [Section 29: String Coding Problems](./29_string_coding_problems.md)
-- **Next Section**: [Section 31: Number Coding Problems](./31_number_coding_problems.md)
-- **Curriculum Master Index**: [README.md](./README.md)
+> **Curriculum Navigation:**  
+> ⏪ [Previous: Section 29 – String Manipulation & Memory Allocation](./29_string_coding_problems.md) | 🏠 [Master Index](./README.md) | ⏩ [Next: Section 31 – Mathematical, Number & Bitwise Coding](./31_number_coding_problems.md)
 
 ---
 

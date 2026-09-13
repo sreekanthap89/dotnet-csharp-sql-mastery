@@ -1,11 +1,7 @@
 # Section 31: Number Coding Problems & Mathematical Algorithms
 
----
-
-### Navigation
-- **Previous Section**: [Section 30: String Coding Problems Using Functions](./30_string_coding_problems_using_functions.md)
-- **Next Section**: None (Final Section)
-- **Curriculum Master Index**: [README.md](./README.md)
+> **Curriculum Navigation:**  
+> ⏪ [Previous: Section 30 – String Algorithmic Challenges (Modular Functions)](./30_string_coding_problems_using_functions.md) | 🏠 [Master Index](./README.md) | ⏩ [Next: Module 32 – Microsoft Entra ID & Cloud Identity Architecture](./32_azure_entra_id_and_identity.md)
 
 ---
 

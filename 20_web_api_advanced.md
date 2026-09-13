@@ -1,11 +1,7 @@
 # Section 20: Web API - Advanced Concepts, Formatting, & Testing
 
----
-
-### Navigation
-- **Previous Section**: [Section 19: Web API Authentication & JWT](./19_web_api_authentication_and_jwt.md)
-- **Next Section**: [Section 21: .NET Core Basics](./21_dotnet_core_basics.md)
-- **Curriculum Master Index**: [README.md](./README.md)
+> **Curriculum Navigation:**  
+> ⏪ [Previous: Section 19 – Web API Security, Authentication & JWT Deep-Dive](./19_web_api_authentication_and_jwt.md) | 🏠 [Master Index](./README.md) | ⏩ [Next: Section 21 – .NET Core Architecture & Hosting Pipeline](./21_dotnet_core_basics.md)
 
 ---
 

@@ -1,5 +1,8 @@
 # Module 37: Azure Key Vault, Managed HSM & Cloud Cryptographic Architecture
 
+> **Curriculum Navigation:**  
+> ⏪ [Previous: Module 36 – Azure DevOps, GitOps & CI/CD Pipelines](./36_azure_devops_ci_cd.md) | 🏠 [Master Index](./README.md) | 🏁 [Curriculum Completed]
+
 ---
 
 ## 1. Executive Summary & Core Value Proposition

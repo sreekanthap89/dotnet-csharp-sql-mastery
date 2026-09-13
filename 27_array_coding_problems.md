@@ -1,11 +1,7 @@
 # Section 27: Array Coding Problems & Algorithmic Foundations
 
----
-
-### Navigation
-- **Previous Section**: [Section 26: Design Patterns](./26_design_patterns.md)
-- **Next Section**: [Section 28: Array Coding Problems Using Functions](./28_array_coding_problems_using_functions.md)
-- **Curriculum Master Index**: [README.md](./README.md)
+> **Curriculum Navigation:**  
+> ⏪ [Previous: Section 26 – Design Patterns (GoF & Enterprise)](./26_design_patterns.md) | 🏠 [Master Index](./README.md) | ⏩ [Next: Section 28 – Array Algorithmic Challenges (Modular Functions)](./28_array_coding_problems_using_functions.md)
 
 ---
 

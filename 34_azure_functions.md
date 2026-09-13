@@ -1,5 +1,8 @@
 # Module 34: Azure Functions & Serverless Compute Architecture
 
+> **Curriculum Navigation:**  
+> ⏪ [Previous: Module 33 – Azure SQL Database & Cloud Relational Architecture](./33_azure_sql_database.md) | 🏠 [Master Index](./README.md) | ⏩ [Next: Module 35 – Azure Event Grid & Enterprise Messaging](./35_azure_event_grid_and_messaging.md)
+
 ---
 
 ## 1. Executive Summary & Core Value Proposition

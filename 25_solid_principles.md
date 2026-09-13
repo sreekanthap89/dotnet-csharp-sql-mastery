@@ -1,11 +1,7 @@
 # Section 25: SOLID Principles & Clean Architecture
 
----
-
-### Navigation
-- **Previous Section**: [Section 24: .NET Core Routing, Files, CORS & Configuration](./24_dotnet_core_routing_files_cors_and_more.md)
-- **Next Section**: [Section 26: Design Patterns](./26_design_patterns.md)
-- **Curriculum Master Index**: [README.md](./README.md)
+> **Curriculum Navigation:**  
+> ⏪ [Previous: Section 24 – Routing, Configuration, CORS & Caching](./24_dotnet_core_routing_files_cors_and_more.md) | 🏠 [Master Index](./README.md) | ⏩ [Next: Section 26 – Design Patterns (GoF & Enterprise)](./26_design_patterns.md)
 
 ---
 

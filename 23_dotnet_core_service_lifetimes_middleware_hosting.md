@@ -1,11 +1,7 @@
 # Section 23: .NET Core - Service Lifetimes, Middleware & Hosting
 
----
-
-### Navigation
-- **Previous Section**: [Section 22: .NET Core Dependency Injection](./22_dotnet_core_dependency_injection.md)
-- **Next Section**: [Section 24: .NET Core Routing, Files, CORS & More](./24_dotnet_core_routing_files_cors_and_more.md)
-- **Curriculum Master Index**: [README.md](./README.md)
+> **Curriculum Navigation:**  
+> ⏪ [Previous: Section 22 – .NET Core Dependency Injection](./22_dotnet_core_dependency_injection.md) | 🏠 [Master Index](./README.md) | ⏩ [Next: Section 24 – Routing, Configuration, CORS & Caching](./24_dotnet_core_routing_files_cors_and_more.md)
 
 ---
 

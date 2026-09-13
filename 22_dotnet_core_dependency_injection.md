@@ -1,11 +1,7 @@
 # Section 22: .NET Core - Dependency Injection
 
----
-
-### Navigation
-- **Previous Section**: [Section 21: .NET Core Basics](./21_dotnet_core_basics.md)
-- **Next Section**: [Section 23: .NET Core Service Lifetimes, Middleware & Hosting](./23_dotnet_core_service_lifetimes_middleware_hosting.md)
-- **Curriculum Master Index**: [README.md](./README.md)
+> **Curriculum Navigation:**  
+> ⏪ [Previous: Section 21 – .NET Core Architecture & Hosting Pipeline](./21_dotnet_core_basics.md) | 🏠 [Master Index](./README.md) | ⏩ [Next: Section 23 – Service Lifetimes, Middleware & Hosting](./23_dotnet_core_service_lifetimes_middleware_hosting.md)
 
 ---
 

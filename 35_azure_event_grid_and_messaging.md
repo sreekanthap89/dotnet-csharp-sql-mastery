@@ -1,5 +1,8 @@
 # Module 35: Azure Event Grid & Enterprise Cloud Messaging Architecture
 
+> **Curriculum Navigation:**  
+> ⏪ [Previous: Module 34 – Azure Functions & Serverless Compute Architecture](./34_azure_functions.md) | 🏠 [Master Index](./README.md) | ⏩ [Next: Module 36 – Azure DevOps, GitOps & CI/CD Pipelines](./36_azure_devops_ci_cd.md)
+
 ---
 
 ## 1. Executive Summary & Core Value Proposition

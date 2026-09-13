@@ -1,11 +1,7 @@
 # Section 24: .NET Core - Routing, Files, CORS & Configuration
 
----
-
-### Navigation
-- **Previous Section**: [Section 23: .NET Core Service Lifetimes, Middleware & Hosting](./23_dotnet_core_service_lifetimes_middleware_hosting.md)
-- **Next Section**: [Section 25: SOLID Principles](./25_solid_principles.md)
-- **Curriculum Master Index**: [README.md](./README.md)
+> **Curriculum Navigation:**  
+> ⏪ [Previous: Section 23 – Service Lifetimes, Middleware & Hosting](./23_dotnet_core_service_lifetimes_middleware_hosting.md) | 🏠 [Master Index](./README.md) | ⏩ [Next: Section 25 – SOLID Principles & Clean Architecture](./25_solid_principles.md)
 
 ---
 

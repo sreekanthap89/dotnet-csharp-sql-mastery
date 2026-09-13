@@ -1,5 +1,8 @@
 # Module 32: Microsoft Entra ID (Formerly Azure Active Directory) & Cloud Identity Architecture
 
+> **Curriculum Navigation:**  
+> ⏪ [Previous: Section 31 – Mathematical, Number & Bitwise Coding](./31_number_coding_problems.md) | 🏠 [Master Index](./README.md) | ⏩ [Next: Module 33 – Azure SQL Database & Cloud Relational Architecture](./33_azure_sql_database.md)
+
 ---
 
 ## 1. Executive Summary & Core Value Proposition

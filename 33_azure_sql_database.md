@@ -1,5 +1,8 @@
 # Module 33: Azure SQL Database & Cloud Relational Architecture
 
+> **Curriculum Navigation:**  
+> ⏪ [Previous: Module 32 – Microsoft Entra ID & Cloud Identity Architecture](./32_azure_entra_id_and_identity.md) | 🏠 [Master Index](./README.md) | ⏩ [Next: Module 34 – Azure Functions & Serverless Compute Architecture](./34_azure_functions.md)
+
 ---
 
 ## 1. Executive Summary & Core Value Proposition

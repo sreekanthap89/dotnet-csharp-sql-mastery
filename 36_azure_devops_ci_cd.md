@@ -1,5 +1,8 @@
 # Module 36: Azure DevOps, GitOps & Enterprise CI/CD Pipeline Architecture
 
+> **Curriculum Navigation:**  
+> ⏪ [Previous: Module 35 – Azure Event Grid & Enterprise Messaging](./35_azure_event_grid_and_messaging.md) | 🏠 [Master Index](./README.md) | ⏩ [Next: Module 37 – Azure Key Vault, Managed HSM & Cryptography](./37_azure_key_vault_and_security.md)
+
 ---
 
 ## 1. Executive Summary & Core Value Proposition

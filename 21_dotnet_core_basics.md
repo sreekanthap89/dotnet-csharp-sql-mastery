@@ -1,11 +1,7 @@
 # Section 21: .NET Core - Basics & Architecture
 
----
-
-### Navigation
-- **Previous Section**: [Section 20: Web API More & Advanced](./20_web_api_advanced.md)
-- **Next Section**: [Section 22: .NET Core Dependency Injection](./22_dotnet_core_dependency_injection.md)
-- **Curriculum Master Index**: [README.md](./README.md)
+> **Curriculum Navigation:**  
+> ⏪ [Previous: Section 20 – Web API: Advanced Concepts, Formatting & Testing](./20_web_api_advanced.md) | 🏠 [Master Index](./README.md) | ⏩ [Next: Section 22 – .NET Core Dependency Injection](./22_dotnet_core_dependency_injection.md)
 
 ---
 

@@ -1,11 +1,7 @@
 # Section 28: Array Coding Problems Using Functions & Standard Library
 
----
-
-### Navigation
-- **Previous Section**: [Section 27: Array Coding Problems](./27_array_coding_problems.md)
-- **Next Section**: [Section 29: String Coding Problems](./29_string_coding_problems.md)
-- **Curriculum Master Index**: [README.md](./README.md)
+> **Curriculum Navigation:**  
+> ⏪ [Previous: Section 27 – Array Algorithmic Challenges (Core Mechanics)](./27_array_coding_problems.md) | 🏠 [Master Index](./README.md) | ⏩ [Next: Section 29 – String Manipulation & Memory Allocation](./29_string_coding_problems.md)
 
 ---
 

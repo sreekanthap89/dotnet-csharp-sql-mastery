@@ -1,11 +1,7 @@
 # Section 26: Design Patterns (Gang of Four & Enterprise Patterns)
 
----
-
-### Navigation
-- **Previous Section**: [Section 25: SOLID Principles](./25_solid_principles.md)
-- **Next Section**: [Section 27: Array Coding Problems](./27_array_coding_problems.md)
-- **Curriculum Master Index**: [README.md](./README.md)
+> **Curriculum Navigation:**  
+> ⏪ [Previous: Section 25 – SOLID Principles & Clean Architecture](./25_solid_principles.md) | 🏠 [Master Index](./README.md) | ⏩ [Next: Section 27 – Array Algorithmic Challenges (Core Mechanics)](./27_array_coding_problems.md)
 
 ---
 

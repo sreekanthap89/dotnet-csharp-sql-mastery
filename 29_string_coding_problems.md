@@ -1,11 +1,7 @@
 # Section 29: String Coding Problems & UTF Text Mechanics
 
----
-
-### Navigation
-- **Previous Section**: [Section 28: Array Coding Problems Using Functions](./28_array_coding_problems_using_functions.md)
-- **Next Section**: [Section 30: String Coding Problems Using Functions](./30_string_coding_problems_using_functions.md)
-- **Curriculum Master Index**: [README.md](./README.md)
+> **Curriculum Navigation:**  
+> ⏪ [Previous: Section 28 – Array Algorithmic Challenges (Modular Functions)](./28_array_coding_problems_using_functions.md) | 🏠 [Master Index](./README.md) | ⏩ [Next: Section 30 – String Algorithmic Challenges (Modular Functions)](./30_string_coding_problems_using_functions.md)
 
 ---
 
