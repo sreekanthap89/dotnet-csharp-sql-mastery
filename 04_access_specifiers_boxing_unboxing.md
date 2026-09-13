@@ -781,3 +781,73 @@ Used across enterprise logging, audit trails, and dynamic code generation. In st
 #### 7. Senior / Architect Interview Follow-ups
 - **Interviewer**: *"How does EF Core's `FromSqlInterpolated()` prevent SQL injection despite using `$` string interpolation syntax?"*
 - **Expert Answer**: `FromSqlInterpolated()` takes a **`FormattableString`** parameter, not a `string`. When an interpolated string is passed to a method accepting `FormattableString`, the C# compiler extracts the format string (`SELECT * FROM Users WHERE Name = {0}`) and an `object[]` array containing the evaluated arguments. EF Core converts the arguments into secure SQL parameters (`@p0`) rather than executing raw string concatenation.
+
+---
+
+## 🏛️ Architectural Appendix: Type Selection & Memory Boundaries
+
+### 1. The Definitive Type Selection Matrix
+Choosing between `class`, `struct`, `record`, and `record struct` is one of the most critical decisions an architect makes:
+
+| Type Category | Memory Location | Equality Semantics | Mutability Default | Copy Semantics | Primary Use Case |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **`class`** | Managed Heap | **Reference** (Identity) | Mutable | Shallow Reference Copy | Stateful domain entities, services, business orchestrators. |
+| **`record class`** | Managed Heap | **Value** (Structural) | **Immutable** (`init`) | Shallow Clone via `with` | Immutable DTOs, API contracts, Command/Query models. |
+| **`struct`** | Stack / In-place | **Value** (Structural via reflection unless overridden) | Mutable (unless `readonly`) | Value Copy (Bitwise copy) | High-frequency, small (< 16 bytes), short-lived math primitives (points, vectors). |
+| **`record struct`** | Stack / In-place | **Value** (Structural, compiler-optimized) | Mutable (or `readonly`) | Value Copy / `with` | Lightweight data carriers, zero-allocation composite keys. |
+
+```mermaid
+graph TD
+    Start["New Data Model Needed"] --> Q1{"Identity matters more than data values?\n(e.g., Customer, Order Entity)"}
+    Q1 -->|Yes| Class["Use standard 'class'"]
+    Q1 -->|No| Q2{"Is size <= 16 bytes AND lifetime short/in-place?"}
+    Q2 -->|Yes| Q3{"Need immutability & concise syntax?"}
+    Q3 -->|Yes| RecStruct["Use 'readonly record struct'"]
+    Q3 -->|No| PlainStruct["Use 'readonly struct'"]
+    Q2 -->|No| Q4{"Need immutability, with-expressions & value equality?"}
+    Q4 -->|Yes| RecClass["Use 'record class' (or 'record')"]
+    Q4 -->|No| Class
+```
+
+---
+
+### 2. `ref struct` Invariants & The Async Boundary Dilemma
+Modern C# introduces `ref struct` (such as `Span<T>` and `ReadOnlySpan<T>`) to guarantee stack-only allocation. However, this imposes strict architectural constraints:
+
+```csharp
+public ref struct CustomBufferReader
+{
+    private ReadOnlySpan<byte> _buffer;
+    public CustomBufferReader(ReadOnlySpan<byte> buffer) => _buffer = buffer;
+}
+
+public class AsyncMemoryBoundaryDemo
+{
+    // COMPILATION ERROR: ref struct cannot be used in async methods across await boundaries!
+    /*
+    public async Task ProcessDataAsync(ReadOnlySpan<byte> data)
+    {
+        // ERROR CS4007: 'ReadOnlySpan<byte>' cannot be used in an async method.
+        await Task.Delay(100);
+        Console.WriteLine(data.Length);
+    }
+    */
+
+    // ARCHITECTURAL FIX: Use Memory<T> or ReadOnlyMemory<T> for async workflows
+    public async Task ProcessDataCorrectlyAsync(ReadOnlyMemory<byte> data)
+    {
+        // Memory<T> is a regular struct (NOT ref struct) and CAN be captured on the heap
+        // by the compiler-generated IAsyncStateMachine!
+        await Task.Delay(100);
+
+        // Slice to Span<T> synchronously AFTER the await boundary:
+        ReadOnlySpan<byte> span = data.Span;
+        Console.WriteLine($"Processed {span.Length} bytes without violations.");
+    }
+}
+```
+
+> [!IMPORTANT]
+> **Why `ref struct` cannot cross an `await` point**:
+> When an `async` method hits an `await` keyword, the current stack frame yields execution. The C# compiler translates local variables into fields of a heap-allocated state machine (`IAsyncStateMachine`). Because `ref struct` is forbidden from ever escaping to the managed heap, the compiler generates error `CS4007`. Use **`Memory<T>` / `ReadOnlyMemory<T>`** for asynchronous data pipelines and convert to `Span<T>` only within synchronous blocks.
+

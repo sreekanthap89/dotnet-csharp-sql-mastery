@@ -632,3 +632,70 @@ Customer portal dashboards displaying recent order history: Instant response tim
   - **Non-SARGable 1 (Functions on Columns)**: `WHERE SUBSTRING(Code, 1, 3) = 'NYC'` $\rightarrow$ Fix: `WHERE Code LIKE 'NYC%'`.
   - **Non-SARGable 2 (Implicit Type Conversion)**: Filtering a `VARCHAR` column with an `NVARCHAR` parameter (`WHERE VarcharCol = N'123'`). SQL Server converts every column value to Unicode, causing a full scan!
   - **Non-SARGable 3 (Leading Wildcards)**: `WHERE Name LIKE '%Smith'`. The engine cannot seek on unknown prefixes; it must scan the entire index.
+
+---
+
+## 🏛️ Architectural Appendix: Concurrency Control, RCSI & Deadlock Forensics
+
+### 1. Read Committed Snapshot Isolation (RCSI)
+In default SQL Server databases, reading rows acquires Shared Locks (`S`), and writing rows acquires Exclusive Locks (`X`). **Writers block readers, and readers block writers**, leading to concurrency bottlenecks under high Web API loads.
+
+#### The Solution: RCSI (Row Versioning via `tempdb`)
+When RCSI is enabled:
+- Readers do **not** take shared locks (`S`). Instead, they read the pre-update version of rows from the `tempdb` Version Store.
+- **Writers never block readers, and readers never block writers!**
+- Eliminates dirty reads without the locking overhead of traditional `READ COMMITTED`.
+
+```sql
+-- Enabling RCSI at Database Level (One-time administrative command)
+ALTER DATABASE EnterpriseCommerceDb
+SET READ_COMMITTED_SNAPSHOT ON WITH ROLLBACK IMMEDIATE;
+GO
+
+-- Verify RCSI Status
+SELECT name, is_read_committed_snapshot_on, snapshot_isolation_state_desc
+FROM sys.databases
+WHERE name = 'EnterpriseCommerceDb';
+```
+
+---
+
+### 2. Deadlock Forensics & Elimination (SQL Error 1205)
+A **Deadlock** occurs when two or more transactions hold exclusive locks on separate resources and each attempts to acquire a lock on the resource held by the other, creating a circular dependency.
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant T1 as Transaction 1
+    participant DB as SQL Server Engine
+    participant T2 as Transaction 2
+
+    T1->>DB: UPDATE Customers (Locks Customer 10)
+    T2->>DB: UPDATE Orders (Locks Order 500)
+    T1->>DB: UPDATE Orders WHERE Id = 500 (Blocked by T2!)
+    T2->>DB: UPDATE Customers WHERE Id = 10 (Blocked by T1!)
+    Note over DB: Lock Monitor detects Circular Wait!<br/>Kills Transaction with lower priority (Victim)
+    DB-->>T2: Error 1205: Transaction was deadlocked and chosen as victim
+    DB-->>T1: Transaction 1 Completes Successfully
+```
+
+#### Capturing & Diagnosing Deadlock Graphs via Extended Events:
+```sql
+-- Querying Deadlock XML Graphs directly from system health session
+SELECT 
+    XEvent.query('(event/data/value/deadlock)[1]') AS DeadlockGraphXml,
+    XEvent.value('(event/@timestamp)[1]', 'datetime2') AS UtcTimestamp
+FROM (
+    SELECT CAST(target_data AS XML) AS TargetData
+    FROM sys.dm_xe_session_targets st
+    JOIN sys.dm_xe_sessions s ON s.address = st.event_session_address
+    WHERE s.name = 'system_health' AND st.target_name = 'ring_buffer'
+) AS Data
+CROSS APPLY TargetData.nodes('//RingBufferTarget/event[@name="xml_deadlock_report"]') AS XEventData(XEvent);
+```
+
+#### The 3 Golden Rules to Prevent Deadlocks:
+1. **Access Objects in Identical Order**: Always access tables in the same sequence across all stored procedures (e.g., Table A then Table B; never Table B then Table A).
+2. **Keep Transactions Short**: Perform non-database work (API calls, emails, token generation) *outside* the SQL transaction boundary.
+3. **Use Resilient Application Retries with Polly**: Handle SQL error 1205 by catching `SqlException` where `Number == 1205` and executing an exponential backoff retry.
+

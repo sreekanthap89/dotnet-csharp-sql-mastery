@@ -933,3 +933,108 @@ Migrating legacy applications: Converting old .NET Framework 3.5 systems using L
 - **Expert Answer**:
   - **TPH (Table-Per-Hierarchy)** stores the entire inheritance hierarchy in a **single database table** using nullable columns and a discriminator. Query performance is **fastest** because queries require zero SQL `JOIN`s, but database columns must be nullable.
   - **TPT (Table-Per-Type)** creates a separate physical database table for every class in the hierarchy. Querying derived entities requires **complex relational SQL `JOIN`s across all ancestor tables**, causing significant performance degradation when hierarchies grow deep. TPH is almost always preferred for enterprise performance.
+
+---
+
+## 🏛️ Architectural Appendix: High-Performance EF Core & CQRS Hybrid Patterns
+
+### 1. Cartesian Explosion & `AsSplitQuery()`
+When querying an entity with multiple 1-to-many relationships (e.g., `Customer` with `Orders` and `Addresses`), EF Core's default behavior emits a single massive SQL `JOIN`:
+```sql
+SELECT c.*, o.*, a.*
+FROM Customers c
+LEFT JOIN Orders o ON c.Id = o.CustomerId
+LEFT JOIN Addresses a ON c.Id = a.CustomerId;
+```
+If a customer has 50 orders and 10 addresses, the database returns $50 \times 10 = 500$ rows over the network, duplicating customer and order data dozens of times!
+
+#### The Solution: `AsSplitQuery()`
+```csharp
+// Splits into 3 separate, clean SQL queries: 1 for Customers, 1 for Orders, 1 for Addresses
+var customerGraph = await context.Customers
+    .Include(c => c.Orders)
+    .Include(c => c.Addresses)
+    .AsSplitQuery() // Eliminates the Cartesian Explosion!
+    .FirstOrDefaultAsync(c => c.Id == customerId);
+```
+
+---
+
+### 2. High-Frequency Micro-Optimizations
+
+#### A. Compiled Queries (`EF.CompileAsyncQuery`)
+Bypasses the LINQ expression tree compilation and SQL generation pipeline for hot endpoints:
+```csharp
+public static class CompiledQueries
+{
+    private static readonly Func<AppDbContext, int, Task<CustomerSummaryDto?>> GetCustomerSummaryCompiled =
+        EF.CompileAsyncQuery((AppDbContext db, int id) =>
+            db.Customers
+              .AsNoTracking()
+              .Where(c => c.Id == id)
+              .Select(c => new CustomerSummaryDto(c.Id, c.Name, c.Email))
+              .FirstOrDefault());
+
+    public static Task<CustomerSummaryDto?> GetCustomerSummaryAsync(AppDbContext db, int id)
+        => GetCustomerSummaryCompiled(db, id);
+}
+
+public record CustomerSummaryDto(int Id, string Name, string Email);
+```
+
+#### B. `AsNoTrackingWithIdentityResolution()`
+When executing complex read-only queries with multiple joins, standard `AsNoTracking()` creates duplicate entity instances in memory if the same row is referenced multiple times. `AsNoTrackingWithIdentityResolution()` ensures a single instance exists while still skipping change-tracking overhead.
+
+---
+
+### 3. The Enterprise CQRS Data Architecture: EF Core + Dapper Hybrid
+Rather than forcing EF Core to handle every query or writing raw SQL for every update, enterprise architectures combine both tools where each excels:
+
+```mermaid
+graph TD
+    Client["Client Command / Query"]
+    Client -->|Write / Mutation Command| EFCore["EF Core (Write Model)\n- Rich Domain Entities\n- Automatic Change Tracking\n- Business Invariant Validation\n- SaveChangesAsync() Transaction"]
+    Client -->|Read Query| Dapper["Dapper (Read Model)\n- Raw SQL Performance\n- Direct Materialization to DTOs\n- Zero Tracking Overhead\n- Optimal Complex Projections"]
+    EFCore --> Database[(SQL Server / PostgreSQL)]
+    Dapper --> Database
+```
+
+```csharp
+// Example: The Hybrid Repository Pattern
+public class OrderRepository : IOrderRepository
+{
+    private readonly AppDbContext _efContext;
+    private readonly IDbConnection _dbConnection;
+
+    public OrderRepository(AppDbContext efContext, IDbConnection dbConnection)
+    {
+        _efContext = efContext;
+        _dbConnection = dbConnection;
+    }
+
+    // WRITE MODEL: EF Core enforces domain rules and tracks entity changes
+    public async Task CreateOrderAsync(Order order, CancellationToken ct)
+    {
+        await _efContext.Orders.AddAsync(order, ct);
+        await _efContext.SaveChangesAsync(ct);
+    }
+
+    // READ MODEL: Dapper executes raw optimized SQL directly into lightweight DTOs
+    public async Task<IEnumerable<OrderReportDto>> GetOrderReportsByCustomerAsync(int customerId)
+    {
+        const string sql = """
+            SELECT o.Id AS OrderId, o.TotalAmount, o.OrderDateUtc, COUNT(i.Id) AS ItemCount
+            FROM Orders o
+            JOIN OrderItems i ON o.Id = i.OrderId
+            WHERE o.CustomerId = @CustomerId
+            GROUP BY o.Id, o.TotalAmount, o.OrderDateUtc
+            ORDER BY o.OrderDateUtc DESC;
+            """;
+
+        return await _dbConnection.QueryAsync<OrderReportDto>(sql, new { CustomerId = customerId });
+    }
+}
+
+public record OrderReportDto(int OrderId, decimal TotalAmount, DateTime OrderDateUtc, int ItemCount);
+```
+

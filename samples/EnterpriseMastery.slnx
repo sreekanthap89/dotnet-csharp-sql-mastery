@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/benchmarks/">
+    <Project Path="benchmarks/Enterprise.Benchmarks/Enterprise.Benchmarks.csproj" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/Enterprise.Core/Enterprise.Core.csproj" />
+    <Project Path="src/Enterprise.WebApi/Enterprise.WebApi.csproj" />
+  </Folder>
+</Solution>

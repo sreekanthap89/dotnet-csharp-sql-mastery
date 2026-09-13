@@ -1012,3 +1012,132 @@ Multi-cloud management platforms (such as Terraform cloud providers or multi-ten
 ### 7. Senior / Architect Interview Follow-ups
 - **Interviewer**: *Compare the Factory Method and Abstract Factory patterns. When should you transition from Factory Method to Abstract Factory?*
 - **Candidate Answer**: The **Factory Method** uses inheritance to create a single product type (`Logistics.CreateTransport()`). The **Abstract Factory** uses composition to create entire **families of related or dependent products** (`ICloudServiceFactory.CreateCompute()`, `CreateStorage()`). You transition from Factory Method to Abstract Factory when your application expands from creating isolated individual objects to needing coordinated suites of related components that must be kept consistent.
+
+---
+
+## 🏛️ Architectural Appendix: Distributed Systems Patterns
+
+### 1. The Transactional Outbox Pattern (Eliminating Dual-Write Bugs)
+In microservice architectures, an API often needs to update a database (e.g., insert an Order) **AND** publish a message to a broker (e.g., Kafka / RabbitMQ). 
+
+#### The Dual-Write Problem:
+```csharp
+// FATAL ANTI-PATTERN: Dual-Write Hazard!
+await _dbContext.SaveChangesAsync(); // Step 1: Succeeds
+await _messageBus.PublishAsync(new OrderCreatedEvent(order.Id)); // Step 2: Fails (Network blip)
+// RESULT: Inconsistent State! Order exists in DB, but downstream services never notified!
+```
+
+#### The Outbox Solution:
+Save the domain event directly to an `OutboxMessages` database table **within the exact same database transaction** as the business entity. A background worker periodically polls the outbox table, publishes messages to the message broker, and marks them as processed upon acknowledgment:
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Client as Client Request
+    participant API as Order API Service
+    participant DB as SQL Database (Transaction)
+    participant Worker as Outbox Processor Worker
+    participant Kafka as Kafka / RabbitMQ
+
+    Client->>API: POST /api/orders
+    Note over API,DB: Single ACID Transaction
+    API->>DB: 1. INSERT INTO Orders (...)
+    API->>DB: 2. INSERT INTO OutboxMessages (Event, Payload, ProcessedAt=null)
+    DB-->>API: Transaction Committed!
+    API-->>Client: 201 Created
+
+    loop Every 5 Seconds (Background Relay)
+        Worker->>DB: SELECT TOP 100 * FROM OutboxMessages WHERE ProcessedAt IS NULL
+        Worker->>Kafka: Publish Event to Topic
+        Kafka-->>Worker: Ack (Message Broker received event)
+        Worker->>DB: UPDATE OutboxMessages SET ProcessedAt = UtcNow WHERE Id = @Id
+    end
+```
+
+```csharp
+public class OrderCheckoutService
+{
+    private readonly AppDbContext _context;
+
+    public OrderCheckoutService(AppDbContext context) => _context = context;
+
+    public async Task CheckoutAsync(Order order, CancellationToken ct)
+    {
+        // 1. Prepare domain entity
+        _context.Orders.Add(order);
+
+        // 2. Prepare outbox message in the same change-tracker batch!
+        var outboxMessage = new OutboxMessage
+        {
+            Id = Guid.NewGuid(),
+            OccurredOnUtc = DateTime.UtcNow,
+            EventType = nameof(OrderCreatedEvent),
+            Payload = JsonSerializer.Serialize(new OrderCreatedEvent(order.Id, order.TotalAmount))
+        };
+        _context.OutboxMessages.Add(outboxMessage);
+
+        // 3. Single atomic database commit
+        await _context.SaveChangesAsync(ct);
+    }
+}
+
+public class OutboxMessage
+{
+    public Guid Id { get; set; }
+    public DateTime OccurredOnUtc { get; set; }
+    public string EventType { get; set; } = string.Empty;
+    public string Payload { get; set; } = string.Empty;
+    public DateTime? ProcessedOnUtc { get; set; }
+}
+
+public record OrderCreatedEvent(Guid OrderId, decimal Amount);
+```
+
+---
+
+### 2. CQRS & The Mediator Pattern (MediatR Blueprint)
+Separating read operations from write mutations creates clean, testable, and independently scalable domain logic:
+
+```csharp
+// 1. Command Definition (Write Model - Mutates State)
+public record CreateProductCommand(string Name, decimal Price) : IRequest<Guid>;
+
+// 2. Command Handler (Applies Business Rules & Persistence)
+public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, Guid>
+{
+    private readonly IProductRepository _repository;
+
+    public CreateProductCommandHandler(IProductRepository repository)
+    {
+        _repository = repository;
+    }
+
+    public async Task<Guid> Handle(CreateProductCommand request, CancellationToken ct)
+    {
+        var product = new Product(Guid.NewGuid(), request.Name, request.Price);
+        await _repository.InsertAsync(product, ct);
+        return product.Id;
+    }
+}
+
+// 3. Query Definition (Read Model - Fast, Lightweight Projections)
+public record GetProductByIdQuery(Guid ProductId) : IRequest<ProductDto?>;
+
+// 4. Query Handler (Bypasses Domain Entities; Direct DTO Materialization via Dapper)
+public class GetProductByIdQueryHandler : IRequestHandler<GetProductByIdQuery, ProductDto?>
+{
+    private readonly IDbConnection _db;
+    public GetProductByIdQueryHandler(IDbConnection db) => _db = db;
+
+    public async Task<ProductDto?> Handle(GetProductByIdQuery request, CancellationToken ct)
+    {
+        return await _db.QueryFirstOrDefaultAsync<ProductDto>(
+            "SELECT Id, Name, Price FROM Products WHERE Id = @Id", 
+            new { Id = request.ProductId });
+    }
+}
+
+public record ProductDto(Guid Id, string Name, decimal Price);
+```
+

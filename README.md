@@ -78,33 +78,44 @@ flowchart LR
 
 ## 🚀 Repository Roadmap & Upcoming Code Projects
 
-To evolve this repository into a complete hands-on learning laboratory, the following companion projects and code samples are scheduled:
+## 🚀 Live Companion Code Projects & Benchmarks
+
+This repository includes a fully compiling, runnable **.NET 8 multi-project solution** in the [`samples/`](./samples/README.md) directory, demonstrating the architectural patterns:
 
 ```
 dotnet-csharp-sql-mastery/
 │
-├── docs/                                # All 31 Comprehensive Markdown Modules
-│   ├── 01_introduction_oops_and_basics.md
+├── 01_introduction_oops_and_basics.md  # 31 Exhaustive Architectural Reference Modules
 │   └── ...
 │
-├── samples/                             # [PLANNED] Runnable Sample Projects (.NET 8/9)
-│   ├── 01_OopsAndBasics/
-│   ├── 13_ConcurrencyAndThreading/      # Async/await benchmarks & synchronization demos
-│   ├── 17_EntityFrameworkCore/          # EF Core performance optimizations, compiled queries
-│   ├── 19_WebApiSecurityJwt/            # Complete working ASP.NET Core JWT Auth & Refresh Tokens
-│   ├── 23_CustomMiddlewareKestrel/      # Custom rate-limiting & correlation ID middleware
-│   └── 26_DesignPatterns/               # Production GoF & Enterprise pattern implementations
-│
-├── benchmarks/                          # [PLANNED] BenchmarkDotNet Performance Suites
-│   ├── MemoryAllocations/               # String vs Span vs string.Create benchmarks
-│   ├── CollectionsBenchmark/            # List vs Array vs FrozenDictionary performance
-│   └── LinqVsLoops/                     # LINQ vs SIMD Vectorized array operations
-│
-└── database/                            # [PLANNED] SQL Server Lab Scripts & Schemas
-    ├── 01_IndexesAndPerformance.sql     # Clustered/Non-clustered execution plan tests
-    ├── 02_StoredProcsAndCte.sql         # Window functions, recursion, and CTE scripts
-    └── docker-compose.sql.yml           # Instant local SQL Server 2022 via Docker
+└── samples/                             # [ACTIVE & RUNNABLE] .NET 8 / 9 Master Solution
+    ├── EnterpriseMastery.slnx          # Solution linking all projects
+    │
+    ├── src/
+    │   ├── Enterprise.Core/            # Domain Entities, Result Pattern, Interfaces, Outbox Model
+    │   └── Enterprise.WebApi/          # ASP.NET Core 8 Web API, Polly v8, Middleware, Minimal APIs
+    │
+    ├── benchmarks/
+    │   └── Enterprise.Benchmarks/      # BenchmarkDotNet: Span<T> vs string, Memory Diagnoser
+    │
+    └── database/
+        ├── docker-compose.yml          # Instant local SQL Server 2022 + Redis Cluster
+        ├── 01_schema_and_rcsi.sql      # Tables, E-S-R Non-Clustered Indexes, RCSI Enablement
+        └── 02_deadlock_simulation.sql  # Deadlock Error 1205 reproduction & Extended Events
 ```
+
+### Quick Commands:
+```bash
+# Build the entire solution (0.4s clean build):
+dotnet build samples/EnterpriseMastery.slnx
+
+# Run the ASP.NET Core Web API (Swagger UI enabled):
+dotnet run --project samples/src/Enterprise.WebApi/Enterprise.WebApi.csproj
+
+# Run BenchmarkDotNet performance profiling:
+dotnet run -c Release --project samples/benchmarks/Enterprise.Benchmarks/Enterprise.Benchmarks.csproj
+```
+
 
 ---
 

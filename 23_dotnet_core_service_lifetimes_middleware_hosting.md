@@ -748,3 +748,67 @@ Modern cloud-native deployments run Kestrel directly as an edge server inside Li
 ### 7. Senior / Architect Interview Follow-ups
 - **Interviewer**: *Can Kestrel be used as a public-facing edge server without a reverse proxy like IIS or NGINX?*
 - **Candidate Answer**: Yes. In early versions of .NET Core, Microsoft advised against exposing Kestrel directly to the internet. However, since ASP.NET Core 2.1+, Kestrel has been hardened with configurable request rate limits, connection caps, Slowloris defenses, and TLS termination. It is fully supported as an edge server, though reverse proxies (like NGINX, Cloudflare, or AWS ALB) are still commonly used for centralized SSL offloading, Web Application Firewall (WAF) filtering, and static file caching.
+
+---
+
+## 🏛️ Architectural Appendix: Resilient Cloud Pipelines via Polly v8
+
+### 1. Modern Resilience Pipelines in .NET 8 (`Microsoft.Extensions.Http.Resilience`)
+In distributed microservices, network partitions, transient throttling, and downstream service restarts are unavoidable. In .NET 8, Microsoft integrated **Polly v8** directly into the BCL via `Microsoft.Extensions.Resilience`:
+
+```csharp
+// Program.cs - Enterprise Resilient HTTP Client Pipeline
+var builder = WebApplication.CreateBuilder(args);
+
+// Configures a standard resilience pipeline (Rate Limiter -> Total Timeout -> Retry -> Circuit Breaker -> Attempt Timeout)
+builder.Services.AddHttpClient<IPaymentService, PaymentService>(client =>
+{
+    client.BaseAddress = new Uri("https://api.payments.enterprise.com");
+})
+.AddStandardResilienceHandler(options =>
+{
+    // 1. Retry Strategy: Jittered exponential backoff
+    options.Retry.MaxRetryAttempts = 3;
+    options.Retry.BackoffType = Polly.DelayBackoffType.Exponential;
+    options.Retry.UseJitter = true; // Prevents thundering herd on downstream API
+
+    // 2. Circuit Breaker Strategy: Trips open if 50% of requests fail within 10s
+    options.CircuitBreaker.FailureRatio = 0.5;
+    options.CircuitBreaker.SamplingDuration = TimeSpan.FromSeconds(10);
+    options.CircuitBreaker.MinimumThroughput = 8;
+    options.CircuitBreaker.BreakDuration = TimeSpan.FromSeconds(30);
+
+    // 3. Attempt Timeout
+    options.AttemptTimeout.Timeout = TimeSpan.FromSeconds(2);
+});
+```
+
+```mermaid
+graph LR
+    Req["Outgoing HTTP Request"] --> RateLimit["1. Rate Limiter (Token Bucket)"]
+    RateLimit --> TotalTimeout["2. Total Pipeline Timeout"]
+    TotalTimeout --> RetryLoop["3. Jittered Exponential Retry"]
+    RetryLoop --> CircuitBreaker{"4. Circuit Breaker State"}
+    CircuitBreaker -->|Closed (Normal)| Attempt["5. Request Attempt (2s Timeout)"]
+    CircuitBreaker -->|Open (Faulted)| FastFail["Fast-Fail: Reject immediately (Save resources)"]
+    CircuitBreaker -->|Half-Open (Trial)| Trial["Send trial canary probe"]
+    Attempt --> DownstreamService["External Downstream Microservice"]
+```
+
+---
+
+### 2. Hedging Strategy for Tail-Latency Reduction
+For ultra-low latency SLAs (e.g., high-frequency trading, P99 latency guarantees), **Hedging** sends duplicate requests in parallel if the initial request fails to respond within a given threshold (e.g., 200ms), accepting whichever response returns first:
+
+```csharp
+builder.Services.AddHttpClient("FastCatalogClient")
+    .AddResilienceHandler("CustomHedgingPipeline", builder =>
+    {
+        builder.AddHedging(new Polly.Hedging.HttpHedgingStrategyOptions
+        {
+            MaxHedgedAttempts = 2,
+            Delay = TimeSpan.FromMilliseconds(250) // If attempt 1 takes > 250ms, spawn attempt 2 in parallel!
+        });
+    });
+```
+
