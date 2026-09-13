@@ -17,8 +17,11 @@ samples/
 │   ├── Enterprise.Core/            # Domain Entities, Result Pattern, Interfaces, Outbox Message
 │   └── Enterprise.WebApi/          # ASP.NET Core 8 Web API, Polly v8, Middleware, Minimal APIs
 │
+├── tests/
+│   └── Enterprise.Tests/           # xUnit, FluentAssertions, WebApplicationFactory Integration Tests
+│
 ├── benchmarks/
-│   └── Enterprise.Benchmarks/      # BenchmarkDotNet Suite: Span vs string, Memory Profiling
+│   └── Enterprise.Benchmarks/      # BenchmarkDotNet Suite: Span vs Substring, FrozenDictionary vs Dictionary
 │
 └── database/
     ├── docker-compose.yml          # Instant local SQL Server 2022 + Redis cluster
@@ -35,22 +38,30 @@ samples/
 dotnet build samples/EnterpriseMastery.slnx
 ```
 
-### 2. Run the ASP.NET Core Web API
+### 2. Run Automated Unit & Integration Tests
+```bash
+dotnet test samples/EnterpriseMastery.slnx
+```
+- Validates Railway-oriented `Result<T>` pattern.
+- Enforces `Order` domain entity invariants.
+- Executes full HTTP API requests against `WebApplicationFactory<Program>` testing correlation IDs, Polly resilience, and HTTP status codes.
+
+### 3. Run the ASP.NET Core Web API
 ```bash
 dotnet run --project samples/src/Enterprise.WebApi/Enterprise.WebApi.csproj
 ```
 - Navigate to Swagger UI: `http://localhost:5000/swagger` or `https://localhost:5001/swagger`
 - Test `POST /api/v1/orders` to observe the **Transactional Outbox Pattern** and **Polly Resilience Handlers** in action.
 
-### 3. Run BenchmarkDotNet Performance Profiling
+### 4. Run BenchmarkDotNet Performance Profiling
 ```bash
 # Benchmarks must be executed in Release mode for accurate JIT optimization!
 dotnet run -c Release --project samples/benchmarks/Enterprise.Benchmarks/Enterprise.Benchmarks.csproj
 ```
-- Compares classic string allocation against `Span<char>` and `string.Create()`.
-- Produces zero-allocation memory diagnostics (`[MemoryDiagnoser]`).
+- **StringAllocationBenchmarks**: Compares classic string allocation against zero-allocation `Span<char>` and `string.Create()`.
+- **CollectionLookupBenchmarks**: Measures `FrozenDictionary` vs standard `Dictionary` vs `ImmutableDictionary` in .NET 8.
 
-### 4. Start Local SQL Server & Redis (Docker)
+### 5. Start Local SQL Server & Redis (Docker)
 ```bash
 cd samples/database
 docker-compose up -d

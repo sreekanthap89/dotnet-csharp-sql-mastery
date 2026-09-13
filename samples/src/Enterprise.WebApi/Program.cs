@@ -25,6 +25,8 @@ builder.Services.AddHttpClient<IPaymentGateway, ResilientPaymentGateway>(client 
 {
     options.Retry.MaxRetryAttempts = 3;
     options.Retry.UseJitter = true;
+    options.TotalRequestTimeout.Timeout = TimeSpan.FromSeconds(10);
+    options.AttemptTimeout.Timeout = TimeSpan.FromSeconds(2);
     options.CircuitBreaker.FailureRatio = 0.5;
     options.CircuitBreaker.SamplingDuration = TimeSpan.FromSeconds(10);
 });
@@ -59,9 +61,9 @@ ordersApi.MapPost("/", async (
     CancellationToken ct) =>
 {
     if (request.CustomerId <= 0)
-        return Results.BadRequest(new ProblemDetails { Detail = "CustomerId must be positive." });
+        return Results.Content(System.Text.Json.JsonSerializer.Serialize(new ProblemDetails { Detail = "CustomerId must be positive." }), "application/problem+json", statusCode: StatusCodes.Status400BadRequest);
     if (request.TotalAmount <= 0)
-        return Results.BadRequest(new ProblemDetails { Detail = "TotalAmount must be positive." });
+        return Results.Content(System.Text.Json.JsonSerializer.Serialize(new ProblemDetails { Detail = "TotalAmount must be positive." }), "application/problem+json", statusCode: StatusCodes.Status400BadRequest);
 
     var order = new Order(Guid.NewGuid(), request.CustomerId, request.TotalAmount);
     await orderRepo.AddAsync(order, ct);
@@ -77,7 +79,8 @@ ordersApi.MapPost("/", async (
     // Process Payment via Polly Resilient Gateway
     await paymentGateway.ProcessPaymentAsync(order.Id, order.TotalAmount, ct);
 
-    return Results.Created($"/api/v1/orders/{order.Id}", new { order.Id, order.Status, order.TotalAmount });
+    var responsePayload = System.Text.Json.JsonSerializer.Serialize(new { id = order.Id, status = order.Status.ToString(), totalAmount = order.TotalAmount });
+    return Results.Content(responsePayload, "application/json", statusCode: StatusCodes.Status201Created);
 })
 .WithName("CreateOrder")
 .Produces(StatusCodes.Status201Created)
@@ -96,3 +99,5 @@ ordersApi.MapGet("/{id:guid}", async (Guid id, IOrderRepository orderRepo, Cance
 app.Run();
 
 public record CreateOrderRequest(int CustomerId, decimal TotalAmount);
+
+public partial class Program { }

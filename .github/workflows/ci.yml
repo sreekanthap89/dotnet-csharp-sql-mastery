@@ -1,0 +1,31 @@
+name: Enterprise Mastery CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    name: Build & Test .NET Solution
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Setup .NET SDK
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: |
+          8.0.x
+
+    - name: Restore Dependencies
+      run: dotnet restore samples/EnterpriseMastery.slnx
+
+    - name: Build Solution (Release)
+      run: dotnet build samples/EnterpriseMastery.slnx --configuration Release --no-restore
+
+    - name: Run Automated Tests
+      run: dotnet test samples/EnterpriseMastery.slnx --configuration Release --no-build --verbosity normal

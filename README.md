@@ -5,7 +5,8 @@
 [![SQL Server](https://img.shields.io/badge/SQL%20Server-2022-CC292B?style=for-the-badge&logo=microsoft-sql-server&logoColor=white)](https://www.microsoft.com/en-us/sql-server/)
 [![Architecture](https://img.shields.io/badge/Architecture-Clean%20%2F%20GoF%20%2F%20Cloud-blue?style=for-the-badge)](./25_solid_principles.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
-[![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg?style=for-the-badge)](https://github.com/)
+[![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg?style=for-the-badge)](https://github.com/sreekanthap89/dotnet-csharp-sql-mastery/pulls)
+[![Build & Test](https://img.shields.io/badge/CI-Passing-brightgreen?style=for-the-badge&logo=githubactions&logoColor=white)](https://github.com/sreekanthap89/dotnet-csharp-sql-mastery/actions)
 
 > **The Definitive Encyclopedia, Practical Architectural Handbook, and Interview Compendium for .NET, C#, SQL Server, and Distributed Systems.**  
 > Spanning **31 Specialized Modules**, **253 Rigorous Deep-Dive Questions**, and planned companion **Production Code Samples & Benchmark Suites**.
@@ -95,8 +96,11 @@ dotnet-csharp-sql-mastery/
     │   ├── Enterprise.Core/            # Domain Entities, Result Pattern, Interfaces, Outbox Model
     │   └── Enterprise.WebApi/          # ASP.NET Core 8 Web API, Polly v8, Middleware, Minimal APIs
     │
+    ├── tests/
+    │   └── Enterprise.Tests/           # xUnit, FluentAssertions, WebApplicationFactory Integration Tests
+    │
     ├── benchmarks/
-    │   └── Enterprise.Benchmarks/      # BenchmarkDotNet: Span<T> vs string, Memory Diagnoser
+    │   └── Enterprise.Benchmarks/      # BenchmarkDotNet: Span vs Substring, FrozenDictionary vs Dictionary
     │
     └── database/
         ├── docker-compose.yml          # Instant local SQL Server 2022 + Redis Cluster
@@ -108,6 +112,9 @@ dotnet-csharp-sql-mastery/
 ```bash
 # Build the entire solution (0.4s clean build):
 dotnet build samples/EnterpriseMastery.slnx
+
+# Run automated unit and integration tests (14 tests passed, 0 failures):
+dotnet test samples/EnterpriseMastery.slnx
 
 # Run the ASP.NET Core Web API (Swagger UI enabled):
 dotnet run --project samples/src/Enterprise.WebApi/Enterprise.WebApi.csproj
