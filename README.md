@@ -9,7 +9,7 @@
 [![Build & Test](https://img.shields.io/badge/CI-Passing-brightgreen?style=for-the-badge&logo=githubactions&logoColor=white)](https://github.com/sreekanthap89/dotnet-csharp-sql-mastery/actions)
 
 > **The Definitive Encyclopedia, Practical Architectural Handbook, and Interview Compendium for .NET, C#, SQL Server, and Distributed Systems.**  
-> Spanning **31 Specialized Modules**, **253 Rigorous Deep-Dive Questions**, and planned companion **Production Code Samples & Benchmark Suites**.
+> Spanning **37 Specialized Modules**, **253 Rigorous Deep-Dive Questions + 6 Enterprise Cloud Architecture Suites**, and companion **Production Code Samples, Tests & Benchmark Suites**.
 
 ---
 
@@ -74,6 +74,12 @@ flowchart LR
 | **29** | **String Manipulation & Memory Allocation** | Q263 – Q266 | UTF-16 Code Units vs Runes vs Graphemes, Reversal, Palindrome | [Module 29](./29_string_coding_problems.md) |
 | **30** | **String Algorithmic Challenges (Modular Functions)** | Q270 – Q271 | Longest Word, Whitespace Stripping, Vowels (SIMD), Anagrams | [Module 30](./30_string_coding_problems_using_functions.md) |
 | **31** | **Mathematical, Number & Bitwise Coding** | Q272 – Q278 | Factorial (BigInteger), ++i vs i++ CIL, Prime (6k±1), Swaps, GCD, Fibonacci | [Module 31](./31_number_coding_problems.md) |
+| **32** | **Microsoft Entra ID & Cloud Identity Architecture** | Cloud Architecture | OAuth2/OIDC, PKCE, OBO Flow, Managed Identities, PIM, Zero-Trust | [Module 32](./32_azure_entra_id_and_identity.md) |
+| **33** | **Azure SQL Database & Cloud Relational Architecture** | Cloud Architecture | DTU vs vCore, Hyperscale, Serverless, Active Geo-Replication, Private Link | [Module 33](./33_azure_sql_database.md) |
+| **34** | **Azure Functions & Serverless Compute** | Cloud Architecture | Isolated Worker Model, Consumption vs Flex vs Premium, Durable Sagas, KEDA | [Module 34](./34_azure_functions.md) |
+| **35** | **Azure Event Grid & Enterprise Messaging** | Cloud Architecture | Event Grid vs Service Bus vs Event Hubs, CloudEvents v1.0, Dead-Lettering | [Module 35](./35_azure_event_grid_and_messaging.md) |
+| **36** | **Azure DevOps, GitOps & CI/CD Pipelines** | Cloud Architecture | YAML Multistage Pipelines, Environments & Gates, OIDC Workload Identity | [Module 36](./36_azure_devops_ci_cd.md) |
+| **37** | **Azure Key Vault, Managed HSM & Cryptography** | Cloud Architecture | Secrets, Keys, Certificates, RBAC vs Access Policies, FIPS 140-2 Level 3 | [Module 37](./37_azure_key_vault_and_security.md) |
 
 ---
 
@@ -137,12 +143,13 @@ dotnet run -c Release --project samples/benchmarks/Enterprise.Benchmarks/Enterpr
 - **Core Goals**: Master interfaces, generics, delegates, LINQ execution pipelines, SQL indexing/joins, EF Core querying, REST Web API design, DI lifetimes, and clean code principles.
 
 ### 3. Senior Engineer / Technical Lead (5 – 8 Years)
-- **Primary Modules**: [11](./11_dotnet_framework_basics.md), [12](./12_dotnet_garbage_collection.md), [13](./13_dotnet_threading_and_concurrency.md), [20](./20_web_api_advanced.md), [23](./23_dotnet_core_service_lifetimes_middleware_hosting.md), [24](./24_dotnet_core_routing_files_cors_and_more.md), [26](./26_design_patterns.md).
-- **Core Goals**: Deep CLR internals, Garbage Collection generations and LOH/POH compaction, zero-allocation memory slicing (`Span<T>`), async synchronization contexts, lock-free concurrency, advanced middleware, and GoF patterns.
+- **Primary Modules**: [11](./11_dotnet_framework_basics.md), [12](./12_dotnet_garbage_collection.md), [13](./13_dotnet_threading_and_concurrency.md), [20](./20_web_api_advanced.md), [23](./23_dotnet_core_service_lifetimes_middleware_hosting.md), [24](./24_dotnet_core_routing_files_cors_and_more.md), [26](./26_design_patterns.md), [32](./32_azure_entra_id_and_identity.md), [33](./33_azure_sql_database.md), [34](./34_azure_functions.md), [36](./36_azure_devops_ci_cd.md), [37](./37_azure_key_vault_and_security.md).
+- **Core Goals**: Deep CLR internals, Garbage Collection generations and LOH/POH compaction, zero-allocation memory slicing (`Span<T>`), async synchronization contexts, lock-free concurrency, advanced middleware, GoF patterns, and core cloud infrastructure services.
 
 ### 4. Principal / Solutions Architect (8+ Years)
-- **Primary Modules**: Holistic mastery across all 31 sections with specific focus on:
-  - System scalability tradeoffs in high-throughput cloud environments.
+- **Primary Modules**: Holistic mastery across all 37 sections with specific focus on:
+  - System scalability tradeoffs in high-throughput distributed cloud environments.
+  - Cloud Architecture Modules ([32](./32_azure_entra_id_and_identity.md) – [37](./37_azure_key_vault_and_security.md)): Enterprise identity federation (OIDC/SAML), Hyperscale relational databases, event-driven reactive meshes (Event Grid), serverless sagas (Durable Functions), zero-trust cryptographic boundaries (Managed HSM), and GitOps CI/CD compliance.
   - SQL Server B-Tree execution plans, lock escalation, and distributed transactional consistency (ACID vs. BASE).
   - Resilient microservice architecture, API Gateways, and event-driven patterns.
   - Memory leak forensics, thread pool starvation debugging, and GC pause tuning.
