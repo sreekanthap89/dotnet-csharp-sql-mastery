@@ -263,8 +263,8 @@ Key considerations:
 ```mermaid
 flowchart TD
     Input["Array: [10, 15, 20]"] --> Guard{"Length == 0?"}
-    Guard -->|Yes| Throw["Throw ArgumentException\n(Avoid 0/0 NaN)"]
-    Guard -->|No| Sum["Sum = 10 + 15 + 20 = 45L"]
+    Guard -->|"Yes"| Throw["Throw ArgumentException\n(Avoid 0/0 NaN)"]
+    Guard -->|"No"| Sum["Sum = 10 + 15 + 20 = 45L"]
     Sum --> Div["Average = 45.0 / 3.0 = 15.0"]
     Div --> Return["Return 15.0d"]
 ```
@@ -479,10 +479,10 @@ Maintain two tracking variables:
 ```mermaid
 flowchart TD
     Elem["Inspect Next Element (x)"] --> CheckLargest{"x > largest?"}
-    CheckLargest -->|Yes| UpdateBoth["secondLargest = largest\nlargest = x"]
-    CheckLargest -->|No| CheckSecond{"x > secondLargest && x != largest?"}
-    CheckSecond -->|Yes| UpdateSecond["secondLargest = x"]
-    CheckSecond -->|No| Ignore["Continue to next element"]
+    CheckLargest -->|"Yes"| UpdateBoth["secondLargest = largest\nlargest = x"]
+    CheckLargest -->|"No"| CheckSecond{"x > secondLargest && x != largest?"}
+    CheckSecond -->|"Yes"| UpdateSecond["secondLargest = x"]
+    CheckSecond -->|"No"| Ignore["Continue to next element"]
 ```
 
 ### 2. Deep-Dive Architecture & Runtime Internals

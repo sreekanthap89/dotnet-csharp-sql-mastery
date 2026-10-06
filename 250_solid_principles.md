@@ -38,10 +38,10 @@ graph TD
         Decorator["Decorator Pattern"]
     end
     
-    OCP -.->|Implemented via| Strategy
-    DIP -.->|Implemented via| Factory
-    ISP -.->|Implemented via| Adapter
-    OCP -.->|Implemented via| Decorator
+    OCP -.->|"Implemented via"| Strategy
+    DIP -.->|"Implemented via"| Factory
+    ISP -.->|"Implemented via"| Adapter
+    OCP -.->|"Implemented via"| Decorator
 ```
 
 ### 2. Deep-Dive Architecture & Runtime Internals
@@ -564,12 +564,12 @@ In traditional software design, high-level business policies directly instantiat
 ```mermaid
 flowchart TD
     subgraph TraditionalDesign["Traditional Architecture (Direct Dependency)"]
-        HL1["High-Level Policy\n(OrderService)"] -->|Depends directly on| LL1["Low-Level Detail\n(SqlServerDatabase)"]
+        HL1["High-Level Policy\n(OrderService)"] -->|"Depends directly on"| LL1["Low-Level Detail\n(SqlServerDatabase)"]
     end
     
     subgraph InvertedDesign["Dependency Inversion (Inverted Direction)"]
-        HL2["High-Level Policy\n(OrderService)"] -->|Depends on abstraction| Interface["<<abstraction>>\nIOrderRepository"]
-        LL2["Low-Level Detail\n(SqlServerDatabase)"] -.->|Implements abstraction| Interface
+        HL2["High-Level Policy\n(OrderService)"] -->|"Depends on abstraction"| Interface["<<abstraction>>\nIOrderRepository"]
+        LL2["Low-Level Detail\n(SqlServerDatabase)"] -.->|"Implements abstraction"| Interface
     end
 ```
 

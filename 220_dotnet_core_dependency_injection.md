@@ -23,10 +23,10 @@ flowchart LR
         IDB["<<interface>>\nIDatabase"]
         SqlDB2["Concrete SqlDatabase"]
         
-        Container -.->|Injects instance of| OrderService2
-        OrderService2 -->|Depends on abstraction| IDB
-        SqlDB2 -.->|Implements| IDB
-        Container -.->|Resolves| SqlDB2
+        Container -.->|"Injects instance of"| OrderService2
+        OrderService2 -->|"Depends on abstraction"| IDB
+        SqlDB2 -.->|"Implements"| IDB
+        Container -.->|"Resolves"| SqlDB2
     end
 ```
 

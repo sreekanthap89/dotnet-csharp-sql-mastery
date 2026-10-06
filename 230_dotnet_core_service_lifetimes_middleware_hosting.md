@@ -347,10 +347,10 @@ graph TD
         E4 --> E5[EndRequest]
     end
     subgraph ModernModel["Modern Middleware (Sequential Russian Doll)"]
-        M1[Middleware A] -->|next| M2[Middleware B]
-        M2 -->|next| M3[Endpoint Action]
-        M3 -.->|return| M2
-        M2 -.->|return| M1
+        M1[Middleware A] -->|"next"| M2[Middleware B]
+        M2 -->|"next"| M3[Endpoint Action]
+        M3 -.->|"return"| M2
+        M2 -.->|"return"| M1
     end
 ```
 
@@ -499,7 +499,7 @@ flowchart TD
     Req["Incoming Request"] --> Use1["app.Use() (Middleware 1)"]
     Use1 --> BranchCheck{"Path matches /branch?"}
     BranchCheck -->|"Yes: app.Map()"| MapBranch["Branched Pipeline\n(Terminal app.Run)"]
-    BranchCheck -->|No| Use2["app.Use() (Middleware 2)"]
+    BranchCheck -->|"No"| Use2["app.Use() (Middleware 2)"]
     Use2 --> RunTerminal["app.Run() (Terminal Middleware)"]
 ```
 
@@ -592,7 +592,7 @@ flowchart TD
         IIS2["IIS (w3wp.exe)"]
         ANCM2["ASP.NET Core Module (ANCM)"]
         Kestrel["Kestrel (dotnet.exe)\nListening on Loopback Port"]
-        IIS2 --> ANCM2 -->|HTTP Forwarding via Sockets| Kestrel
+        IIS2 --> ANCM2 -->|"HTTP Forwarding via Sockets"| Kestrel
     end
 ```
 

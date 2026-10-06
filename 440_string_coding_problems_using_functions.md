@@ -108,8 +108,8 @@ flowchart TD
     Sentence["'The quick brown fox jumps over the lazy dog'"]
     --> Scan["Scan characters sequentially\nTrack current word length and start index"]
     --> Compare{"currentLength > maxLength?"}
-    Compare -->|Yes| Update["maxLength = currentLength\nmaxStartIndex = startIndex"]
-    Compare -->|No| Continue["Continue scanning"]
+    Compare -->|"Yes"| Update["maxLength = currentLength\nmaxStartIndex = startIndex"]
+    Compare -->|"No"| Continue["Continue scanning"]
     Update & Continue --> Result["Extract Longest Word: 'jumps' (Length: 5)"]
 ```
 
@@ -207,8 +207,8 @@ flowchart TD
     Input["' H e l l o   W o r l d \n '"]
     --> Read["Read Pointer scans characters"]
     --> Check{"char.IsWhiteSpace(c)?"}
-    Check -->|Yes| Skip["Skip character"]
-    Check -->|No| Write["Write character to output buffer"]
+    Check -->|"Yes"| Skip["Skip character"]
+    Check -->|"No"| Write["Write character to output buffer"]
     Write & Skip --> Result["'HelloWorld'"]
 ```
 
@@ -294,8 +294,8 @@ flowchart LR
     Input["'Enterprise Architecture'"]
     --> Loop["Iterate each character (c)"]
     --> Check{"c in [a, e, i, o, u]?"}
-    Check -->|Yes| Inc["vowelCount++"]
-    Check -->|No| Skip["Continue"]
+    Check -->|"Yes"| Inc["vowelCount++"]
+    Check -->|"No"| Skip["Continue"]
     Inc & Skip --> Result["Total Vowels: 10"]
 ```
 
@@ -391,11 +391,11 @@ flowchart TD
     S1["String A: 'silent'"]
     S2["String B: 'listen'"]
     S1 & S2 --> LenCheck{"Lengths Equal?"}
-    LenCheck -->|No| FalseReturn["Return False"]
-    LenCheck -->|Yes| FreqMap["Frequency Array (26 letters)\nIncrement for String A (+1)\nDecrement for String B (-1)"]
+    LenCheck -->|"No"| FalseReturn["Return False"]
+    LenCheck -->|"Yes"| FreqMap["Frequency Array (26 letters)\nIncrement for String A (+1)\nDecrement for String B (-1)"]
     FreqMap --> CheckZero{"Are all counts == 0?"}
-    CheckZero -->|Yes| TrueReturn["Is Anagram (True)"]
-    CheckZero -->|No| FalseReturn2["Not Anagram (False)"]
+    CheckZero -->|"Yes"| TrueReturn["Is Anagram (True)"]
+    CheckZero -->|"No"| FalseReturn2["Not Anagram (False)"]
 ```
 
 ### 2. Deep-Dive Architecture & Runtime Internals

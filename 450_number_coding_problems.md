@@ -213,15 +213,15 @@ The naive approach checks all numbers from 2 to $N-1$ ($O(N)$ time). The optimal
 ```mermaid
 flowchart TD
     N["Input N"] --> BaseCheck{"N <= 1?"}
-    BaseCheck -->|Yes| False1["Not Prime"]
-    BaseCheck -->|No| SmallPrimes{"N == 2 or N == 3?"}
-    SmallPrimes -->|Yes| True1["Is Prime"]
-    SmallPrimes -->|No| Div23{"N % 2 == 0 or N % 3 == 0?"}
-    Div23 -->|Yes| False2["Not Prime"]
-    Div23 -->|No| Loop["Loop i = 5; i * i <= N; i += 6\nCheck N % i == 0 or N % (i+2) == 0"]
+    BaseCheck -->|"Yes"| False1["Not Prime"]
+    BaseCheck -->|"No"| SmallPrimes{"N == 2 or N == 3?"}
+    SmallPrimes -->|"Yes"| True1["Is Prime"]
+    SmallPrimes -->|"No"| Div23{"N % 2 == 0 or N % 3 == 0?"}
+    Div23 -->|"Yes"| False2["Not Prime"]
+    Div23 -->|"No"| Loop["Loop i = 5; i * i <= N; i += 6\nCheck N % i == 0 or N % (i+2) == 0"]
     Loop --> DivFound{"Divisor found?"}
-    DivFound -->|Yes| False3["Not Prime"]
-    DivFound -->|No| True2["Is Prime"]
+    DivFound -->|"Yes"| False3["Not Prime"]
+    DivFound -->|"No"| True2["Is Prime"]
 ```
 
 ### 2. Deep-Dive Architecture & Runtime Internals

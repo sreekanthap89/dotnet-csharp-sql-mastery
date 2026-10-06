@@ -110,15 +110,15 @@ Two arrays are considered "the same" (structurally equal) if:
 ```mermaid
 flowchart TD
     Start["Check Arrays: A and B"] --> RefCheck{"ReferenceEquals(A, B)?"}
-    RefCheck -->|Yes| True1["Return True (Same memory pointer)"]
-    RefCheck -->|No| NullCheck{"Either A or B is null?"}
-    NullCheck -->|Yes| False1["Return False"]
-    NullCheck -->|No| LenCheck{"A.Length == B.Length?"}
-    LenCheck -->|No| False2["Return False"]
-    LenCheck -->|Yes| Loop["Iterate i = 0 to N-1\nCompare A[i] == B[i]"]
+    RefCheck -->|"Yes"| True1["Return True (Same memory pointer)"]
+    RefCheck -->|"No"| NullCheck{"Either A or B is null?"}
+    NullCheck -->|"Yes"| False1["Return False"]
+    NullCheck -->|"No"| LenCheck{"A.Length == B.Length?"}
+    LenCheck -->|"No"| False2["Return False"]
+    LenCheck -->|"Yes"| Loop["Iterate i = 0 to N-1\nCompare A[i] == B[i]"]
     Loop --> Mismatch{"Any mismatch?"}
-    Mismatch -->|Yes| False3["Return False"]
-    Mismatch -->|No| True2["Return True"]
+    Mismatch -->|"Yes"| False3["Return False"]
+    Mismatch -->|"No"| True2["Return True"]
 ```
 
 ### 2. Deep-Dive Architecture & Runtime Internals
@@ -280,8 +280,8 @@ flowchart TD
     Dest["Pointer k at Merged Array: [ , , , , , ]"]
     
     P1 & P2 --> Compare{"A[i] <= B[j]?"}
-    Compare -->|Yes| TakeA["Merged[k++] = A[i++]"]
-    Compare -->|No| TakeB["Merged[k++] = B[j++]"]
+    Compare -->|"Yes"| TakeA["Merged[k++] = A[i++]"]
+    Compare -->|"No"| TakeB["Merged[k++] = B[j++]"]
     TakeA & TakeB --> Dest
 ```
 
@@ -375,8 +375,8 @@ flowchart TD
     P2["Write Pointer (writeIndex) tracks valid elements"]
     
     P1 --> Check{"Arr[i] == Target?"}
-    Check -->|No: Valid| Write["Arr[writeIndex++] = Arr[i]"]
-    Check -->|Yes: Target| Skip["Skip element"]
+    Check -->|"No: Valid"| Write["Arr[writeIndex++] = Arr[i]"]
+    Check -->|"Yes: Target"| Skip["Skip element"]
     Write & Skip --> Result["In-place Result: [2, 2], new length = 2"]
 ```
 

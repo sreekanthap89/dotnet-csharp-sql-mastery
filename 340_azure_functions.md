@@ -46,7 +46,7 @@ flowchart LR
         DI --> FunctionCode
     end
 
-    gRPC_Server <===>|High-Throughput IPC gRPC Protocol| gRPC_Client
+    gRPC_Server <===>|"High-Throughput IPC gRPC Protocol"| gRPC_Client
 ```
 
 ### 2.2 Advantages of the Isolated Worker Model:

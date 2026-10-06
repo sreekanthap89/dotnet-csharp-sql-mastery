@@ -217,15 +217,15 @@ flowchart TD
         ProdSlot["Production Slot (Live Traffic - 100%)"]
         StageSlot["Staging Slot (Warmup & Smoke Test)"]
         Router1 --> ProdSlot
-        Router1 -.->|Swap CNAME| StageSlot
+        Router1 -.->|"Swap CNAME"| StageSlot
     end
 
     subgraph Canary["Canary Deployment (Weighted Routing)"]
         Router2["Azure Application Gateway"]
         CanaryProd["Main Cluster (90% Users)"]
         CanaryNew["Canary V2 (10% Users + Telemetry Profiling)"]
-        Router2 -->|90%| CanaryProd
-        Router2 -->|10%| CanaryNew
+        Router2 -->|"90%"| CanaryProd
+        Router2 -->|"10%"| CanaryNew
     end
 ```
 

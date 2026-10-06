@@ -16,16 +16,16 @@ flowchart TD
     subgraph Clients["Edge Ingress"]
         Web["Web / Mobile Clients"]
         APIM["API Gateway (APIM)"]
-        Web -->|HTTPS| APIM
+        Web -->|"HTTPS"| APIM
     end
 
     subgraph OrderingService["Order Microservice"]
         OrderAPI["ASP.NET Core Orders API"]
         OrderDB[("Orders Database<br/>(Outbox Table)")]
         OutboxWorker["Outbox Dispatcher<br/>(BackgroundService)"]
-        APIM -->|POST /orders| OrderAPI
-        OrderAPI -->|1. Atomic Transaction| OrderDB
-        OrderDB -->|2. Poll / CDC| OutboxWorker
+        APIM -->|"POST /orders"| OrderAPI
+        OrderAPI -->|"1. Atomic Transaction"| OrderDB
+        OrderDB -->|"2. Poll / CDC"| OutboxWorker
     end
 
     subgraph ServiceBus["Azure Service Bus (Enterprise Topic)"]
@@ -34,7 +34,7 @@ flowchart TD
         SubPayment["Payment Subscription"]
         SubNotification["Notification Subscription"]
         
-        OutboxWorker -->|3. Publish OrderCreatedEvent| Topic
+        OutboxWorker -->|"3. Publish OrderCreatedEvent"| Topic
         Topic --> SubInventory
         Topic --> SubPayment
         Topic --> SubNotification

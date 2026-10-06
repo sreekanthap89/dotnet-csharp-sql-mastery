@@ -44,12 +44,12 @@ flowchart TD
         HITL{"Human Approval<br/>Gate > $500?"}
 
         PromptAssembler --> LLM
-        LLM -->|tool_call: IssueRefund| MCPEngine
+        LLM -->|"tool_call: IssueRefund"| MCPEngine
         MCPEngine --> HITL
-        HITL -->|Approved| RefundTool
+        HITL -->|"Approved"| RefundTool
         MCPEngine --> ERPTool
-        RefundTool -->|Tool Output| LLM
-        ERPTool -->|Tool Output| LLM
+        RefundTool -->|"Tool Output"| LLM
+        ERPTool -->|"Tool Output"| LLM
         LLM --> FinalResponse["Final Synthesized Customer Answer"]
     end
 ```

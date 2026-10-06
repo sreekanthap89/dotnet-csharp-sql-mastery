@@ -35,7 +35,7 @@ flowchart TD
     subgraph Corporate_Datacenter["Corporate On-Premises"]
         AD["Windows Server Active Directory<br/>(Kerberos / LDAP)"]
         Sync["Microsoft Entra Connect Sync / Cloud Sync"]
-        AD -->|Password Hash Sync / PTA / ADFS| Sync
+        AD -->|"Password Hash Sync / PTA / ADFS"| Sync
     end
 
     subgraph Microsoft_Entra_ID["Microsoft Entra ID Global Cloud Service"]

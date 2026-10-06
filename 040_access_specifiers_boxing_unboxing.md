@@ -801,14 +801,14 @@ Choosing between `class`, `struct`, `record`, and `record struct` is one of the 
 ```mermaid
 graph TD
     Start["New Data Model Needed"] --> Q1{"Identity matters more than data values?\n(e.g., Customer, Order Entity)"}
-    Q1 -->|Yes| Class["Use standard 'class'"]
-    Q1 -->|No| Q2{"Is size <= 16 bytes AND lifetime short/in-place?"}
-    Q2 -->|Yes| Q3{"Need immutability & concise syntax?"}
-    Q3 -->|Yes| RecStruct["Use 'readonly record struct'"]
-    Q3 -->|No| PlainStruct["Use 'readonly struct'"]
-    Q2 -->|No| Q4{"Need immutability, with-expressions & value equality?"}
-    Q4 -->|Yes| RecClass["Use 'record class' (or 'record')"]
-    Q4 -->|No| Class
+    Q1 -->|"Yes"| Class["Use standard 'class'"]
+    Q1 -->|"No"| Q2{"Is size <= 16 bytes AND lifetime short/in-place?"}
+    Q2 -->|"Yes"| Q3{"Need immutability & concise syntax?"}
+    Q3 -->|"Yes"| RecStruct["Use 'readonly record struct'"]
+    Q3 -->|"No"| PlainStruct["Use 'readonly struct'"]
+    Q2 -->|"No"| Q4{"Need immutability, with-expressions & value equality?"}
+    Q4 -->|"Yes"| RecClass["Use 'record class' (or 'record')"]
+    Q4 -->|"No"| Class
 ```
 
 ---

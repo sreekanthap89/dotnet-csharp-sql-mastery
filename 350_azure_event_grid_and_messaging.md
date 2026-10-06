@@ -25,16 +25,16 @@ Selecting the wrong messaging technology is one of the most expensive architectu
 
 ```mermaid
 flowchart TD
-    Start["What is the primary nature of your data payload?"] --> EventOrMessage{Event or Message?}
+    Start["What is the primary nature of your data payload?"] --> EventOrMessage{"Event or Message?"}
     
-    EventOrMessage -->|Lightweight Discrete Fact<br/>'Something Happened'| Reactive["Reactive Sub-Second Fan-Out?"]
-    Reactive -->|Yes: Millions of events, Push to Webhooks/Functions| EG["Azure Event Grid"]
+    EventOrMessage -->|"Lightweight Discrete Fact<br/>'Something Happened'"| Reactive["Reactive Sub-Second Fan-Out?"]
+    Reactive -->|"Yes: Millions of events, Push to Webhooks/Functions"| EG["Azure Event Grid"]
     
-    EventOrMessage -->|High-Volume Big Data Stream<br/>IoT / Telemetry / Log Sinks| EH["Azure Event Hubs<br/>(Kafka API / Partitioned Stream)"]
+    EventOrMessage -->|"High-Volume Big Data Stream<br/>IoT / Telemetry / Log Sinks"| EH["Azure Event Hubs<br/>(Kafka API / Partitioned Stream)"]
     
-    EventOrMessage -->|High-Value Transactional Message<br/>Enterprise Workflow / Command| HighValue["Requires Complex Orchestration?"]
-    HighValue -->|Yes: FIFO, Sessions, Duplication Detection, Sagas| SB["Azure Service Bus<br/>(Premium / Standard Queues & Topics)"]
-    HighValue -->|No: Simple 64KB FIFO Worker Queue| SQ["Azure Storage Queues"]
+    EventOrMessage -->|"High-Value Transactional Message<br/>Enterprise Workflow / Command"| HighValue["Requires Complex Orchestration?"]
+    HighValue -->|"Yes: FIFO, Sessions, Duplication Detection, Sagas"| SB["Azure Service Bus<br/>(Premium / Standard Queues & Topics)"]
+    HighValue -->|"No: Simple 64KB FIFO Worker Queue"| SQ["Azure Storage Queues"]
 ```
 
 | Architectural Metric | Azure Event Grid | Azure Service Bus | Azure Event Hubs | Azure Storage Queues |
@@ -77,11 +77,11 @@ flowchart LR
         DLQ["Azure Blob Storage<br/>(Dead-Letter Store)"]
     end
 
-    Sources -->|CloudEvents v1.0| Topic
-    Filter -->|Push Delivery| Fn
-    Filter -->|Push Delivery| WH
-    Filter -->|Push Delivery| SBQ
-    RetryEngine -->|Exhausted Retries| DLQ
+    Sources -->|"CloudEvents v1.0"| Topic
+    Filter -->|"Push Delivery"| Fn
+    Filter -->|"Push Delivery"| WH
+    Filter -->|"Push Delivery"| SBQ
+    RetryEngine -->|"Exhausted Retries"| DLQ
 ```
 
 ### 3.1 Event Schemas: CloudEvents v1.0 vs. Event Grid Schema
@@ -269,7 +269,7 @@ resource eventSubscription 'Microsoft.EventGrid/topics/eventSubscriptions@2023-1
 
 ```mermaid
 flowchart TD
-    OrderSvc["Order Service (Writes to SQL)"] -->|1. Publish OrderCreated| EG["Azure Event Grid Topic"]
+    OrderSvc["Order Service (Writes to SQL)"] -->|"1. Publish OrderCreated"| EG["Azure Event Grid Topic"]
     
     subgraph Event_Subscriptions["Event Grid Subscriptions & Advanced Filters"]
         F1["Filter: High Value (> $1,000)"]
@@ -281,9 +281,9 @@ flowchart TD
     EG --> F2
     EG --> F3
 
-    F1 -->|Push to Webhook| FraudEngine["AI Fraud Detection Service"]
-    F2 -->|Push to Queue| WarehouseQueue["Warehouse Service Bus Queue"]
-    F3 -->|Push to Stream| AnalyticsHub["Azure Event Hubs (Data Lake Sink)"]
+    F1 -->|"Push to Webhook"| FraudEngine["AI Fraud Detection Service"]
+    F2 -->|"Push to Queue"| WarehouseQueue["Warehouse Service Bus Queue"]
+    F3 -->|"Push to Stream"| AnalyticsHub["Azure Event Hubs (Data Lake Sink)"]
 ```
 
 ---

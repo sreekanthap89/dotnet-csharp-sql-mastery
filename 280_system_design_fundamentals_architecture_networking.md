@@ -155,14 +155,14 @@ flowchart TD
     TLD["TLD Nameserver (.com)"]
     Auth["Authoritative Nameserver (Azure DNS)"]
 
-    Client -->|1. Resolve api.contoso.com| Resolver
-    Resolver -->|2. Where is .com?| Root
-    Root -->|3. TLD Referral| Resolver
-    Resolver -->|4. Where is contoso.com?| TLD
-    TLD -->|5. Authoritative Referral| Resolver
-    Resolver -->|6. What is api.contoso.com?| Auth
-    Auth -->|7. CNAME / Anycast IP (TTL: 300s)| Resolver
-    Resolver -->|8. IP: 20.150.40.10| Client
+    Client -->|"1. Resolve api.contoso.com"| Resolver
+    Resolver -->|"2. Where is .com?"| Root
+    Root -->|"3. TLD Referral"| Resolver
+    Resolver -->|"4. Where is contoso.com?"| TLD
+    TLD -->|"5. Authoritative Referral"| Resolver
+    Resolver -->|"6. What is api.contoso.com?"| Auth
+    Auth -->|"7. CNAME / Anycast IP (TTL: 300s)"| Resolver
+    Resolver -->|"8. IP: 20.150.40.10"| Client
 ```
 
 1. **Resolution Hierarchy**:

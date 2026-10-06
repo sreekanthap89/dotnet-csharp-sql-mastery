@@ -16,7 +16,7 @@ flowchart TD
     subgraph Ingress["Client Edge & Security"]
         Client["Client / Browser"]
         WAF["Edge WAF & TLS 1.3"]
-        Client -->|OAuth2 / OIDC Bearer JWT| WAF
+        Client -->|"OAuth2 / OIDC Bearer JWT"| WAF
     end
 
     subgraph Resiliency["Resilience & Fault Tolerance Pipeline (Polly)"]
@@ -181,12 +181,12 @@ flowchart LR
     Redis["Redis Cache (Top 20% Keys)"]
     DB[("PostgreSQL / Cosmos DB")]
 
-    User -->|GET /xyz789| AFD
+    User -->|"GET /xyz789"| AFD
     AFD --> API
-    API -->|1. Check Cache| Redis
-    Redis -->|Hit: 301 Redirect| User
-    Redis -.->|Miss| DB
-    DB -->|Populate Cache| Redis
+    API -->|"1. Check Cache"| Redis
+    Redis -->|"Hit: 301 Redirect"| User
+    Redis -.->|"Miss"| DB
+    DB -->|"Populate Cache"| Redis
 ```
 
 - **Scale & Estimation**: 100M new URLs/month, 10:1 read/write ratio $\implies$ 1B reads/month ($\approx 400$ Read QPS, 40 Write QPS).

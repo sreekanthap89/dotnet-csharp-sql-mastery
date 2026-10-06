@@ -267,7 +267,7 @@ Enterprise single-page applications (Angular, React, Vue) use `UseStaticFiles()`
 ```mermaid
 flowchart TD
     subgraph DevTime["Local Development Machine"]
-        LS["Properties/launchSettings.json"] -->|Sets ASPNETCORE_ENVIRONMENT=Development & Port 5001| Process["dotnet run (Local Process)"]
+        LS["Properties/launchSettings.json"] -->|"Sets ASPNETCORE_ENVIRONMENT=Development & Port 5001"| Process["dotnet run (Local Process)"]
     end
     subgraph RunTime["Runtime Configuration Loading"]
         Process --> C1["Load appsettings.json"]
@@ -544,8 +544,8 @@ flowchart TD
         AppNode1["App Instance 1"]
         AppNode2["App Instance 2"]
         RedisCluster[("Redis Cluster / Shared Cache")]
-        AppNode1 <-->|TCP / Binary Serialization| RedisCluster
-        AppNode2 <-->|TCP / Binary Serialization| RedisCluster
+        AppNode1 <-->|"TCP / Binary Serialization"| RedisCluster
+        AppNode2 <-->|"TCP / Binary Serialization"| RedisCluster
     end
 ```
 
@@ -638,7 +638,7 @@ Modern ASP.NET Core applications handle errors centrally through the **Global Ex
 
 ```mermaid
 flowchart TD
-    Action["Controller Action / Endpoint"] -->|Throws Exception| Pipeline["Middleware Pipeline"]
+    Action["Controller Action / Endpoint"] -->|"Throws Exception"| Pipeline["Middleware Pipeline"]
     Pipeline --> Handler["Global Exception Handler\n(IExceptionHandler)"]
     Handler --> Log["Structured Log\n(Error Level + StackTrace + CorrelationId)"]
     Handler --> Map["Map Exception to HTTP Status\n(NotFoundException -> 404, ValidationException -> 400)"]
@@ -1012,9 +1012,9 @@ Fintech payment disputes: An end-user reports that checkout failed with "Interna
 flowchart TD
     A["Alert: API Latency > 3,000 ms in Production"] --> B["Step 1: Metric Isolation\nCheck CPU, Memory, Network, DB utilization"]
     B --> C{"Where is the Time Spent?"}
-    C -->|High App CPU| D["Thread-Pool Starvation / SpinLocks\nRun: dotnet-counters / dotnet-dump"]
-    C -->|Low App CPU, High Duration| E["Waiting on External I/O (Database / Downstream)\nCheck DB Wait Stats & HTTP calls"]
-    C -->|High DB CPU| F["Database Query Plan Regression\nCheck Query Store & Missing Indexes"]
+    C -->|"High App CPU"| D["Thread-Pool Starvation / SpinLocks\nRun: dotnet-counters / dotnet-dump"]
+    C -->|"Low App CPU, High Duration"| E["Waiting on External I/O (Database / Downstream)\nCheck DB Wait Stats & HTTP calls"]
+    C -->|"High DB CPU"| F["Database Query Plan Regression\nCheck Query Store & Missing Indexes"]
     E --> G["Connection Pool Exhaustion?\nCheck: System.Data.SqlClient pool counters"]
     F --> H["Parameter Sniffing?\nForce optimal plan via Query Store"]
 ```

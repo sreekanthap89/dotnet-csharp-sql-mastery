@@ -52,7 +52,7 @@ flowchart LR
     subgraph GP["General Purpose Tier"]
         Comp1["Stateless Compute Node<br/>(sqlservr.exe)"]
         Blob["Remote Azure Premium Blob Storage<br/>(.mdf / .ldf)"]
-        Comp1 -->|Network Latency 5-10ms| Blob
+        Comp1 -->|"Network Latency 5-10ms"| Blob
     end
 
     subgraph BC["Business Critical Tier"]

@@ -1352,9 +1352,9 @@ Rather than forcing EF Core to handle every query or writing raw SQL for every u
 ```mermaid
 graph TD
     Client["Client Command / Query"]
-    Client -->|Write / Mutation Command| EFCore["EF Core (Write Model)\n- Rich Domain Entities\n- Automatic Change Tracking\n- Business Invariant Validation\n- SaveChangesAsync() Transaction"]
-    Client -->|Read Query| Dapper["Dapper (Read Model)\n- Raw SQL Performance\n- Direct Materialization to DTOs\n- Zero Tracking Overhead\n- Optimal Complex Projections"]
-    EFCore --> Database[(SQL Server / PostgreSQL)]
+    Client -->|"Write / Mutation Command"| EFCore["EF Core (Write Model)\n- Rich Domain Entities\n- Automatic Change Tracking\n- Business Invariant Validation\n- SaveChangesAsync() Transaction"]
+    Client -->|"Read Query"| Dapper["Dapper (Read Model)\n- Raw SQL Performance\n- Direct Materialization to DTOs\n- Zero Tracking Overhead\n- Optimal Complex Projections"]
+    EFCore --> Database[("SQL Server / PostgreSQL")]
     Dapper --> Database
 ```
 

@@ -613,10 +613,10 @@ In C#, there are three primary patterns for thread-safe Singletons:
 flowchart TD
     Thread1["Thread 1"] --> LockCheck1{"Instance == null?"}
     Thread2["Thread 2"] --> LockCheck1
-    LockCheck1 -->|Yes| AcquireLock["lock(_padlock)"]
+    LockCheck1 -->|"Yes"| AcquireLock["lock(_padlock)"]
     AcquireLock --> LockCheck2{"Instance == null?\n(Double-Check)"}
-    LockCheck2 -->|Yes| Create["new Singleton()"]
-    LockCheck2 -->|No| ReturnExisting["Return Existing Instance"]
+    LockCheck2 -->|"Yes"| Create["new Singleton()"]
+    LockCheck2 -->|"No"| ReturnExisting["Return Existing Instance"]
     Create --> ReleaseLock["Release Lock"]
     ReturnExisting --> ReleaseLock
 ```

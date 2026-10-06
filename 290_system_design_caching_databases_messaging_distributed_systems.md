@@ -20,8 +20,8 @@ flowchart TD
 
     subgraph Caching["Distributed Caching Fabric"]
         RedisCluster["Redis Cluster (16,384 Hash Slots)<br/>(Cache-Aside + Mutex Lock for Stampede)"]
-        API1 -->|1. Check L1 In-Memory & L2 Redis| RedisCluster
-        API2 -->|1. Check L1 In-Memory & L2 Redis| RedisCluster
+        API1 -->|"1. Check L1 In-Memory & L2 Redis"| RedisCluster
+        API2 -->|"1. Check L1 In-Memory & L2 Redis"| RedisCluster
     end
 
     subgraph Messaging["Enterprise Messaging Fabric"]
@@ -33,10 +33,10 @@ flowchart TD
         Replica1[("Read Replica 1 (Reads)")]
         Replica2[("Read Replica 2 (Reads)")]
 
-        RedisCluster -.->|2. Cache Miss| PrimaryDB
-        PrimaryDB -->|Asynchronous Replication| Replica1
-        PrimaryDB -->|Asynchronous Replication| Replica2
-        PrimaryDB -->|3. Transactional Outbox Worker| ASB
+        RedisCluster -.->|"2. Cache Miss"| PrimaryDB
+        PrimaryDB -->|"Asynchronous Replication"| Replica1
+        PrimaryDB -->|"Asynchronous Replication"| Replica2
+        PrimaryDB -->|"3. Transactional Outbox Worker"| ASB
     end
 ```
 

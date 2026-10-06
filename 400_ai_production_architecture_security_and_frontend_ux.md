@@ -23,7 +23,7 @@ flowchart TD
 
     subgraph Gateway["AI Gateway & Operational Governance"]
         APIM["Azure API Management (AI Gateway)<br/>• Token Quota (TPM Throttling)<br/>• Multi-Region Failover Pool<br/>• Semantic Cache (Redis)"]
-        BFF -->|Managed Identity| APIM
+        BFF -->|"Managed Identity"| APIM
     end
 
     subgraph SecurityObservability["Safety, Defense & Observability"]
@@ -38,9 +38,9 @@ flowchart TD
         Secondary["Azure OpenAI (West Europe)<br/>GPT-4o (Failover)"]
         Batch["Azure OpenAI (North Central US)<br/>Batch API (50% Cost Discount)"]
 
-        APIM -->|Healthy| Primary
-        APIM -->|On 429 Failover| Secondary
-        APIM -->|Async Jobs| Batch
+        APIM -->|"Healthy"| Primary
+        APIM -->|"On 429 Failover"| Secondary
+        APIM -->|"Async Jobs"| Batch
     end
 ```
 
@@ -74,11 +74,11 @@ Azure OpenAI allocates capacity based on **Tokens Per Minute (TPM)** and **Reque
 ```mermaid
 flowchart LR
     Query["Incoming Prompt"] --> ExactCheck{"Exact Hash Match in Redis?"}
-    ExactCheck -->|Yes: 1ms| ReturnExact["Return Cached Completion (Free)"]
-    ExactCheck -->|No| EmbedQuery["Generate Embedding (text-embedding-3)"]
+    ExactCheck -->|"Yes: 1ms"| ReturnExact["Return Cached Completion (Free)"]
+    ExactCheck -->|"No"| EmbedQuery["Generate Embedding (text-embedding-3)"]
     EmbedQuery --> VectorCheck{"Vector Cosine Sim > 0.96?"}
-    VectorCheck -->|Yes: 10ms| ReturnSemantic["Return Semantically Cached Answer (Near-Free)"]
-    VectorCheck -->|No| CallLLM["Invoke Azure OpenAI LLM ($$$)"]
+    VectorCheck -->|"Yes: 10ms"| ReturnSemantic["Return Semantically Cached Answer (Near-Free)"]
+    VectorCheck -->|"No"| CallLLM["Invoke Azure OpenAI LLM ($$$)"]
     CallLLM --> SaveCache["Save to Exact & Semantic Cache"]
 ```
 

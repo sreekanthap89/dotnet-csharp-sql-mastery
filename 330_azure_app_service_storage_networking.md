@@ -16,30 +16,30 @@ flowchart TD
     subgraph Edge["Global Edge Ingress"]
         Users["Global Users / SPAs (Angular / React)"]
         AFD["Azure Front Door (Global Anycast, WAF, CDN, TLS 1.3)"]
-        Users -->|HTTPS Anycast| AFD
+        Users -->|"HTTPS Anycast"| AFD
     end
 
     subgraph Gateway["Regional Gateway & Ingress"]
         APIM["Azure API Management (APIM)<br/>(JWT Validation, Rate Limiting, AI Gateway)"]
         AppGW["Application Gateway (WAF v2, Path Routing)"]
-        AFD -->|Private Link / IP Whitelist| APIM
-        AFD -->|Private Link| AppGW
+        AFD -->|"Private Link / IP Whitelist"| APIM
+        AFD -->|"Private Link"| AppGW
     end
 
     subgraph Compute["VNet Integrated Compute Fabric"]
         AppService["Azure App Service (P3v3 / Isolated v2)<br/>ASP.NET Core Web API"]
         Funcs["Azure Functions (Flex Consumption / Premium)<br/>Event Handlers & Durable Orchestrators"]
-        APIM -->|VNet Integration| AppService
-        AppGW -->|VNet Integration| AppService
+        APIM -->|"VNet Integration"| AppService
+        AppGW -->|"VNet Integration"| AppService
     end
 
     subgraph StorageConfig["Managed Data & Configuration"]
         AppConfig["Azure App Configuration<br/>(Dynamic Feature Flags & Settings)"]
         Blob["Azure Blob Storage<br/>(Hot / Cool / Cold / Archive Tiers)"]
         KV["Azure Key Vault (Secrets & Keys)"]
-        AppService -->|Managed Identity| AppConfig
-        AppService -->|User Delegation SAS| Blob
-        AppService -->|Key Vault Reference| KV
+        AppService -->|"Managed Identity"| AppConfig
+        AppService -->|"User Delegation SAS"| Blob
+        AppService -->|"Key Vault Reference"| KV
     end
 ```
 
@@ -114,12 +114,12 @@ flowchart LR
     Entra["Microsoft Entra ID"]
     Blob["Azure Blob Storage"]
 
-    API -->|1. Authenticate with Managed Identity| Entra
-    Entra -->|2. Issue OAuth Token| API
-    API -->|3. Request User Delegation Key| Blob
-    Blob -->|4. Return Delegation Key| API
-    API -->|5. Generate Signed SAS URL (5-min TTL)| Client
-    Client -->|6. Direct Upload / Download PUT/GET| Blob
+    API -->|"1. Authenticate with Managed Identity"| Entra
+    Entra -->|"2. Issue OAuth Token"| API
+    API -->|"3. Request User Delegation Key"| Blob
+    Blob -->|"4. Return Delegation Key"| API
+    API -->|"5. Generate Signed SAS URL (5-min TTL)"| Client
+    Client -->|"6. Direct Upload / Download PUT/GET"| Blob
 ```
 
 There are three types of SAS tokens:

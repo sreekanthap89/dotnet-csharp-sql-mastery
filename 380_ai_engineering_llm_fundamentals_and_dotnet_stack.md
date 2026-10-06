@@ -34,9 +34,9 @@ flowchart TD
         AOAI["Azure OpenAI Service<br/>(GPT-4o, o1, text-embedding-3)"]
         Ollama["Local Model Host (Ollama / ONNX)<br/>(Phi-4, Llama 3.3 GGUF)"]
         Anthropic["External Foundation Models<br/>(Claude 3.5 Sonnet)"]
-        SK -->|Managed Identity (Zero Secrets)| AOAI
-        SK -->|REST / Local Socket| Ollama
-        SK -->|API Key / Gateway| Anthropic
+        SK -->|"Managed Identity (Zero Secrets)"| AOAI
+        SK -->|"REST / Local Socket"| Ollama
+        SK -->|"API Key / Gateway"| Anthropic
     end
 ```
 
