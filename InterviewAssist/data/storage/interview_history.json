@@ -1,0 +1,1057 @@
+[
+  {
+    "session_id": "a56bdee8",
+    "date": "2026-09-20 14:37:41",
+    "level": "intermediate",
+    "focus_area": "azure",
+    "overall_score": 40.0,
+    "verdict": "Developing - Solidify Core Foundations",
+    "total_questions": 5,
+    "correct_count": 2,
+    "scorecard": {
+      "session_id": "a56bdee8",
+      "overall_score": 40.0,
+      "level": "intermediate",
+      "focus_area": "azure",
+      "verdict": "Developing - Solidify Core Foundations",
+      "summary": "Achieved a score of 40.0% (2/5 questions mastered) at the Intermediate level. Evaluated against real-world enterprise engineering standards.",
+      "total_questions": 5,
+      "correct_count": 2,
+      "partial_count": 0,
+      "incorrect_count": 3,
+      "topic_breakdown": {
+        "Azure Event Grid": {
+          "total": 2,
+          "earned": 10.0,
+          "max": 20.0
+        },
+        "Azure Entra ID": {
+          "total": 1,
+          "earned": 10.0,
+          "max": 10.0
+        },
+        "Azure SQL Database": {
+          "total": 2,
+          "earned": 0.0,
+          "max": 20.0
+        }
+      },
+      "type_breakdown": {
+        "mcq": {
+          "total": 5,
+          "correct": 2,
+          "points": 20.0
+        },
+        "true_false": {
+          "total": 0,
+          "correct": 0,
+          "points": 0.0
+        },
+        "descriptive": {
+          "total": 0,
+          "correct": 0,
+          "points": 0.0
+        }
+      },
+      "evaluations": [
+        {
+          "question_id": 1,
+          "question": "In an Azure Event Grid architecture, the service guarantees 'at-least-once' delivery using an exponential backoff retry policy. If a subscriber endpoint successfully processes an event but fails to return a success acknowledgment before the timeout, how must the consumer be engineered to ensure system integrity?",
+          "type": "mcq",
+          "level": "intermediate",
+          "topic": "Azure Event Grid",
+          "user_answer": "A) Implement idempotent logic to handle duplicate messages caused by retries.",
+          "correct_answer": "A) Implement idempotent logic to handle duplicate messages caused by retries.",
+          "is_correct": true,
+          "score": 10.0,
+          "feedback": "Correct! Well done on identifying the right technical choice.",
+          "what_to_learn": "Advanced edge cases in Azure Event Grid",
+          "how_to_learn": "Study: Because Event Grid guarantees 'at-least-once' delivery, a subscriber might receive the same event multiple times if an acknowledgment (ACK) is lost or delayed. To prevent side effects (like double-counting a transaction), consumers must be idempotent\u2014meaning processing the same message multiple times results in the same state as processing it once. Option B is incorrect because 'exactly-once' is not a native setting; it is an outcome of combining at-least-once delivery with idempotent consumers. Option C and D do not solve the duplicate processing problem, they only manage failed or missing messages.. Practice hands-on code examples in 350_azure_event_grid_and_messaging.md.",
+          "strengths": null,
+          "improvements": null,
+          "source_reference": "350_azure_event_grid_and_messaging.md"
+        },
+        {
+          "question_id": 2,
+          "question": "A multi-tier microservices architecture requires that a downstream 'Core-Ledger-API' receives the identity context of the original human user who authenticated via an external SPA. Which Azure Entra ID flow should be implemented to allow the 'Banking-Frontend-API' to call the 'Core-Ledger-API' while passing this user context?",
+          "type": "mcq",
+          "level": "intermediate",
+          "topic": "Azure Entra ID",
+          "user_answer": "B) On-Behalf-Of (OBO) Flow.",
+          "correct_answer": "B) On-Behalf-Of (OBO) Flow.",
+          "is_correct": true,
+          "score": 10.0,
+          "feedback": "Correct! Well done on identifying the right technical choice.",
+          "what_to_learn": "Advanced edge cases in Azure Entra ID",
+          "how_to_learn": "Study: The On-Behalf-Of (OBO) flow is specifically designed for microservice chains where a service needs to exchange a user's access token for a new token that represents that same user when calling a downstream API. This preserves the security context/identity of the human caller. Option A (Client Credentials) is used for service-to-service calls without a user context. Option C (ROPC) requires handling raw credentials, which is less secure and doesn't handle delegation well. Option D (Managed Identity) provides identity to the service itself, not the end-user calling the service.. Practice hands-on code examples in 320_azure_entra_id_and_identity.md.",
+          "strengths": null,
+          "improvements": null,
+          "source_reference": "320_azure_entra_id_and_identity.md"
+        },
+        {
+          "question_id": 3,
+          "question": "A business requires an Azure SQL database architecture that provides a maximum downtime (RTO) of less than 30 seconds through automated failover. Which feature should be implemented to meet this requirement?",
+          "type": "mcq",
+          "level": "intermediate",
+          "topic": "Azure SQL Database",
+          "user_answer": "C) Point-in-time restore (PITR).",
+          "correct_answer": "B) Auto-Failover Groups.",
+          "is_correct": false,
+          "score": 0.0,
+          "feedback": "Incorrect. You selected 'C) Point-in-time restore (PITR).', but the correct answer is 'B) Auto-Failover Groups.'.",
+          "what_to_learn": "Internal mechanics of Azure SQL Database",
+          "how_to_learn": "Study: Auto-Failover Groups provide an automated way to manage failovers, delivering a target RTO of < 30 seconds. While Active Geo-Replication (Option A) provides the underlying data replication mechanism, it requires manual intervention or custom logic to trigger a switchover unless wrapped in a Failover Group. Option C is for data recovery/point-in-time, not high availability/failover. Option D refers to local redundancy but doesn't address regional failover automation.. Practice hands-on code examples in 330_azure_sql_database.md.",
+          "strengths": null,
+          "improvements": null,
+          "source_reference": "330_azure_sql_database.md"
+        },
+        {
+          "question_id": 4,
+          "question": "When designing for disaster recovery in Azure SQL, an architect notes that Active Geo-Replication provides an RPO (Recovery Point Objective) of < 5 seconds. What does this metric specifically represent in the context of this architecture?",
+          "type": "mcq",
+          "level": "intermediate",
+          "topic": "Azure SQL Database",
+          "user_answer": "B) The time required to perform a full backup and restore or point-in-time recovery.",
+          "correct_answer": "C) The maximum amount of data loss (measured in time) due to asynchronous log replication lag.",
+          "is_correct": false,
+          "score": 0.0,
+          "feedback": "Incorrect. You selected 'B) The time required to perform a full backup and restore or point-in-time recovery.', but the correct answer is 'C) The maximum amount of data loss (measured in time) due to asynchronous log replication lag.'.",
+          "what_to_learn": "Internal mechanics of Azure SQL Database",
+          "how_to_learn": "Study: RPO (Recovery Point Objective) measures the maximum allowable data loss, usually expressed as a duration of time. In Active Geo-Replication, because replication is asynchronous, there is a potential for losing any data that hasn't yet been replicated if a failure occurs; this window is the RPO (< 5 seconds). Option A describes RTO (Recovery Time Objective). Option B refers to recovery procedures rather than the loss metric. Option D describes write latency/synchronous overhead.. Practice hands-on code examples in 330_azure_sql_database.md.",
+          "strengths": null,
+          "improvements": null,
+          "source_reference": "330_azure_sql_database.md"
+        },
+        {
+          "question_id": 5,
+          "question": "In an Azure Event Grid implementation, if a subscriber endpoint experiences transient errors, the service applies an exponential backoff retry policy. If this process results in the same event being delivered multiple times to the consumer, which of the following is true regarding the delivery guarantee?",
+          "type": "mcq",
+          "level": "intermediate",
+          "topic": "Azure Event Grid",
+          "user_answer": "C) The retry policy must be disabled to prevent duplicate processing errors.",
+          "correct_answer": "B) The service has successfully fulfilled its 'at-least-once' guarantee, but not an 'exactly-once' guarantee.",
+          "is_correct": false,
+          "score": 0.0,
+          "feedback": "Incorrect. You selected 'C) The retry policy must be disabled to prevent duplicate processing errors.', but the correct answer is 'B) The service has successfully fulfilled its 'at-least-once' guarantee, but not an 'exactly-once' guarantee.'.",
+          "what_to_learn": "Internal mechanics of Azure Event Grid",
+          "how_to_learn": "Study: The presence of duplicate messages is a characteristic (and expected behavior) of 'at-least-once' delivery. It guarantees that no message is lost, even if it means some might be delivered more than once due to retries/timeouts. To achieve 'exactly-once', the consumer must handle these duplicates via idempotency. Option A is incorrect because receiving a duplicate does not mean a message was lost; it means we prioritize availability and durability over strict count. Option C is incorrect as disabling retries would risk losing messages entirely (violating at-least-once). Option D is incorrect as Event Grid does not switch delivery modes based on retry counts.. Practice hands-on code examples in 350_azure_event_grid_and_messaging.md.",
+          "strengths": null,
+          "improvements": null,
+          "source_reference": "350_azure_event_grid_and_messaging.md"
+        }
+      ],
+      "actionable_roadmap": [
+        {
+          "area": "Azure SQL Database",
+          "what_to_do": "Deep dive into Azure SQL Database internals and architectural patterns.",
+          "how_to_do": "Review 330_azure_sql_database.md. Write hands-on code simulating edge cases, thread safety, and failover scenarios.",
+          "how_to_improve": "In interviews, structure your response using the STAR/CAR framework: State the challenge, explain the architectural decision, discuss trade-offs, and cite production metrics."
+        },
+        {
+          "area": "Azure SQL Database",
+          "what_to_do": "Deep dive into Azure SQL Database internals and architectural patterns.",
+          "how_to_do": "Review 330_azure_sql_database.md. Write hands-on code simulating edge cases, thread safety, and failover scenarios.",
+          "how_to_improve": "In interviews, structure your response using the STAR/CAR framework: State the challenge, explain the architectural decision, discuss trade-offs, and cite production metrics."
+        },
+        {
+          "area": "Azure Event Grid",
+          "what_to_do": "Deep dive into Azure Event Grid internals and architectural patterns.",
+          "how_to_do": "Review 350_azure_event_grid_and_messaging.md. Write hands-on code simulating edge cases, thread safety, and failover scenarios.",
+          "how_to_improve": "In interviews, structure your response using the STAR/CAR framework: State the challenge, explain the architectural decision, discuss trade-offs, and cite production metrics."
+        },
+        {
+          "area": "Interview Delivery & Architecture Communication",
+          "what_to_do": "Master the 'Trade-off First' delivery technique.",
+          "how_to_do": "Whenever asked why you chose a pattern (e.g., CQRS vs CRUD), always explicitly contrast 2 alternatives and give the concrete reason for your choice.",
+          "how_to_improve": "Practice aloud summarizing complex architectures in 60-second executive summaries before diving into technical weeds."
+        }
+      ]
+    }
+  },
+  {
+    "session_id": "171446c9",
+    "date": "2026-09-20 14:13:38",
+    "level": "intermediate",
+    "focus_area": "sql",
+    "overall_score": 60.0,
+    "verdict": "Competent Intermediate with Growth Potential",
+    "total_questions": 5,
+    "correct_count": 3,
+    "scorecard": {
+      "session_id": "171446c9",
+      "overall_score": 60.0,
+      "level": "intermediate",
+      "focus_area": "sql",
+      "verdict": "Competent Intermediate with Growth Potential",
+      "summary": "Achieved a score of 60.0% (3/5 questions mastered) at the Intermediate level. Evaluated against real-world enterprise engineering standards.",
+      "total_questions": 5,
+      "correct_count": 3,
+      "partial_count": 0,
+      "incorrect_count": 2,
+      "topic_breakdown": {
+        "Sql Core Mechanics": {
+          "total": 5,
+          "earned": 30.0,
+          "max": 50.0
+        }
+      },
+      "type_breakdown": {
+        "mcq": {
+          "total": 0,
+          "correct": 0,
+          "points": 0.0
+        },
+        "true_false": {
+          "total": 5,
+          "correct": 3,
+          "points": 30.0
+        },
+        "descriptive": {
+          "total": 0,
+          "correct": 0,
+          "points": 0.0
+        }
+      },
+      "evaluations": [
+        {
+          "question_id": 1,
+          "question": "True or False: A transaction in SQL Server automatically commits when a DDL statement is executed within it, even if the transaction has not been explicitly committed.",
+          "type": "true_false",
+          "level": "intermediate",
+          "topic": "Sql Core Mechanics",
+          "user_answer": "False",
+          "correct_answer": "True",
+          "is_correct": false,
+          "score": 0.0,
+          "feedback": "\u2717 Incorrect. The accurate statement is: True. In SQL Server, certain Data Definition Language (DDL) statements such as CREATE, ALTER, or DROP implicitly commit any active transaction before executing. This behavior is part of T-SQL's design to ensure consistency and prevent partial schema changes from being rolled back in case of errors.",
+          "what_to_learn": "Nuances and architectural implications of Sql Core Mechanics.",
+          "how_to_learn": "Study Microsoft SQL Server Documentation. Practice explaining why the false assumption fails in enterprise scenarios.",
+          "strengths": null,
+          "improvements": null,
+          "source_reference": "Microsoft SQL Server Documentation"
+        },
+        {
+          "question_id": 2,
+          "question": "True or False: The ORDER BY clause in a query with a LIMIT/OFFSET will always execute after the GROUP BY and HAVING clauses.",
+          "type": "true_false",
+          "level": "intermediate",
+          "topic": "Sql Core Mechanics",
+          "user_answer": "True",
+          "correct_answer": "False",
+          "is_correct": false,
+          "score": 0.0,
+          "feedback": "\u2717 Incorrect. The accurate statement is: False. In SQL, the execution order is FROM \u2192 WHERE \u2192 GROUP BY \u2192 HAVING \u2192 SELECT \u2192 ORDER BY. Therefore, if you have an ordered result set with LIMIT/OFFSET applied after grouping, the ORDER BY clause runs last in the logical processing sequence but may not be executed before applying OFFSET/LIMIT depending on query optimization strategies used by the engine.",
+          "what_to_learn": "Nuances and architectural implications of Sql Core Mechanics.",
+          "how_to_learn": "Study SQL Standard and Query Execution Plan Analysis. Practice explaining why the false assumption fails in enterprise scenarios.",
+          "strengths": null,
+          "improvements": null,
+          "source_reference": "SQL Standard and Query Execution Plan Analysis"
+        },
+        {
+          "question_id": 3,
+          "question": "True or False: When using a cursor in SQL Server, the server allocates memory for each row fetched from the result set until the cursor is closed.",
+          "type": "true_false",
+          "level": "intermediate",
+          "topic": "Sql Core Mechanics",
+          "user_answer": "True",
+          "correct_answer": "True",
+          "is_correct": true,
+          "score": 10.0,
+          "feedback": "\u2713 Correct! Cursors hold data in memory during their lifetime. Each fetch operation retrieves rows into internal buffers managed by the engine; these are not immediately released unless explicitly closed or deallocated, leading to potential performance degradation with large datasets and long-running cursors.",
+          "what_to_learn": "Nuances and architectural implications of Sql Core Mechanics.",
+          "how_to_learn": "Study SQL Server Cursor Internals. Practice explaining why the false assumption fails in enterprise scenarios.",
+          "strengths": null,
+          "improvements": null,
+          "source_reference": "SQL Server Cursor Internals"
+        },
+        {
+          "question_id": 4,
+          "question": "True or False: The NOLOCK hint in SQL Server allows a query to read uncommitted data, which can lead to dirty reads and inconsistent results.",
+          "type": "true_false",
+          "level": "intermediate",
+          "topic": "Sql Core Mechanics",
+          "user_answer": "True",
+          "correct_answer": "True",
+          "is_correct": true,
+          "score": 10.0,
+          "feedback": "\u2713 Correct! The NOLOCK hint (also known as READPAST) bypasses shared locks during reading but does not prevent dirty reads. It allows a query to read data that has been modified by another transaction but not yet committed, potentially causing inconsistent or incorrect results in concurrent environments.",
+          "what_to_learn": "Nuances and architectural implications of Sql Core Mechanics.",
+          "how_to_learn": "Study SQL Server Isolation Levels and Locking Mechanisms. Practice explaining why the false assumption fails in enterprise scenarios.",
+          "strengths": null,
+          "improvements": null,
+          "source_reference": "SQL Server Isolation Levels and Locking Mechanisms"
+        },
+        {
+          "question_id": 5,
+          "question": "True or False: In SQL, a subquery in the SELECT clause must return exactly one value for each row of the outer query to be valid.",
+          "type": "true_false",
+          "level": "intermediate",
+          "topic": "Sql Core Mechanics",
+          "user_answer": "False",
+          "correct_answer": "False",
+          "is_correct": true,
+          "score": 10.0,
+          "feedback": "\u2713 Correct! A scalar subquery (used in SELECT) can indeed return multiple rows if it's wrapped inside an aggregate function like COUNT(*) or MAX(). However, when used directly without aggregation and expecting a single value per row, the query will fail unless there is exactly one matching record. The key distinction lies on how SQL handles set-based operations versus scalar expectations.",
+          "what_to_learn": "Nuances and architectural implications of Sql Core Mechanics.",
+          "how_to_learn": "Study SQL Subquery Behavior in SELECT Clause. Practice explaining why the false assumption fails in enterprise scenarios.",
+          "strengths": null,
+          "improvements": null,
+          "source_reference": "SQL Subquery Behavior in SELECT Clause"
+        }
+      ],
+      "actionable_roadmap": [
+        {
+          "area": "Sql Core Mechanics",
+          "what_to_do": "Deep dive into Sql Core Mechanics internals and architectural patterns.",
+          "how_to_do": "Review Microsoft SQL Server Documentation. Write hands-on code simulating edge cases, thread safety, and failover scenarios.",
+          "how_to_improve": "In interviews, structure your response using the STAR/CAR framework: State the challenge, explain the architectural decision, discuss trade-offs, and cite production metrics."
+        },
+        {
+          "area": "Sql Core Mechanics",
+          "what_to_do": "Deep dive into Sql Core Mechanics internals and architectural patterns.",
+          "how_to_do": "Review SQL Standard and Query Execution Plan Analysis. Write hands-on code simulating edge cases, thread safety, and failover scenarios.",
+          "how_to_improve": "In interviews, structure your response using the STAR/CAR framework: State the challenge, explain the architectural decision, discuss trade-offs, and cite production metrics."
+        },
+        {
+          "area": "Interview Delivery & Architecture Communication",
+          "what_to_do": "Master the 'Trade-off First' delivery technique.",
+          "how_to_do": "Whenever asked why you chose a pattern (e.g., CQRS vs CRUD), always explicitly contrast 2 alternatives and give the concrete reason for your choice.",
+          "how_to_improve": "Practice aloud summarizing complex architectures in 60-second executive summaries before diving into technical weeds."
+        }
+      ]
+    }
+  },
+  {
+    "session_id": "3aeda19f",
+    "date": "2026-09-20 13:11:32",
+    "level": "intermediate",
+    "focus_area": "python",
+    "overall_score": 80.0,
+    "verdict": "Strong Intermediate Readiness",
+    "total_questions": 5,
+    "correct_count": 4,
+    "scorecard": {
+      "session_id": "3aeda19f",
+      "overall_score": 80.0,
+      "level": "intermediate",
+      "focus_area": "python",
+      "verdict": "Strong Intermediate Readiness",
+      "summary": "Achieved a score of 80.0% (4/5 questions mastered) at the Intermediate level. Evaluated against real-world enterprise engineering standards.",
+      "total_questions": 5,
+      "correct_count": 4,
+      "partial_count": 0,
+      "incorrect_count": 1,
+      "topic_breakdown": {
+        "Value Types vs Reference Types": {
+          "total": 1,
+          "earned": 10.0,
+          "max": 10.0
+        },
+        "Database Indexing & Query Optimization": {
+          "total": 1,
+          "earned": 10.0,
+          "max": 10.0
+        },
+        "Entity Framework Core Performance": {
+          "total": 1,
+          "earned": 0.0,
+          "max": 10.0
+        },
+        "SQL Server Transactions & Isolation Levels": {
+          "total": 1,
+          "earned": 10.0,
+          "max": 10.0
+        },
+        "C# Concurrency & Async/Await": {
+          "total": 1,
+          "earned": 10.0,
+          "max": 10.0
+        }
+      },
+      "type_breakdown": {
+        "mcq": {
+          "total": 0,
+          "correct": 0,
+          "points": 0.0
+        },
+        "true_false": {
+          "total": 5,
+          "correct": 4,
+          "points": 40.0
+        },
+        "descriptive": {
+          "total": 0,
+          "correct": 0,
+          "points": 0.0
+        }
+      },
+      "evaluations": [
+        {
+          "question_id": 1,
+          "question": "True or False: In C#, declaring a variable as a `struct` (Value Type) guarantees that it will always be allocated on the call stack under all runtime conditions.",
+          "type": "true_false",
+          "level": "intermediate",
+          "topic": "Value Types vs Reference Types",
+          "user_answer": "False",
+          "correct_answer": "False",
+          "is_correct": true,
+          "score": 10.0,
+          "feedback": "\u2713 Correct! False. If a `struct` is declared as a field inside a `class` (Reference Type), or if it is boxed into an `object`/`interface`, or captured inside a closure, it is allocated on the managed Heap, not the stack.",
+          "what_to_learn": "Nuances and architectural implications of Value Types vs Reference Types.",
+          "how_to_learn": "Study 010_introduction_oops_and_basics.md. Practice explaining why the false assumption fails in enterprise scenarios.",
+          "strengths": null,
+          "improvements": null,
+          "source_reference": "010_introduction_oops_and_basics.md"
+        },
+        {
+          "question_id": 2,
+          "question": "True or False: A SQL Server table can have multiple Clustered Indexes as long as they are assigned to different primary key partitions.",
+          "type": "true_false",
+          "level": "intermediate",
+          "topic": "Database Indexing & Query Optimization",
+          "user_answer": "False",
+          "correct_answer": "False",
+          "is_correct": true,
+          "score": 10.0,
+          "feedback": "\u2713 Correct! False. A table can only have exactly ONE Clustered Index because the clustered index physically sorts and stores the actual data rows of the table in B-Tree leaf nodes. A table cannot be physically sorted in two different orders simultaneously.",
+          "what_to_learn": "Nuances and architectural implications of Database Indexing & Query Optimization.",
+          "how_to_learn": "Study 150_sql_joins_and_indexes.md. Practice explaining why the false assumption fails in enterprise scenarios.",
+          "strengths": null,
+          "improvements": null,
+          "source_reference": "150_sql_joins_and_indexes.md"
+        },
+        {
+          "question_id": 3,
+          "question": "True or False: In EF Core, executing read-only queries with `.AsNoTracking()` significantly improves performance and reduces memory consumption because the Change Tracker bypasses object tracking and snapshot creation.",
+          "type": "true_false",
+          "level": "intermediate",
+          "topic": "Entity Framework Core Performance",
+          "user_answer": "False",
+          "correct_answer": "True",
+          "is_correct": false,
+          "score": 0.0,
+          "feedback": "\u2717 Incorrect. The accurate statement is: True. True. .AsNoTracking() tells EF Core not to track entities in the DbContext ChangeTracker, saving significant memory allocation and CPU cycles during entity materialization.",
+          "what_to_learn": "Nuances and architectural implications of Entity Framework Core Performance.",
+          "how_to_learn": "Study 170_ado_dotnet_and_entity_framework.md. Practice explaining why the false assumption fails in enterprise scenarios.",
+          "strengths": null,
+          "improvements": null,
+          "source_reference": "170_ado_dotnet_and_entity_framework.md"
+        },
+        {
+          "question_id": 4,
+          "question": "True or False: Under the default `READ COMMITTED` isolation level in SQL Server, shared locks (S) held during a SELECT query are retained until the end of the entire transaction block.",
+          "type": "true_false",
+          "level": "intermediate",
+          "topic": "SQL Server Transactions & Isolation Levels",
+          "user_answer": "False",
+          "correct_answer": "False",
+          "is_correct": true,
+          "score": 10.0,
+          "feedback": "\u2713 Correct! False. In default READ COMMITTED, Shared (S) locks are released immediately after the statement/read completes, NOT at the end of the transaction. Only in REPEATABLE READ or SERIALIZABLE are shared locks held until the transaction finishes.",
+          "what_to_learn": "Nuances and architectural implications of SQL Server Transactions & Isolation Levels.",
+          "how_to_learn": "Study 140_sql_basics.md. Practice explaining why the false assumption fails in enterprise scenarios.",
+          "strengths": null,
+          "improvements": null,
+          "source_reference": "140_sql_basics.md"
+        },
+        {
+          "question_id": 5,
+          "question": "True or False: In modern .NET Core / .NET 8, calling `.ConfigureAwait(false)` inside ASP.NET Core controllers is strictly necessary to prevent synchronization context deadlocks.",
+          "type": "true_false",
+          "level": "intermediate",
+          "topic": "C# Concurrency & Async/Await",
+          "user_answer": "False",
+          "correct_answer": "False",
+          "is_correct": true,
+          "score": 10.0,
+          "feedback": "\u2713 Correct! False. ASP.NET Core does NOT have a custom SynchronizationContext (unlike legacy ASP.NET Framework or WPF/WinForms). In ASP.NET Core web requests, continuations naturally run on any available ThreadPool thread, making deadlocks from missing ConfigureAwait(false) impossible in the web pipeline.",
+          "what_to_learn": "Nuances and architectural implications of C# Concurrency & Async/Await.",
+          "how_to_learn": "Study 130_dotnet_threading_and_concurrency.md. Practice explaining why the false assumption fails in enterprise scenarios.",
+          "strengths": null,
+          "improvements": null,
+          "source_reference": "130_dotnet_threading_and_concurrency.md"
+        }
+      ],
+      "actionable_roadmap": [
+        {
+          "area": "Entity Framework Core Performance",
+          "what_to_do": "Deep dive into Entity Framework Core Performance internals and architectural patterns.",
+          "how_to_do": "Review 170_ado_dotnet_and_entity_framework.md. Write hands-on code simulating edge cases, thread safety, and failover scenarios.",
+          "how_to_improve": "In interviews, structure your response using the STAR/CAR framework: State the challenge, explain the architectural decision, discuss trade-offs, and cite production metrics."
+        },
+        {
+          "area": "Interview Delivery & Architecture Communication",
+          "what_to_do": "Master the 'Trade-off First' delivery technique.",
+          "how_to_do": "Whenever asked why you chose a pattern (e.g., CQRS vs CRUD), always explicitly contrast 2 alternatives and give the concrete reason for your choice.",
+          "how_to_improve": "Practice aloud summarizing complex architectures in 60-second executive summaries before diving into technical weeds."
+        }
+      ]
+    }
+  },
+  {
+    "session_id": "c07137de",
+    "date": "2026-09-20 13:07:47",
+    "level": "intermediate",
+    "focus_area": "python",
+    "overall_score": 20.0,
+    "verdict": "Requires Dedicated Preparation",
+    "total_questions": 5,
+    "correct_count": 1,
+    "scorecard": {
+      "session_id": "c07137de",
+      "overall_score": 20.0,
+      "level": "intermediate",
+      "focus_area": "python",
+      "verdict": "Requires Dedicated Preparation",
+      "summary": "Achieved a score of 20.0% (1/5 questions mastered) at the Intermediate level. Evaluated against real-world enterprise engineering standards.",
+      "total_questions": 5,
+      "correct_count": 1,
+      "partial_count": 0,
+      "incorrect_count": 4,
+      "topic_breakdown": {
+        "Value Types vs Reference Types": {
+          "total": 1,
+          "earned": 0.0,
+          "max": 10.0
+        },
+        "Database Indexing & Query Optimization": {
+          "total": 1,
+          "earned": 0.0,
+          "max": 10.0
+        },
+        "Entity Framework Core Performance": {
+          "total": 1,
+          "earned": 0.0,
+          "max": 10.0
+        },
+        "SQL Server Transactions & Isolation Levels": {
+          "total": 1,
+          "earned": 0.0,
+          "max": 10.0
+        },
+        "C# Concurrency & Async/Await": {
+          "total": 1,
+          "earned": 10.0,
+          "max": 10.0
+        }
+      },
+      "type_breakdown": {
+        "mcq": {
+          "total": 0,
+          "correct": 0,
+          "points": 0.0
+        },
+        "true_false": {
+          "total": 5,
+          "correct": 1,
+          "points": 10.0
+        },
+        "descriptive": {
+          "total": 0,
+          "correct": 0,
+          "points": 0.0
+        }
+      },
+      "evaluations": [
+        {
+          "question_id": 1,
+          "question": "True or False: In C#, declaring a variable as a `struct` (Value Type) guarantees that it will always be allocated on the call stack under all runtime conditions.",
+          "type": "true_false",
+          "level": "intermediate",
+          "topic": "Value Types vs Reference Types",
+          "user_answer": "True",
+          "correct_answer": "False",
+          "is_correct": false,
+          "score": 0.0,
+          "feedback": "\u2717 Incorrect. The accurate statement is: False. False. If a `struct` is declared as a field inside a `class` (Reference Type), or if it is boxed into an `object`/`interface`, or captured inside a closure, it is allocated on the managed Heap, not the stack.",
+          "what_to_learn": "Nuances and architectural implications of Value Types vs Reference Types.",
+          "how_to_learn": "Study 010_introduction_oops_and_basics.md. Practice explaining why the false assumption fails in enterprise scenarios.",
+          "strengths": null,
+          "improvements": null,
+          "source_reference": "010_introduction_oops_and_basics.md"
+        },
+        {
+          "question_id": 2,
+          "question": "True or False: A SQL Server table can have multiple Clustered Indexes as long as they are assigned to different primary key partitions.",
+          "type": "true_false",
+          "level": "intermediate",
+          "topic": "Database Indexing & Query Optimization",
+          "user_answer": "True",
+          "correct_answer": "False",
+          "is_correct": false,
+          "score": 0.0,
+          "feedback": "\u2717 Incorrect. The accurate statement is: False. False. A table can only have exactly ONE Clustered Index because the clustered index physically sorts and stores the actual data rows of the table in B-Tree leaf nodes. A table cannot be physically sorted in two different orders simultaneously.",
+          "what_to_learn": "Nuances and architectural implications of Database Indexing & Query Optimization.",
+          "how_to_learn": "Study 150_sql_joins_and_indexes.md. Practice explaining why the false assumption fails in enterprise scenarios.",
+          "strengths": null,
+          "improvements": null,
+          "source_reference": "150_sql_joins_and_indexes.md"
+        },
+        {
+          "question_id": 3,
+          "question": "True or False: In EF Core, executing read-only queries with `.AsNoTracking()` significantly improves performance and reduces memory consumption because the Change Tracker bypasses object tracking and snapshot creation.",
+          "type": "true_false",
+          "level": "intermediate",
+          "topic": "Entity Framework Core Performance",
+          "user_answer": "False",
+          "correct_answer": "True",
+          "is_correct": false,
+          "score": 0.0,
+          "feedback": "\u2717 Incorrect. The accurate statement is: True. True. .AsNoTracking() tells EF Core not to track entities in the DbContext ChangeTracker, saving significant memory allocation and CPU cycles during entity materialization.",
+          "what_to_learn": "Nuances and architectural implications of Entity Framework Core Performance.",
+          "how_to_learn": "Study 170_ado_dotnet_and_entity_framework.md. Practice explaining why the false assumption fails in enterprise scenarios.",
+          "strengths": null,
+          "improvements": null,
+          "source_reference": "170_ado_dotnet_and_entity_framework.md"
+        },
+        {
+          "question_id": 4,
+          "question": "True or False: Under the default `READ COMMITTED` isolation level in SQL Server, shared locks (S) held during a SELECT query are retained until the end of the entire transaction block.",
+          "type": "true_false",
+          "level": "intermediate",
+          "topic": "SQL Server Transactions & Isolation Levels",
+          "user_answer": "True",
+          "correct_answer": "False",
+          "is_correct": false,
+          "score": 0.0,
+          "feedback": "\u2717 Incorrect. The accurate statement is: False. False. In default READ COMMITTED, Shared (S) locks are released immediately after the statement/read completes, NOT at the end of the transaction. Only in REPEATABLE READ or SERIALIZABLE are shared locks held until the transaction finishes.",
+          "what_to_learn": "Nuances and architectural implications of SQL Server Transactions & Isolation Levels.",
+          "how_to_learn": "Study 140_sql_basics.md. Practice explaining why the false assumption fails in enterprise scenarios.",
+          "strengths": null,
+          "improvements": null,
+          "source_reference": "140_sql_basics.md"
+        },
+        {
+          "question_id": 5,
+          "question": "True or False: In modern .NET Core / .NET 8, calling `.ConfigureAwait(false)` inside ASP.NET Core controllers is strictly necessary to prevent synchronization context deadlocks.",
+          "type": "true_false",
+          "level": "intermediate",
+          "topic": "C# Concurrency & Async/Await",
+          "user_answer": "False",
+          "correct_answer": "False",
+          "is_correct": true,
+          "score": 10.0,
+          "feedback": "\u2713 Correct! False. ASP.NET Core does NOT have a custom SynchronizationContext (unlike legacy ASP.NET Framework or WPF/WinForms). In ASP.NET Core web requests, continuations naturally run on any available ThreadPool thread, making deadlocks from missing ConfigureAwait(false) impossible in the web pipeline.",
+          "what_to_learn": "Nuances and architectural implications of C# Concurrency & Async/Await.",
+          "how_to_learn": "Study 130_dotnet_threading_and_concurrency.md. Practice explaining why the false assumption fails in enterprise scenarios.",
+          "strengths": null,
+          "improvements": null,
+          "source_reference": "130_dotnet_threading_and_concurrency.md"
+        }
+      ],
+      "actionable_roadmap": [
+        {
+          "area": "Value Types vs Reference Types",
+          "what_to_do": "Deep dive into Value Types vs Reference Types internals and architectural patterns.",
+          "how_to_do": "Review 010_introduction_oops_and_basics.md. Write hands-on code simulating edge cases, thread safety, and failover scenarios.",
+          "how_to_improve": "In interviews, structure your response using the STAR/CAR framework: State the challenge, explain the architectural decision, discuss trade-offs, and cite production metrics."
+        },
+        {
+          "area": "Database Indexing & Query Optimization",
+          "what_to_do": "Deep dive into Database Indexing & Query Optimization internals and architectural patterns.",
+          "how_to_do": "Review 150_sql_joins_and_indexes.md. Write hands-on code simulating edge cases, thread safety, and failover scenarios.",
+          "how_to_improve": "In interviews, structure your response using the STAR/CAR framework: State the challenge, explain the architectural decision, discuss trade-offs, and cite production metrics."
+        },
+        {
+          "area": "Entity Framework Core Performance",
+          "what_to_do": "Deep dive into Entity Framework Core Performance internals and architectural patterns.",
+          "how_to_do": "Review 170_ado_dotnet_and_entity_framework.md. Write hands-on code simulating edge cases, thread safety, and failover scenarios.",
+          "how_to_improve": "In interviews, structure your response using the STAR/CAR framework: State the challenge, explain the architectural decision, discuss trade-offs, and cite production metrics."
+        },
+        {
+          "area": "Interview Delivery & Architecture Communication",
+          "what_to_do": "Master the 'Trade-off First' delivery technique.",
+          "how_to_do": "Whenever asked why you chose a pattern (e.g., CQRS vs CRUD), always explicitly contrast 2 alternatives and give the concrete reason for your choice.",
+          "how_to_improve": "Practice aloud summarizing complex architectures in 60-second executive summaries before diving into technical weeds."
+        }
+      ]
+    }
+  },
+  {
+    "session_id": "ce2bf0fe",
+    "date": "2026-09-20 13:02:08",
+    "level": "senior",
+    "focus_area": "csharp",
+    "overall_score": 0.0,
+    "verdict": "Requires Dedicated Preparation",
+    "total_questions": 2,
+    "correct_count": 0,
+    "scorecard": {
+      "session_id": "ce2bf0fe",
+      "overall_score": 0.0,
+      "level": "senior",
+      "focus_area": "csharp",
+      "verdict": "Requires Dedicated Preparation",
+      "summary": "Achieved a score of 0.0% (0/2 questions mastered) at the Senior level. Evaluated against real-world enterprise engineering standards.",
+      "total_questions": 2,
+      "correct_count": 0,
+      "partial_count": 0,
+      "incorrect_count": 2,
+      "topic_breakdown": {
+        "Value Types vs Reference Types": {
+          "total": 1,
+          "earned": 0.0,
+          "max": 10.0
+        },
+        "Database Indexing & Query Optimization": {
+          "total": 1,
+          "earned": 0.0,
+          "max": 10.0
+        }
+      },
+      "type_breakdown": {
+        "mcq": {
+          "total": 0,
+          "correct": 0,
+          "points": 0.0
+        },
+        "true_false": {
+          "total": 2,
+          "correct": 0,
+          "points": 0.0
+        },
+        "descriptive": {
+          "total": 0,
+          "correct": 0,
+          "points": 0.0
+        }
+      },
+      "evaluations": [
+        {
+          "question_id": 1,
+          "question": "True or False: In C#, declaring a variable as a `struct` (Value Type) guarantees that it will always be allocated on the call stack under all runtime conditions.",
+          "type": "true_false",
+          "level": "senior",
+          "topic": "Value Types vs Reference Types",
+          "user_answer": "True",
+          "correct_answer": "False",
+          "is_correct": false,
+          "score": 0.0,
+          "feedback": "\u2717 Incorrect. The accurate statement is: False. False. If a `struct` is declared as a field inside a `class` (Reference Type), or if it is boxed into an `object`/`interface`, or captured inside a closure, it is allocated on the managed Heap, not the stack.",
+          "what_to_learn": "Nuances and architectural implications of Value Types vs Reference Types.",
+          "how_to_learn": "Study 010_introduction_oops_and_basics.md. Practice explaining why the false assumption fails in enterprise scenarios.",
+          "strengths": null,
+          "improvements": null,
+          "source_reference": "010_introduction_oops_and_basics.md"
+        },
+        {
+          "question_id": 2,
+          "question": "True or False: A SQL Server table can have multiple Clustered Indexes as long as they are assigned to different primary key partitions.",
+          "type": "true_false",
+          "level": "senior",
+          "topic": "Database Indexing & Query Optimization",
+          "user_answer": "[No answer provided]",
+          "correct_answer": "False",
+          "is_correct": false,
+          "score": 0.0,
+          "feedback": "No answer submitted. Expected: False. False. A table can only have exactly ONE Clustered Index because the clustered index physically sorts and stores the actual data rows of the table in B-Tree leaf nodes. A table cannot be physically sorted in two different orders simultaneously.",
+          "what_to_learn": null,
+          "how_to_learn": null,
+          "strengths": null,
+          "improvements": null,
+          "source_reference": "150_sql_joins_and_indexes.md"
+        }
+      ],
+      "actionable_roadmap": [
+        {
+          "area": "Value Types vs Reference Types",
+          "what_to_do": "Deep dive into Value Types vs Reference Types internals and architectural patterns.",
+          "how_to_do": "Review 010_introduction_oops_and_basics.md. Write hands-on code simulating edge cases, thread safety, and failover scenarios.",
+          "how_to_improve": "In interviews, structure your response using the STAR/CAR framework: State the challenge, explain the architectural decision, discuss trade-offs, and cite production metrics."
+        },
+        {
+          "area": "Database Indexing & Query Optimization",
+          "what_to_do": "Deep dive into Database Indexing & Query Optimization internals and architectural patterns.",
+          "how_to_do": "Review 150_sql_joins_and_indexes.md. Write hands-on code simulating edge cases, thread safety, and failover scenarios.",
+          "how_to_improve": "In interviews, structure your response using the STAR/CAR framework: State the challenge, explain the architectural decision, discuss trade-offs, and cite production metrics."
+        },
+        {
+          "area": "Interview Delivery & Architecture Communication",
+          "what_to_do": "Master the 'Trade-off First' delivery technique.",
+          "how_to_do": "Whenever asked why you chose a pattern (e.g., CQRS vs CRUD), always explicitly contrast 2 alternatives and give the concrete reason for your choice.",
+          "how_to_improve": "Practice aloud summarizing complex architectures in 60-second executive summaries before diving into technical weeds."
+        }
+      ]
+    }
+  },
+  {
+    "session_id": "0f1f281e",
+    "date": "2026-09-20 12:42:38",
+    "level": "intermediate",
+    "focus_area": "csharp",
+    "overall_score": 0.0,
+    "verdict": "Requires Dedicated Preparation",
+    "total_questions": 5,
+    "correct_count": 0,
+    "scorecard": {
+      "session_id": "0f1f281e",
+      "overall_score": 0.0,
+      "level": "intermediate",
+      "focus_area": "csharp",
+      "verdict": "Requires Dedicated Preparation",
+      "summary": "Achieved a score of 0.0% (0/5 questions mastered) at the Intermediate level. Evaluated against real-world enterprise engineering standards.",
+      "total_questions": 5,
+      "correct_count": 0,
+      "partial_count": 0,
+      "incorrect_count": 5,
+      "topic_breakdown": {
+        "Garbage Collection & Memory Architecture": {
+          "total": 1,
+          "earned": 0.0,
+          "max": 10.0
+        },
+        "Value Types vs Reference Types": {
+          "total": 1,
+          "earned": 0.0,
+          "max": 10.0
+        },
+        "Asynchronous Concurrency & Thread Pool Starvation": {
+          "total": 1,
+          "earned": 0.0,
+          "max": 10.0
+        },
+        "Dependency Injection Service Lifetimes": {
+          "total": 1,
+          "earned": 0.0,
+          "max": 10.0
+        },
+        "Database Indexing & Query Optimization": {
+          "total": 1,
+          "earned": 0.0,
+          "max": 10.0
+        }
+      },
+      "type_breakdown": {
+        "mcq": {
+          "total": 2,
+          "correct": 0,
+          "points": 0.0
+        },
+        "true_false": {
+          "total": 2,
+          "correct": 0,
+          "points": 0.0
+        },
+        "descriptive": {
+          "total": 1,
+          "correct": 0,
+          "points": 0.0
+        }
+      },
+      "evaluations": [
+        {
+          "question_id": 1,
+          "question": "In the .NET Garbage Collector, what is the key behavioral difference between Generation 0, Generation 1, and Generation 2 collections?",
+          "type": "mcq",
+          "level": "intermediate",
+          "topic": "Garbage Collection & Memory Architecture",
+          "user_answer": "C) Generation 0 collects unmanaged memory, while Generation 2 collects managed stack frames.",
+          "correct_answer": "A) Gen 0 collections are the most frequent and reclaim short-lived objects; surviving objects are promoted to Gen 1, then Gen 2, which also includes the Large Object Heap (LOH).",
+          "is_correct": false,
+          "score": 0.0,
+          "feedback": "\u2717 Incorrect. You selected 'C) Generation 0 collects unmanaged memory, while Generation 2 collects managed stack frames.'. The correct answer is: A) Gen 0 collections are the most frequent and reclaim short-lived objects; surviving objects are promoted to Gen 1, then Gen 2, which also includes the Large Object Heap (LOH).. In .NET generational GC, Gen 0 holds short-lived temporary objects (local variables). Surviving objects promote to Gen 1 (buffer), and long-lived objects promote to Gen 2 (which also manages the LOH for objects >= 85,000 bytes). Gen 2 collections (Full GC) are the most expensive.",
+          "what_to_learn": "Core fundamentals & design of Garbage Collection & Memory Architecture.",
+          "how_to_learn": "Review 120_dotnet_garbage_collection.md. Contrast the correct pattern with common misconceptions. Write code profiling execution behavior.",
+          "strengths": null,
+          "improvements": null,
+          "source_reference": "120_dotnet_garbage_collection.md"
+        },
+        {
+          "question_id": 2,
+          "question": "True or False: In C#, declaring a variable as a `struct` (Value Type) guarantees that it will always be allocated on the call stack under all runtime conditions.",
+          "type": "true_false",
+          "level": "intermediate",
+          "topic": "Value Types vs Reference Types",
+          "user_answer": "True",
+          "correct_answer": "False",
+          "is_correct": false,
+          "score": 0.0,
+          "feedback": "\u2717 Incorrect. The accurate statement is: False. False. If a `struct` is declared as a field inside a `class` (Reference Type), or if it is boxed into an `object`/`interface`, or if it is captured inside a lambda/async state machine closure, it is allocated on the managed Heap, not the stack.",
+          "what_to_learn": "Nuances and architectural implications of Value Types vs Reference Types.",
+          "how_to_learn": "Study 010_introduction_oops_and_basics.md. Practice explaining why the false assumption fails in enterprise scenarios.",
+          "strengths": null,
+          "improvements": null,
+          "source_reference": "010_introduction_oops_and_basics.md"
+        },
+        {
+          "question_id": 3,
+          "question": "Explain how `async` and `await` prevent thread pool starvation in high-throughput ASP.NET Core web services. Contrast `Task.Run` vs I/O-bound completion ports and explain why `.Result` or `.Wait()` can cause production deadlocks.",
+          "type": "descriptive",
+          "level": "intermediate",
+          "topic": "Asynchronous Concurrency & Thread Pool Starvation",
+          "user_answer": "23w4w345wrwerfwfsfb wer",
+          "correct_answer": "Async I/O releases the thread to the ThreadPool during network/disk wait (I/O completion ports), Task.Run offloads CPU-bound work to a thread pool thread, providing no scalability benefit for pure I/O, Calling .Result or .Wait() synchronously blocks the calling thread, risking thread pool starvation and synchronization context deadlocks",
+          "is_correct": false,
+          "score": 0.0,
+          "feedback": "The answer provided is a string of random characters that contains no technical substance or coherent explanation of the requested concepts.",
+          "what_to_learn": "System trade-offs, concurrency models, and failure recovery for Asynchronous Concurrency & Thread Pool Starvation.",
+          "how_to_learn": "Study 130_dotnet_threading_and_concurrency.md. Prototype a proof-of-concept handling resilience, timeouts, and distributed retries.",
+          "strengths": "None; the input appears to be noise or a typing error rather than a technical response.",
+          "improvements": "The candidate needs to explain that async/await uses I/O Completion Ports (IOCP) to release threads during I/O waits, distinguish Task.Run (CPU-bound) from I/O-bound work, and explain how synchronous blocking via .Result or .Wait() leads to thread pool starvation and deadlocks.",
+          "source_reference": "130_dotnet_threading_and_concurrency.md"
+        },
+        {
+          "question_id": 4,
+          "question": "In ASP.NET Core, what critical issue occurs if a `Singleton` service directly injects a `Scoped` service (such as an Entity Framework `DbContext`) in its constructor?",
+          "type": "mcq",
+          "level": "intermediate",
+          "topic": "Dependency Injection Service Lifetimes",
+          "user_answer": "B) The compiler throws a CS0103 compile-time syntax error preventing compilation.",
+          "correct_answer": "A) Captive Dependency: The Scoped service is captured for the lifetime of the application, causing concurrency conflicts and memory leaks because the DbContext is not thread-safe.",
+          "is_correct": false,
+          "score": 0.0,
+          "feedback": "\u2717 Incorrect. You selected 'B) The compiler throws a CS0103 compile-time syntax error preventing compilation.'. The correct answer is: A) Captive Dependency: The Scoped service is captured for the lifetime of the application, causing concurrency conflicts and memory leaks because the DbContext is not thread-safe.. This is known as a Captive Dependency. Because the Singleton never dies, the Scoped DbContext is held open indefinitely across all concurrent HTTP requests. Since DbContext is not thread-safe, concurrent requests will trigger InvalidOperationException.",
+          "what_to_learn": "Core fundamentals & design of Dependency Injection Service Lifetimes.",
+          "how_to_learn": "Review 230_dotnet_core_service_lifetimes_middleware_hosting.md. Contrast the correct pattern with common misconceptions. Write code profiling execution behavior.",
+          "strengths": null,
+          "improvements": null,
+          "source_reference": "230_dotnet_core_service_lifetimes_middleware_hosting.md"
+        },
+        {
+          "question_id": 5,
+          "question": "True or False: A SQL Server table can have multiple Clustered Indexes as long as they are assigned to different primary key partitions.",
+          "type": "true_false",
+          "level": "intermediate",
+          "topic": "Database Indexing & Query Optimization",
+          "user_answer": "True",
+          "correct_answer": "False",
+          "is_correct": false,
+          "score": 0.0,
+          "feedback": "\u2717 Incorrect. The accurate statement is: False. False. A table can only have exactly ONE Clustered Index because the clustered index physically sorts and stores the actual data rows of the table in B-Tree leaf nodes. A table cannot be physically sorted in two different orders simultaneously.",
+          "what_to_learn": "Nuances and architectural implications of Database Indexing & Query Optimization.",
+          "how_to_learn": "Study 150_sql_joins_and_indexes.md. Practice explaining why the false assumption fails in enterprise scenarios.",
+          "strengths": null,
+          "improvements": null,
+          "source_reference": "150_sql_joins_and_indexes.md"
+        }
+      ],
+      "actionable_roadmap": [
+        {
+          "area": "Garbage Collection & Memory Architecture",
+          "what_to_do": "Deep dive into Garbage Collection & Memory Architecture internals and architectural patterns.",
+          "how_to_do": "Review 120_dotnet_garbage_collection.md. Write hands-on code simulating edge cases, thread safety, and failover scenarios.",
+          "how_to_improve": "In interviews, structure your response using the STAR/CAR framework: State the challenge, explain the architectural decision, discuss trade-offs, and cite production metrics."
+        },
+        {
+          "area": "Value Types vs Reference Types",
+          "what_to_do": "Deep dive into Value Types vs Reference Types internals and architectural patterns.",
+          "how_to_do": "Review 010_introduction_oops_and_basics.md. Write hands-on code simulating edge cases, thread safety, and failover scenarios.",
+          "how_to_improve": "In interviews, structure your response using the STAR/CAR framework: State the challenge, explain the architectural decision, discuss trade-offs, and cite production metrics."
+        },
+        {
+          "area": "Asynchronous Concurrency & Thread Pool Starvation",
+          "what_to_do": "Deep dive into Asynchronous Concurrency & Thread Pool Starvation internals and architectural patterns.",
+          "how_to_do": "Review 130_dotnet_threading_and_concurrency.md. Write hands-on code simulating edge cases, thread safety, and failover scenarios.",
+          "how_to_improve": "In interviews, structure your response using the STAR/CAR framework: State the challenge, explain the architectural decision, discuss trade-offs, and cite production metrics."
+        },
+        {
+          "area": "Interview Delivery & Architecture Communication",
+          "what_to_do": "Master the 'Trade-off First' delivery technique.",
+          "how_to_do": "Whenever asked why you chose a pattern (e.g., CQRS vs CRUD), always explicitly contrast 2 alternatives and give the concrete reason for your choice.",
+          "how_to_improve": "Practice aloud summarizing complex architectures in 60-second executive summaries before diving into technical weeds."
+        }
+      ]
+    }
+  },
+  {
+    "session_id": "f5c95aa5",
+    "date": "2026-09-20 12:34:03",
+    "level": "intermediate",
+    "focus_area": "csharp",
+    "overall_score": 50.0,
+    "verdict": "Developing - Solidify Core Foundations",
+    "total_questions": 2,
+    "correct_count": 1,
+    "scorecard": {
+      "session_id": "f5c95aa5",
+      "overall_score": 50.0,
+      "level": "intermediate",
+      "focus_area": "csharp",
+      "verdict": "Developing - Solidify Core Foundations",
+      "summary": "Achieved a score of 50.0% (1/2 questions mastered) at the Intermediate level. Evaluated against real-world enterprise engineering standards.",
+      "total_questions": 2,
+      "correct_count": 1,
+      "partial_count": 0,
+      "incorrect_count": 1,
+      "topic_breakdown": {
+        "String Interpolation & Runtime Internals": {
+          "total": 1,
+          "earned": 10.0,
+          "max": 10.0
+        },
+        "Generics & Iterators": {
+          "total": 1,
+          "earned": 0.0,
+          "max": 10.0
+        }
+      },
+      "type_breakdown": {
+        "mcq": {
+          "total": 1,
+          "correct": 1,
+          "points": 10.0
+        },
+        "true_false": {
+          "total": 1,
+          "correct": 0,
+          "points": 0.0
+        },
+        "descriptive": {
+          "total": 0,
+          "correct": 0,
+          "points": 0.0
+        }
+      },
+      "evaluations": [
+        {
+          "question_id": 1,
+          "question": "In modern C# (version 10 and later), how does the compiler optimize string interpolation (e.g., `string s = $\"Total: {amount}\"`) for primitive types to improve performance and reduce heap allocations?",
+          "type": "mcq",
+          "level": "intermediate",
+          "topic": "String Interpolation & Runtime Internals",
+          "user_answer": "C) It uses `DefaultInterpolatedStringHandler` to write directly into a buffer, avoiding boxing.",
+          "correct_answer": "C) It uses `DefaultInterpolatedStringHandler` to write directly into a buffer, avoiding boxing.",
+          "is_correct": true,
+          "score": 10.0,
+          "feedback": "\u2713 Correct! In legacy C# (versions 6-9), string interpolation was a syntactic sugar for `string.Format`, which forced value types (like int or decimal) to be boxed into `object`, causing heap allocations. In C# 10+, the compiler uses `DefaultInterpolatedStringHandler`, a specialized struct that calculates the required length upfront and writes values directly into a buffer, effectively eliminating boxing for primitive types.",
+          "what_to_learn": "Core fundamentals & design of String Interpolation & Runtime Internals.",
+          "how_to_learn": "Review 040_access_specifiers_boxing_unboxing.md. Contrast the correct pattern with common misconceptions. Write code profiling execution behavior.",
+          "strengths": null,
+          "improvements": null,
+          "source_reference": "040_access_specifiers_boxing_unboxing.md"
+        },
+        {
+          "question_id": 2,
+          "question": "True or False: The `IEnumerator<T>` interface implements `IDisposable` because `yield return` state machines can contain `using` or `finally` blocks that must be executed even if the iteration is terminated early (e.g., via a `break` in a `foreach` loop).",
+          "type": "true_false",
+          "level": "intermediate",
+          "topic": "Generics & Iterators",
+          "user_answer": "I am not completely sure, but I think it relates to memory leaks.",
+          "correct_answer": "True",
+          "is_correct": false,
+          "score": 0.0,
+          "feedback": "\u2717 Incorrect. The accurate statement is: True. In C#, `yield return` creates a state machine. If a consumer stops iterating before the sequence is exhausted, any `finally` blocks or `using` statements inside the generator method must still run to clean up resources. `IEnumerator<T>` inherits from `IDisposable` specifically to allow the consumer to call `Dispose()`, which triggers this cleanup logic in the underlying state machine.",
+          "what_to_learn": "Nuances and architectural implications of Generics & Iterators.",
+          "how_to_learn": "Study 060_generics_and_collections.md. Practice explaining why the false assumption fails in enterprise scenarios.",
+          "strengths": null,
+          "improvements": null,
+          "source_reference": "060_generics_and_collections.md"
+        }
+      ],
+      "actionable_roadmap": [
+        {
+          "area": "Generics & Iterators",
+          "what_to_do": "Deep dive into Generics & Iterators internals and architectural patterns.",
+          "how_to_do": "Review 060_generics_and_collections.md. Write hands-on code simulating edge cases, thread safety, and failover scenarios.",
+          "how_to_improve": "In interviews, structure your response using the STAR/CAR framework: State the challenge, explain the architectural decision, discuss trade-offs, and cite production metrics."
+        },
+        {
+          "area": "Interview Delivery & Architecture Communication",
+          "what_to_do": "Master the 'Trade-off First' delivery technique.",
+          "how_to_do": "Whenever asked why you chose a pattern (e.g., CQRS vs CRUD), always explicitly contrast 2 alternatives and give the concrete reason for your choice.",
+          "how_to_improve": "Practice aloud summarizing complex architectures in 60-second executive summaries before diving into technical weeds."
+        }
+      ]
+    }
+  }
+]

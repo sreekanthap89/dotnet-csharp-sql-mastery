@@ -1,0 +1,44 @@
+{
+  "active_provider": "ollama",
+  "active_model": "qwen3-coder:30b",
+  "default_questions": 10,
+  "default_level": "intermediate",
+  "providers": {
+    "ollama": {
+      "name": "Ollama (Local)",
+      "icon": "\ud83e\udd99",
+      "base_url": "http://localhost:11434",
+      "model": "shadowhuntersxz/Qwen3.8-27B-Uncensored-HauhauCS-Aggressive-MTP-GGUF:agentic",
+      "is_local": true
+    },
+    "lm_studio": {
+      "name": "LM Studio (Local)",
+      "icon": "\ud83d\udda5\ufe0f",
+      "base_url": "http://localhost:1234/v1",
+      "model": "local-model",
+      "is_local": true
+    },
+    "gemini": {
+      "name": "Google Gemini",
+      "icon": "\u2728",
+      "api_key": "",
+      "model": "gemini-2.5-flash",
+      "is_local": false
+    },
+    "claude": {
+      "name": "Anthropic Claude",
+      "icon": "\ud83e\udde0",
+      "api_key": "",
+      "model": "claude-3-7-sonnet-20250219",
+      "is_local": false
+    },
+    "openrouter": {
+      "name": "OpenRouter",
+      "icon": "\ud83c\udf10",
+      "base_url": "https://openrouter.ai/api/v1",
+      "api_key": "",
+      "model": "meta-llama/llama-3.3-70b-instruct",
+      "is_local": false
+    }
+  }
+}

@@ -3,13 +3,13 @@
 [![.NET 8 / 9](https://img.shields.io/badge/.NET-8.0%20%7C%209.0-512BD4?style=for-the-badge&logo=dotnet&logoColor=white)](https://dotnet.microsoft.com/)
 [![C# 12](https://img.shields.io/badge/C%23-12.0-239120?style=for-the-badge&logo=c-sharp&logoColor=white)](https://learn.microsoft.com/en-us/dotnet/csharp/)
 [![SQL Server](https://img.shields.io/badge/SQL%20Server-2022-CC292B?style=for-the-badge&logo=microsoft-sql-server&logoColor=white)](https://www.microsoft.com/en-us/sql-server/)
-[![Architecture](https://img.shields.io/badge/Architecture-Clean%20%2F%20GoF%20%2F%20Cloud-blue?style=for-the-badge)](./25_solid_principles.md)
+[![Architecture](https://img.shields.io/badge/Architecture-Clean%20%2F%20GoF%20%2F%20Cloud-blue?style=for-the-badge)](./250_solid_principles.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg?style=for-the-badge)](https://github.com/sreekanthap89/dotnet-csharp-sql-mastery/pulls)
 [![Build & Test](https://img.shields.io/badge/CI-Passing-brightgreen?style=for-the-badge&logo=githubactions&logoColor=white)](https://github.com/sreekanthap89/dotnet-csharp-sql-mastery/actions)
 
-> **The Definitive Encyclopedia, Practical Architectural Handbook, and Interview Compendium for .NET, C#, SQL Server, and Distributed Systems.**  
-> Spanning **37 Specialized Modules**, **253 Rigorous Deep-Dive Questions + 6 Enterprise Cloud Architecture Suites**, and companion **Production Code Samples, Tests & Benchmark Suites**.
+> **The Definitive Encyclopedia, Practical Architectural Handbook, and Interview Compendium for .NET, C#, SQL Server, Distributed Systems, Cloud & AI.**  
+> Spanning **45 Specialized Reference Modules**, **265+ Rigorous Architectural Deep-Dives**, and companion **Production Code Samples, Tests & Benchmark Suites**.
 
 ---
 
@@ -39,51 +39,152 @@ flowchart LR
 
 ---
 
-## 📚 Complete 31-Section Master Syllabus
+## 🗺️ Master Domain Progression & Architecture Roadmap
 
-| # | Module Title | Question Range | Topics Covered | Link |
-| :-: | :--- | :---: | :--- | :---: |
-| **01** | **Introduction – OOPS & Core Basics** | Q1 – Q10 | OOP Pillars, Class vs Object, Structs, Value vs Reference | [Module 01](./01_introduction_oops_and_basics.md) |
-| **02** | **OOPS – Inheritance, Polymorphism & Abstraction** | Q11 – Q26 | Virtual/Override, New Shadowing, Multiple Inheritance, Sealed | [Module 02](./02_oops_inheritance_abstraction_encapsulation_polymorphism.md) |
-| **03** | **OOPS – Abstract Classes & Interfaces** | Q27 – Q37 | Abstract vs Interface, Explicit Interface, Diamond Problem | [Module 03](./03_abstract_class_and_interface.md) |
-| **04** | **Access Modifiers & Boxing/Unboxing** | Q38 – Q47 | Public/Private/Protected/Internal, Type Safety, Boxing Internals | [Module 04](./04_access_specifiers_boxing_unboxing.md) |
-| **05** | **Control Flow & Exception Handling** | Q48 – Q56 | Loops, Jump Statements, Throw vs Throw ex, Custom Exceptions | [Module 05](./05_loops_conditions_exception_handling.md) |
-| **06** | **Generics & High-Performance Collections** | Q57 – Q64 | Generics Constraints, List vs Array, Dictionary vs Hashtable | [Module 06](./06_generics_and_collections.md) |
-| **07** | **Constructors & Object Lifecycle** | Q65 – Q76 | Static/Private Constructors, Constructor Chaining, Copy | [Module 07](./07_constructors.md) |
-| **08** | **Method Parameters, Delegates & Events** | Q77 – Q88 | Ref, Out, In, Params, Multicast Delegates, Func/Action, Events | [Module 08](./08_method_parameters_delegates_and_events.md) |
-| **09** | **Important C# Keywords & Modifiers** | Q89 – Q98 | this, using, is/as, readonly vs const, static, var vs dynamic, yield | [Module 09](./09_important_keywords.md) |
-| **10** | **LINQ (Language Integrated Query)** | Q99 – Q102 | LINQ Architecture, Deferred Execution, Lambdas, FirstOrDefault | [Module 10](./10_linq.md) |
-| **11** | **.NET Framework & CLR Internals** | Q103 – Q109 | CLR, Assemblies, GAC, Reflection, Serialization, Windows Services | [Module 11](./11_dotnet_framework_basics.md) |
-| **12** | **Garbage Collection & Memory Management** | Q110 – Q114 | GC Generations (0/1/2), LOH/POH, Dispose vs Finalize | [Module 12](./12_dotnet_garbage_collection.md) |
-| **13** | **Threading, Concurrency & Async/Await** | Q115 – Q119 | Process vs Thread, Tasks vs Threads, Async/Await State Machine | [Module 13](./13_dotnet_threading_and_concurrency.md) |
-| **14** | **SQL Server Fundamentals & RDBMS** | Q120 – Q127 | DBMS vs RDBMS, Constraints, Primary vs Unique, Triggers, Views | [Module 14](./14_sql_basics.md) |
-| **15** | **SQL Server Joins & Index Internals** | Q128 – Q136 | Inner/Outer/Self Joins, Clustered vs Non-Clustered B-Trees | [Module 15](./15_sql_joins_and_indexes.md) |
-| **16** | **Stored Procedures, Functions & Transactions** | Q137 – Q145 | SP vs UDF, Cursors, CTEs, Delete vs Truncate, Nth Salary, ACID | [Module 16](./16_sql_stored_procedures_functions_and_more.md) |
-| **17** | **ADO.NET & Entity Framework Core** | Q171 – Q181 | Connected vs Disconnected, EF Core Change Tracker, DbContext | [Module 17](./17_ado_dotnet_and_entity_framework.md) |
-| **18** | **ASP.NET Core Web API Fundamentals** | Q182 – Q189 | RESTful Constraints, HTTP Verbs, Web API vs MVC, HttpClient | [Module 18](./18_web_api_basics.md) |
-| **19** | **Web API Authentication & JWT Deep-Dive** | Q190 – Q196 | Basic Auth, API Key, JWT Architecture, ClaimsPrincipal | [Module 19](./19_web_api_authentication_and_jwt.md) |
-| **20** | **Advanced Web API: ConNeg, Formatters & Testing** | Q197 – Q203 | WebApplicationFactory, ActionResult\<T\>, ConNeg, HTTP Codes | [Module 20](./20_web_api_advanced.md) |
-| **21** | **.NET Core Architecture & Hosting Pipeline** | Q204 – Q212 | .NET Core vs .NET 5+, Program.cs, Request Pipeline, Metapackage | [Module 21](./21_dotnet_core_basics.md) |
-| **22** | **.NET Core Dependency Injection** | Q213 – Q216 | IoC Container, Constructor Injection, Keyed Services, View DI | [Module 22](./22_dotnet_core_dependency_injection.md) |
-| **23** | **Service Lifetimes, Middleware & Kestrel** | Q217 – Q224 | Transient/Scoped/Singleton, Custom Middleware, Kestrel vs IIS | [Module 23](./23_dotnet_core_service_lifetimes_middleware_hosting.md) |
-| **24** | **Routing, Configuration, CORS & Caching** | Q225 – Q233 | Endpoint Routing, Static Files, Options Pattern, CORS, Distributed Cache | [Module 24](./24_dotnet_core_routing_files_cors_and_more.md) |
-| **25** | **SOLID Principles & Clean Architecture** | Q234 – Q240 | Single Responsibility, Open-Closed, Liskov, ISP, DIP, DRY | [Module 25](./25_solid_principles.md) |
-| **26** | **Design Patterns (GoF & Enterprise)** | Q241 – Q250 | Creational, Structural, Behavioral, Thread-Safe Singleton, Factories | [Module 26](./26_design_patterns.md) |
-| **27** | **Array Algorithmic Challenges (Core Mechanics)** | Q251 – Q257 | Sum, Average, Min, Max, Second Largest (Single Pass O(N)) | [Module 27](./27_array_coding_problems.md) |
-| **28** | **Array Algorithmic Challenges (Modular Functions)** | Q258 – Q262 | Equality Check, Sorted Check, Two-Pointer Sorted Merge, In-Place Removal | [Module 28](./28_array_coding_problems_using_functions.md) |
-| **29** | **String Manipulation & Memory Allocation** | Q263 – Q266 | UTF-16 Code Units vs Runes vs Graphemes, Reversal, Palindrome | [Module 29](./29_string_coding_problems.md) |
-| **30** | **String Algorithmic Challenges (Modular Functions)** | Q270 – Q271 | Longest Word, Whitespace Stripping, Vowels (SIMD), Anagrams | [Module 30](./30_string_coding_problems_using_functions.md) |
-| **31** | **Mathematical, Number & Bitwise Coding** | Q272 – Q278 | Factorial (BigInteger), ++i vs i++ CIL, Prime (6k±1), Swaps, GCD, Fibonacci | [Module 31](./31_number_coding_problems.md) |
-| **32** | **Microsoft Entra ID & Cloud Identity Architecture** | Cloud Architecture | OAuth2/OIDC, PKCE, OBO Flow, Managed Identities, PIM, Zero-Trust | [Module 32](./32_azure_entra_id_and_identity.md) |
-| **33** | **Azure SQL Database & Cloud Relational Architecture** | Cloud Architecture | DTU vs vCore, Hyperscale, Serverless, Active Geo-Replication, Private Link | [Module 33](./33_azure_sql_database.md) |
-| **34** | **Azure Functions & Serverless Compute** | Cloud Architecture | Isolated Worker Model, Consumption vs Flex vs Premium, Durable Sagas, KEDA | [Module 34](./34_azure_functions.md) |
-| **35** | **Azure Event Grid & Enterprise Messaging** | Cloud Architecture | Event Grid vs Service Bus vs Event Hubs, CloudEvents v1.0, Dead-Lettering | [Module 35](./35_azure_event_grid_and_messaging.md) |
-| **36** | **Azure DevOps, GitOps & CI/CD Pipelines** | Cloud Architecture | YAML Multistage Pipelines, Environments & Gates, OIDC Workload Identity | [Module 36](./36_azure_devops_ci_cd.md) |
-| **37** | **Azure Key Vault, Managed HSM & Cryptography** | Cloud Architecture | Secrets, Keys, Certificates, RBAC vs Access Policies, FIPS 140-2 Level 3 | [Module 37](./37_azure_key_vault_and_security.md) |
+The curriculum is structured into **8 Cohesive Architectural Tracks**, progressing naturally from low-level runtime mechanics to distributed cloud, generative AI, and algorithmic mastery:
+
+```mermaid
+flowchart TD
+    subgraph Fundamentals["Phase 1: Core Foundation"]
+        T1["Track 1: C# Language Architecture & CoreCLR Runtime<br/>(Modules 010 - 130)"]
+        T2["Track 2: Relational Databases, SQL Server & EF Core<br/>(Modules 140 - 170)"]
+        T1 --> T2
+    end
+
+    subgraph ServiceLayer["Phase 2: Enterprise Service Engineering"]
+        T3["Track 3: ASP.NET Core & Web API Architecture<br/>(Modules 180 - 240)"]
+        T4["Track 4: Software Architecture, Clean DDD & Design Patterns<br/>(Modules 250 - 260)"]
+        T2 --> T3
+        T3 --> T4
+    end
+
+    subgraph DistributedCloud["Phase 3: Distributed Systems & Cloud Platforms"]
+        T5["Track 5: Distributed Systems, Microservices & System Design<br/>(Modules 270 - 300)"]
+        T6["Track 6: Azure Cloud Infrastructure & DevOps<br/>(Modules 310 - 370)"]
+        T4 --> T5
+        T5 --> T6
+    end
+
+    subgraph FrontierEngineering["Phase 4: Frontier Systems & Interview Sprints"]
+        T7["Track 7: Generative AI & Autonomous Agent Engineering (.NET Stack)<br/>(Modules 380 - 400)"]
+        T8["Track 8: Algorithmic & Coding Interview Problem Bank<br/>(Modules 410 - 450)"]
+        T6 --> T7
+        T4 -.-> T8
+    end
+```
 
 ---
 
-## 🚀 Repository Roadmap & Upcoming Code Projects
+## 📚 Thematic Mastery Curriculum (45 Modules)
+
+### Track 1: C# Language Architecture & CoreCLR Runtime
+*Master the execution engine, memory layout, GC generations, asynchronous state machines, and concurrency.*
+
+| Module | Title | Architectural Highlights | Link |
+| :-: | :--- | :--- | :--- |
+| **010** | **Introduction – OOPS & Core Basics** | Class vs Object, Structs vs Classes, Value vs Reference Types, OOP Pillars | [Module 010](./010_introduction_oops_and_basics.md) |
+| **020** | **OOPS – Inheritance & Polymorphism** | Virtual table (vtable), Method shadowing with `new`, Sealed classes | [Module 020](./020_oops_inheritance_abstraction_encapsulation_polymorphism.md) |
+| **030** | **OOPS – Abstract Classes & Interfaces** | Default interface methods, Explicit implementation, Multiple inheritance | [Module 030](./030_abstract_class_and_interface.md) |
+| **040** | **Access Modifiers & Memory Layout** | Boxing/Unboxing IL mechanics, MethodTable, SyncBlock, Internal/Protected | [Module 040](./040_access_specifiers_boxing_unboxing.md) |
+| **050** | **Control Flow & Exception Handling** | Structured exception handling (SEH), `throw` vs `throw ex`, Filter `when` | [Module 050](./050_loops_conditions_exception_handling.md) |
+| **060** | **Generics & High-Performance Collections** | Constraints, `List<T>` geometric growth, `Dictionary<TKey, TValue>` hash buckets | [Module 060](./060_generics_and_collections.md) |
+| **070** | **Constructors & Object Lifecycle** | Static constructors, Type initializers, Constructor chaining, Copy semantics | [Module 070](./070_constructors.md) |
+| **080** | **Method Parameters, Delegates & Events** | `ref`, `out`, `in`, `readonly ref`, Multicast delegates, `Action`/`Func`, Event leaks | [Module 080](./080_method_parameters_delegates_and_events.md) |
+| **090** | **Important C# Keywords & Modifiers** | `readonly` vs `const`, `static`, `var` vs `dynamic`, `yield return` state machine | [Module 090](./090_important_keywords.md) |
+| **100** | **LINQ Internals & Expression Trees** | Deferred execution, `IEnumerable` vs `IQueryable` vs `ICollection`, Expressions | [Module 100](./100_linq.md) |
+| **110** | **.NET Framework & CLR Internals** | RyuJIT compilation, Assemblies, Metadata, Reflection, Windows Services | [Module 110](./110_dotnet_framework_basics.md) |
+| **120** | **Garbage Collection & Memory Management** | Gen 0/1/2 collection, LOH & POH, Finalizer queue, GC suspension & pauses | [Module 120](./120_dotnet_garbage_collection.md) |
+| **130** | **Threading, Concurrency & Async/Await** | ThreadPool, Async state machine, Thread-pool starvation, `.Result` deadlocks | [Module 130](./130_dotnet_threading_and_concurrency.md) |
+
+---
+
+### Track 2: Relational Databases, SQL Server Engine & Data Access
+*Master relational theory, index structures, concurrency isolation, query optimization, and high-performance ORMs.*
+
+| Module | Title | Architectural Highlights | Link |
+| :-: | :--- | :--- | :--- |
+| **140** | **SQL Server Fundamentals & RDBMS** | DBMS vs RDBMS, Constraints, Primary vs Unique, Triggers, Views, Normalization | [Module 140](./140_sql_basics.md) |
+| **150** | **SQL Server Joins & Index Internals** | Inner/Outer/Cross Joins, Clustered vs Non-Clustered B-Trees, Index seek vs scan | [Module 150](./150_sql_joins_and_indexes.md) |
+| **160** | **Stored Procedures, Functions, CTEs & Tuning** | SP vs UDF, CTE vs Temp Table, MERGE hazards, Table Partitioning, Query Store, 90% CPU triage | [Module 160](./160_sql_stored_procedures_functions_and_more.md) |
+| **170** | **ADO.NET & Entity Framework Core** | Change Tracker, Unique constraint races (2601/2627), `AsNoTracking`, DTO projection, N+1 problem | [Module 170](./170_ado_dotnet_and_entity_framework.md) |
+
+---
+
+### Track 3: ASP.NET Core & Modern Web API Architecture
+*Engineer ultra-fast, resilient web services with Kestrel, custom middleware pipelines, and enterprise security.*
+
+| Module | Title | Architectural Highlights | Link |
+| :-: | :--- | :--- | :--- |
+| **180** | **ASP.NET Core Web API Fundamentals** | REST constraints, HTTP semantics, PUT vs PATCH vs POST, Minimal APIs vs Controllers | [Module 180](./180_web_api_basics.md) |
+| **190** | **Web API Authentication & JWT Deep-Dive** | JWT token anatomy, ClaimsPrincipal, Signing keys, Policy & Object-Level (BOLA/IDOR) AuthZ | [Module 190](./190_web_api_authentication_and_jwt.md) |
+| **200** | **Advanced Web API: ConNeg, Idempotency & Testing** | Content negotiation, `Idempotency-Key` distributed lock, High-volume `HttpClient` resilience | [Module 200](./200_web_api_advanced.md) |
+| **210** | **.NET Core Architecture & Hosting Pipeline** | Generic Host, Kestrel server, Program.cs bootstrap, Request lifecycle | [Module 210](./210_dotnet_core_basics.md) |
+| **220** | **Dependency Injection & IoC Internals** | Constructor injection, Keyed services, IoC resolution tree, Captive dependencies | [Module 220](./220_dotnet_core_dependency_injection.md) |
+| **230** | **Service Lifetimes, Middleware & Global Exceptions** | Lifetimes, Middleware vs Filters, Modern `IExceptionHandler` & RFC 7807 ProblemDetails | [Module 230](./230_dotnet_core_service_lifetimes_middleware_hosting.md) |
+| **240** | **Routing, CORS, Caching & Production Triage** | Endpoint routing, CORS security, Correlation IDs, Fast Locally vs Slow in Prod Triage | [Module 240](./240_dotnet_core_routing_files_cors_and_more.md) |
+
+---
+
+### Track 4: Software Architecture, Clean DDD & Design Patterns
+*Construct modular, decoupled systems adhering to SOLID principles, Domain-Driven Design, and design patterns.*
+
+| Module | Title | Architectural Highlights | Link |
+| :-: | :--- | :--- | :--- |
+| **250** | **SOLID Principles & Clean Architecture** | Single Responsibility, Open/Closed, Liskov, ISP, DIP, Clean Architecture layers | [Module 250](./250_solid_principles.md) |
+| **260** | **Design Patterns (GoF & Enterprise)** | Factory, Thread-Safe Singleton, Builder, Adapter, Decorator, Strategy, Observer | [Module 260](./260_design_patterns.md) |
+
+---
+
+### Track 5: Distributed Systems, Microservices & System Design
+*Transition from monoliths to reliable, asynchronous, event-driven microservices with guaranteed messaging and planet-scale system design.*
+
+| Module | Title | Architectural Highlights | Link |
+| :-: | :--- | :--- | :--- |
+| **270** | **Microservices Architecture & Azure Service Bus** | Monolith vs Microservices, CQRS, Peek-Lock, DLQ, Outbox Pattern, Sagas, MassTransit | [Module 270](./270_microservices_and_azure_service_bus.md) |
+| **280** | **System Design: Fundamentals & Networking** | 12-Step Framework, Request Flow, CAP/PACELC, DNS, TLS 1.3, TCP Congestion, gRPC, YARP | [Module 280](./280_system_design_fundamentals_architecture_networking.md) |
+| **290** | **System Design: Caching, Databases & Consensus** | Cache-Aside, Redis Mutex, Consistent Hashing (vnodes), 2PC, Raft Quorum, Redlock | [Module 290](./290_system_design_caching_databases_messaging_distributed_systems.md) |
+| **300** | **System Design: Reliability, Observability & Cases** | Circuit Breakers (Polly), W3C TraceContext, 5 Case Studies (TinyURL, Chat, Flash Sale) | [Module 300](./300_system_design_reliability_security_observability_case_studies.md) |
+
+---
+
+### Track 6: Cloud Platform, Azure Infrastructure & DevOps
+*Provision, secure, and operate mission-critical cloud backends using managed cloud services and GitOps.*
+
+| Module | Title | Architectural Highlights | Link |
+| :-: | :--- | :--- | :--- |
+| **310** | **Microsoft Entra ID & Cloud Identity** | OAuth2/OIDC, PKCE, Managed Identities (System vs User), Zero-Trust RBAC | [Module 310](./310_azure_entra_id_and_identity.md) |
+| **320** | **Azure SQL Database & Cloud Relational** | vCore vs DTU, Hyperscale, Elastic Pools, Active Geo-Replication, Private Link | [Module 320](./320_azure_sql_database.md) |
+| **330** | **Azure App Service, Storage & Cloud Networking** | App Service slots, Blob tiers, SAS URLs, APIM, Load Balancers, Front Door | [Module 330](./330_azure_app_service_storage_networking.md) |
+| **340** | **Azure Functions & Serverless Compute** | Isolated Worker, Consumption vs Flex vs Premium, Durable Orchestrations, Triggers | [Module 340](./340_azure_functions.md) |
+| **350** | **Azure Event Grid & Enterprise Messaging** | Reactive event mesh, CloudEvents v1.0, Event Grid vs Service Bus vs Event Hubs | [Module 350](./350_azure_event_grid_and_messaging.md) |
+| **360** | **Azure Key Vault, Managed HSM & Security** | Secrets, Keys, Certificates, RBAC vs Access Policies, FIPS 140-2 Level 3 | [Module 360](./360_azure_key_vault_and_security.md) |
+| **370** | **Azure DevOps, GitOps & CI/CD Pipelines** | Multistage YAML, Environments, Branch policies, OIDC Workload Identity | [Module 370](./370_azure_devops_ci_cd.md) |
+
+---
+
+### Track 7: Generative AI & Autonomous Agent Engineering (.NET Stack)
+*Build production AI features in C# with Semantic Kernel, Microsoft.Extensions.AI, RAG, and Model Context Protocol.*
+
+| Module | Title | Architectural Highlights | Link |
+| :-: | :--- | :--- | :--- |
+| **380** | **AI Engineering: LLM Fundamentals & .NET Stack** | Tokens, Context, Embeddings, Azure OpenAI v2, Microsoft.Extensions.AI, Semantic Kernel | [Module 380](./380_ai_engineering_llm_fundamentals_and_dotnet_stack.md) |
+| **390** | **AI Engineering: RAG, Vector Search, Agents & MCP** | RAG vs Fine-tuning, Chunking, Hybrid Search (RRF), Semantic Kernel Agents, MCP in C# | [Module 390](./390_ai_rag_vector_search_and_agents_mcp.md) |
+| **400** | **AI Engineering: Production Architecture & UX** | Polly 429 backoff, Semantic caching, Prompt injection, BFF streaming, 6 AI Scenarios | [Module 400](./400_ai_production_architecture_security_and_frontend_ux.md) |
+
+---
+
+### Track 8: Algorithmic & Coding Interview Problem Bank
+*Battle-tested algorithmic challenges implemented with idiomatic C# performance optimizations.*
+
+| Module | Title | Problem Categories & Algorithmic Patterns | Link |
+| :-: | :--- | :--- | :--- |
+| **410** | **Array Challenges (Core Mechanics)** | Two Sum, Single-pass Second Largest, Max/Min, Running Average, In-place reversal | [Module 410](./410_array_coding_problems.md) |
+| **420** | **Array Challenges (Modular Functions)** | Sorted validation, Two-pointer merge, In-place duplicate removal, Frequency map | [Module 420](./420_array_coding_problems_using_functions.md) |
+| **430** | **String Manipulation & Memory** | UTF-16 Runes vs Graphemes, Two-pointer palindrome, In-place string reversal | [Module 430](./430_string_coding_problems.md) |
+| **440** | **String Challenges (Modular Functions)** | Longest word, SIMD vowel counting, Anagram validation with frequency arrays | [Module 440](./440_string_coding_problems_using_functions.md) |
+| **450** | **Mathematical, Number & Bitwise Coding** | Factorial BigInteger, ++i vs i++ CIL, Prime testing (6k±1), Bitwise XOR swaps, GCD | [Module 450](./450_number_coding_problems.md) |
+
+---
 
 ## 🚀 Live Companion Code Projects & Benchmarks
 
@@ -92,7 +193,7 @@ This repository includes a fully compiling, runnable **.NET 8 multi-project solu
 ```
 dotnet-csharp-sql-mastery/
 │
-├── 01_introduction_oops_and_basics.md  # 31 Exhaustive Architectural Reference Modules
+├── 010_introduction_oops_and_basics.md  # 45 Exhaustive Architectural Reference Modules (010 to 450)
 │   └── ...
 │
 └── samples/                             # [ACTIVE & RUNNABLE] .NET 8 / 9 Master Solution
@@ -116,7 +217,7 @@ dotnet-csharp-sql-mastery/
 
 ### Quick Commands:
 ```bash
-# Build the entire solution (0.4s clean build):
+# Build the entire solution (clean build):
 dotnet build samples/EnterpriseMastery.slnx
 
 # Run automated unit and integration tests (14 tests passed, 0 failures):
@@ -129,62 +230,24 @@ dotnet run --project samples/src/Enterprise.WebApi/Enterprise.WebApi.csproj
 dotnet run -c Release --project samples/benchmarks/Enterprise.Benchmarks/Enterprise.Benchmarks.csproj
 ```
 
-
 ---
 
 ## 🎯 Target Audience & Study Pathways
 
-### 1. Junior Software Engineer (0 – 2 Years)
-- **Primary Modules**: [01](./01_introduction_oops_and_basics.md), [02](./02_oops_inheritance_abstraction_encapsulation_polymorphism.md), [04](./04_access_specifiers_boxing_unboxing.md), [05](./05_loops_conditions_exception_handling.md), [07](./07_constructors.md), [14](./14_sql_basics.md), [21](./21_dotnet_core_basics.md), [27](./27_array_coding_problems.md), [29](./29_string_coding_problems.md), [31](./31_number_coding_problems.md).
-- **Core Goals**: Master C# syntax, understand class vs. struct memory mechanics, loops, conditionals, basic SQL queries, and fundamental algorithmic patterns.
+Whether you are preparing for a Senior, Staff, or Principal Engineer interview, or engineering mission-critical systems:
 
-### 2. Mid-Level Software Engineer (2 – 5 Years)
-- **Primary Modules**: [03](./03_abstract_class_and_interface.md), [06](./06_generics_and_collections.md), [08](./08_method_parameters_delegates_and_events.md), [09](./09_important_keywords.md), [10](./10_linq.md), [15](./15_sql_joins_and_indexes.md), [16](./16_sql_stored_procedures_functions_and_more.md), [17](./17_ado_dotnet_and_entity_framework.md), [18](./18_web_api_basics.md), [19](./19_web_api_authentication_and_jwt.md), [22](./22_dotnet_core_dependency_injection.md), [25](./25_solid_principles.md).
-- **Core Goals**: Master interfaces, generics, delegates, LINQ execution pipelines, SQL indexing/joins, EF Core querying, REST Web API design, DI lifetimes, and clean code principles.
-
-### 3. Senior Engineer / Technical Lead (5 – 8 Years)
-- **Primary Modules**: [11](./11_dotnet_framework_basics.md), [12](./12_dotnet_garbage_collection.md), [13](./13_dotnet_threading_and_concurrency.md), [20](./20_web_api_advanced.md), [23](./23_dotnet_core_service_lifetimes_middleware_hosting.md), [24](./24_dotnet_core_routing_files_cors_and_more.md), [26](./26_design_patterns.md), [32](./32_azure_entra_id_and_identity.md), [33](./33_azure_sql_database.md), [34](./34_azure_functions.md), [36](./36_azure_devops_ci_cd.md), [37](./37_azure_key_vault_and_security.md).
-- **Core Goals**: Deep CLR internals, Garbage Collection generations and LOH/POH compaction, zero-allocation memory slicing (`Span<T>`), async synchronization contexts, lock-free concurrency, advanced middleware, GoF patterns, and core cloud infrastructure services.
-
-### 4. Principal / Solutions Architect (8+ Years)
-- **Primary Modules**: Holistic mastery across all 37 sections with specific focus on:
-  - System scalability tradeoffs in high-throughput distributed cloud environments.
-  - Cloud Architecture Modules ([32](./32_azure_entra_id_and_identity.md) – [37](./37_azure_key_vault_and_security.md)): Enterprise identity federation (OIDC/SAML), Hyperscale relational databases, event-driven reactive meshes (Event Grid), serverless sagas (Durable Functions), zero-trust cryptographic boundaries (Managed HSM), and GitOps CI/CD compliance.
-  - SQL Server B-Tree execution plans, lock escalation, and distributed transactional consistency (ACID vs. BASE).
-  - Resilient microservice architecture, API Gateways, and event-driven patterns.
-  - Memory leak forensics, thread pool starvation debugging, and GC pause tuning.
+- **Junior to Mid-Level Engineers**:
+  - Focus on **Tracks 1, 2, and 3** to build an ironclad foundation in the CLR runtime, memory layout, SQL indexes, and REST APIs.
+- **Senior Software Engineers**:
+  - Deep-dive into **Tracks 4, 5, and 6** to master SOLID, design patterns, microservices, transactional outbox, and cloud reliability patterns.
+- **Lead / Staff / Principal Architects**:
+  - Master **Track 5 (Microservices & System Design)**, **Track 6 (Cloud Infrastructure)**, and **Track 7 (Generative AI Engineering)** to ace high-level distributed systems design rounds and lead enterprise technical initiatives.
+- **Interview Sprints**:
+  - Work through **Track 8 (Modules 410 - 450)** for algorithmic coding practice with modern C# performance idioms.
 
 ---
 
-## 🛠️ Recommended Git Repository Setup
+## 🤝 Contributing & License
 
-To push this repository to your GitHub account:
-
-```bash
-# 1. Navigate to the project folder
-cd "/path/to/Dot_Net"
-
-# 2. Initialize Git
-git init
-
-# 3. Add all files to staging (respecting .gitignore)
-git add .
-
-# 4. Commit the initial encyclopedic documentation
-git commit -m "feat: initial commit of complete 31-section .NET, C# and SQL mastery suite"
-
-# 5. Set the default branch to main
-git branch -M main
-
-# 6. Link to your GitHub remote repository (replace with your repo URL)
-git remote add origin https://github.com/<YOUR-USERNAME>/dotnet-csharp-sql-mastery.git
-
-# 7. Push to GitHub
-git push -u origin main
-```
-
----
-
-## 📄 License & Contributions
-
-This project is licensed under the **MIT License**. Contributions, fixes, and additions of runnable code samples and benchmarks are warmly welcomed! Feel free to open an issue or submit a Pull Request.
+Contributions, corrections, and enterprise architectural extensions are welcome via [Pull Requests](https://github.com/sreekanthap89/dotnet-csharp-sql-mastery/pulls).  
+Distributed under the **MIT License**. See `LICENSE` for details.

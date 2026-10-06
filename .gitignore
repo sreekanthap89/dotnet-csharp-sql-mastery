@@ -38,3 +38,7 @@ ehthumbs.db
 *.tmp
 *.temp
 scratch/
+__pycache__/
+*.pyc
+InterviewAssist/data/uploads/
+*.pdf

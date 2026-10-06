@@ -1,0 +1,281 @@
+All technologies☁️
+Azure
+
+
+
+	1	🔐Azure Key VaultWhat is Azure Key Vault and how do you use it securely from an ASP.NET Core application?
+	2	🪪Managed IdentityWhat is Managed Identity in Azure, and what is the difference between system-assigned and user-assigned identities?
+	3	🗄️Blob Storage LifecycleHow do Azure Blob Storage access tiers and lifecycle management policies work?
+	4	🔗SAS URL and PurposeWhat is a SAS (Shared Access Signature) and how would you use it securely?
+	5	🌐Azure App ServiceWhat is Azure App Service, and what features do you use when hosting an ASP.NET Core application on it?
+	6	⚙️Azure App ConfigurationWhat is Azure App Configuration and how does it differ from Key Vault and app settings?
+	7	⚡Azure Functions vs Durable FunctionsWhat is the difference between Azure Functions and Durable Functions? When would you use Durable Functions?
+	8	🎯Azure Functions TriggersWhat triggers and bindings are available in Azure Functions, and how do you choose between them?
+	9	🚦Rate LimitingHow would you implement rate limiting for an API hosted on Azure (ASP.NET Core)?
+	10	🚪Azure API ManagementWhat is Azure API Management (APIM), and what problems does it solve?
+	11	⚖️Azure Load BalancerWhat is Azure Load Balancer, and how does it differ from Application Gateway, Front Door and Traffic Manager?
+	12	🌍Azure Front DoorWhat is Azure Front Door and when would you use it?
+	13	🛰️Azure CDNWhat is a CDN and how would you use Azure CDN / Front Door to deliver an Angular application?.NET / C#
+
+	1	⏳async/await InternalsHow does async/await work internally, and why should a method be async?
+	2	📚IEnumerable vs IQueryable vs ICollectionWhat is the difference between IEnumerable, IQueryable and ICollection, and what happens if you pick the wrong one?
+	3	🧵Task vs ThreadWhat is the difference between a Task and a Thread? When would you use each, and how do Parallel.ForEach and Task.WhenAll fit in?
+	4	🐌Optimizing a Slow EF Core QueryHow would you optimize a slow EF Core query? Cover tracking vs AsNoTracking, projection with DTOs, and pagination.
+	5	🔁N+1 Query ProblemWhat is the N+1 query problem, and how do you fix it in EF Core (Include vs Select)?
+	6	🏛️SOLID PrinciplesExplain the SOLID principles with examples from a real .NET project.
+	7	🐢Investigating a 10-Second SQL QueryA SQL query behind your .NET API takes 10 seconds. How do you investigate it (execution plan, clustered vs non-clustered indexes)?
+	8	🧩Interface vs Abstract ClassWhat is the difference between an interface and an abstract class? When would you choose each?
+	9	♻️Garbage Collection, Memory Leaks & High CPUHow does garbage collection work in .NET, and how do you find memory leaks or high CPU in production?
+	10	🔒.Result / .Wait() DeadlocksWhy do .Result or .Wait() cause deadlocks? Explain sync-over-async and ConfigureAwait(false).
+	11	📦Value vs Reference TypesExplain value types vs reference types in C#: stack vs heap, boxing and unboxing.
+	12	🗂️Repository Pattern & Clean ArchitectureIs the Repository pattern always needed with EF Core? Explain Clean Architecture.
+	13	🤖LLM & RAG in .NETHow would you add an LLM or RAG (Retrieval-Augmented Generation) feature to a .NET application? Cover Azure OpenAI, embeddings and tool calling.
+	14	🎯FirstOrDefault vs SingleOrDefaultWhat is the difference between First, FirstOrDefault, Single and SingleOrDefault, and which should you use?
+	15	🧵string vs StringBuilderWhat is the difference between string and StringBuilder, and when should you use each?
+	16	🔧ref, out and inExplain the ref, out and in parameter modifiers in C#.
+	17	💤Deferred Execution in LINQWhat is deferred execution in LINQ, and what problems can it cause?
+	18	🚦Thread-Pool Starvation & ConcurrencyWhat is thread-pool starvation in ASP.NET Core, how do you detect and fix it, and how do you handle concurrency safely in async .NET code?
+	19	
+	20	
+	21	
+	22	ASP.NET Core
+	23	
+	24	💉Dependency Injection & LifetimesWhat is Dependency Injection in ASP.NET Core? When would you use Singleton, Scoped or Transient lifetimes, and where have you used them?
+	25	🧱Middleware & Request PipelineExplain the ASP.NET Core middleware and request pipeline. Why does order matter? What do Use(), Run() and Map() do, and how do you write custom middleware?
+	26	🔐JWT Authentication & AuthN vs AuthZHow does JWT authentication work end to end in ASP.NET Core, and what is the difference between authentication and authorization?
+	27	🌐Fast Locally, Slow in ProductionAn API is fast locally but slow in production. How do you find the cause?
+	28	🧯Global Exception HandlingHow do you handle exceptions globally in an ASP.NET Core Web API (middleware, IExceptionHandler, ProblemDetails)?
+	29	🧰Middleware vs FiltersWhat is the difference between middleware and filters in ASP.NET Core, and what types of filters exist?
+	30	✏️PUT vs PATCHWhat is the difference between PUT and PATCH (and POST) in REST APIs?
+	31	🗄️Caching & Rate Limiting in ASP.NET CoreHow do you implement caching and rate limiting in an ASP.NET Core API?
+	32	🔂IdempotencyWhat is idempotency, and how do you implement idempotent APIs and message handlers in .NET?
+	33	⚡Minimal APIs vs ControllersMinimal APIs vs Controllers in ASP.NET Core: what are the differences and when would you choose each?
+	34	📡HttpClient in High-Volume ApplicationsHow should you use HttpClient in a high-traffic ASP.NET Core application? Explain socket exhaustion, DNS issues, IHttpClientFactory and resilience.
+	35	🌍CORS & API VersioningHow do CORS and API versioning work in ASP.NET Core Web APIs, and what are the common pitfalls?
+	36	📑Pagination, Filtering & SortingHow do you design pagination, filtering and sorting for a Web API that serves large datasets?
+	37	📦Large File Uploads & Response StreamingHow do you handle large file uploads and stream large responses in ASP.NET Core without exhausting memory?
+	38	🛡️Policy-Based & Object-Level AuthorizationHow do you implement policy-based and object-level (resource-based) authorization in ASP.NET Core, and how do you prevent IDOR/BOLA vulnerabilities?
+	39	🧾Correlation IDs & Structured LoggingHow do you implement correlation IDs and structured logging in ASP.NET Core so that you can trace a request across services?
+	40	🚨Troubleshooting a Production APIAn ASP.NET Core API in production starts returning errors and timeouts. Walk through how you would troubleshoot it.
+	41	
+	42	SQL Server
+	43	
+	44	🚀SQL PerformanceA query or API endpoint backed by SQL Server is slow. How do you approach SQL performance tuning?
+	45	🗂️Clustered vs Non-Clustered IndexWhat is the difference between a clustered and a non-clustered index?
+	46	🛠️Query TuningWalk me through how you would tune a specific slow query.
+	47	👁️Views vs Materialized ViewsWhat is the difference between a view and an indexed (materialized) view in SQL Server?
+	48	⚙️Function vs Stored ProcedureWhat is the difference between a user-defined function and a stored procedure?
+	49	⚡TriggersWhat are triggers in SQL Server, and when should (or shouldn't) you use them?
+	50	📐NormalizationWhat is normalization? Explain 1NF, 2NF, 3NF, and when you would denormalize.
+	51	🧱ACIDWhat are the ACID properties, and how does SQL Server implement them?
+	52	💀DeadlocksWhat is a deadlock in SQL Server? How do you identify and resolve deadlocks?
+	53	🔒ConstraintsWhat constraints are available in SQL Server and why are they important?
+	54	🆔Handling Unique ConstraintsHow do you handle unique constraint violations properly in an ASP.NET Core + SQL Server application (e.g., duplicate email on registration)?
+	55	🥈Second Highest SalaryWrite a query to find the second highest salary (and generalize to the Nth highest, per department).
+	56	🏅RANK vs DENSE_RANK vs ROW_NUMBERExplain the difference between ROWNUMBER, RANK and DENSERANK, with use cases.
+	57	🔀MERGEWhat does the MERGE statement do, and what are its pitfalls?
+	58	📦CTE vs Temp TableWhat is the difference between a CTE, a temp table, and a table variable? When would you use each?
+	59	🐢CursorWhat is a cursor in SQL Server, why is it usually discouraged, and what are the alternatives?
+	60	🗺️Execution PlanHow do you read a SQL Server execution plan, and what do you look for?
+	61	📊StatisticsWhat are statistics in SQL Server and why do they matter for performance?
+	62	🔥CPU Utilization at 90%SQL Server CPU utilization reaches 90% in production. What do you do?
+	63	🐞SQL DebuggingHow do you debug a stored procedure or a data problem in SQL Server, especially in production?
+	64	🧩PartitioningWhat is table partitioning in SQL Server and when would you use it?
+	65	🗃️Query StoreWhat is Query Store and how do you use it in practice?
+	66	🌲B-Tree IndexHow does a B-tree index work in SQL Server, and why does it make lookups fast?
+	67	
+	68	
+	69	Microservices
+	70	
+	71	🏢Monolith vs MicroservicesMonolith vs microservices: when would you choose each, and how do services communicate reliably?
+	72	✂️CQRSWhat is CQRS, and when would you use it in a .NET application?
+	73	📮Why Microservices Talk Through MessagesWhy do microservices often communicate through a message broker like Azure Service Bus instead of calling each other directly over HTTP?B
+	74	🚌What is Azure Service Bus?What is Azure Service Bus, and what are namespaces, queues, topics and subscriptions?
+	75	📥Service Bus Queues: Sending CommandsHow do you send and process messages with an Azure Service Bus queue in .NET, and what does “competing consumers” mean?
+	76	📢Service Bus Topics & Subscriptions: Publishing EventsHow do Service Bus topics and subscriptions implement publish/subscribe between microservices, and how do subscription filters work?
+	77	🔒Peek-Lock: Complete, Abandon and Lock RenewalExplain Service Bus peek-lock mode. What do Complete, Abandon, Dead-letter and Defer do, and what happens when a lock expires?
+	78	☠️Service Bus Retries and the Dead-Letter QueueHow does Azure Service Bus handle messages that keep failing, and how do you design retries and dead-letter handling in production?
+	79	🔁Duplicate Messages and Idempotent ConsumersWhy can the same Service Bus message be processed more than once, and how do you make consumers idempotent?
+	80	🔢Message Ordering with Service Bus SessionsHow do you guarantee that messages for the same entity (e.g. the same order) are processed in order with Azure Service Bus?
+	81	📤Transactional Outbox with Service BusHow do you reliably save data to your database and publish a Service Bus message, without one succeeding and the other failing?
+	82	🧭Sagas over Azure Service BusHow do you coordinate a business process across several microservices (order → stock → payment) using Azure Service Bus, without distributed transactions?
+	83	⏰Scheduled Messages, Deferral and Time-to-LiveHow do scheduled messages, message deferral and time-to-live (TTL) work in Azure Service Bus, and when would you use each?
+	84	⚖️Scaling Service Bus ConsumersHow do you scale message processing with Azure Service Bus, and what limits throughput?
+	85	🔐Securing Azure Service BusHow do you secure access to Azure Service Bus from .NET microservices?
+	86	🔭Monitoring and Troubleshooting Service BusWhat would you monitor for Azure Service Bus in a microservices system, and how do you troubleshoot a message that “disappeared”?
+	87	🧰Service Bus SDK vs MassTransit / NServiceBusShould you use the Azure Service Bus SDK directly or a messaging framework like MassTransit or NServiceBus?
+	88	🛒End-to-End: An Order System on Azure Service BusWalk through a complete order flow across microservices using Azure Service Bus. Which entities would you create, and how do the pieces fit together?AI for .NET Engineers
+	89	
+	90	🧭How to Answer AI Interview QuestionsHow should a .NET full-stack engineer approach AI interview questions, and what do interviewers expect in 2026?
+	91	🧠
+	92	LLM Fundamentals
+	93	9
+	94	Tokens, context windows, sampling, hallucinations, embeddings, prompting and structured output.
+	95	🔤TokensWhat is a token, and why does it matter to a developer?
+	96	🪟Context WindowWhat is a context window?
+	97	🎲Temperature and Top-pWhat do temperature and top-p control?
+	98	👻HallucinationsWhy do LLMs hallucinate, and how do you reduce it?
+	99	🧭EmbeddingsWhat is an embedding?
+	100	💬System, User and Assistant MessagesWhat are system, user and assistant messages?
+	101	🎯Zero-Shot, Few-Shot or Fine-Tuning?Zero-shot vs few-shot prompting vs fine-tuning: when do you use each?
+	102	🧩Reasoning ModelsWhat are reasoning models, and when are they worth it?
+	103	🧾Reliable Structured OutputHow do you get reliable structured output from an LLM?
+	104	The .NET AI Stack
+	105	10
+	106	Azure OpenAI, Microsoft.Extensions.AI, Semantic Kernel, streaming, ML.NET, local models and Aspire.
+	107	☁️Calling Azure OpenAI from ASP.NET CoreHow do you call Azure OpenAI from ASP.NET Core?
+	108	🔌Microsoft.Extensions.AIWhat is Microsoft.Extensions.AI and why use it?
+	109	🧠Semantic Kernel: Kernel, Plugins and FunctionsWhat is Semantic Kernel? Explain the Kernel, plugins and functions.
+	110	⚖️Semantic Kernel vs Microsoft.Extensions.AISemantic Kernel vs Microsoft.Extensions.AI: when do you need which?
+	111	🧱Semantic Kernel FiltersWhat are Semantic Kernel filters used for?
+	112	🌊Streaming LLM Responses in ASP.NET CoreHow do you stream LLM responses in ASP.NET Core?
+	113	📊ML.NET vs an LLMWhat is ML.NET, and when would you pick it over an LLM?
+	114	🏠Running Models Locally or On-PremHow do you run models locally or on-prem?
+	115	🌌.NET Aspire for AI AppsHow does .NET Aspire help with AI apps?
+	116	🔄Avoiding AI Provider Lock-InHow would you abstract AI providers to avoid lock-in?
+	117	🔎
+	118	RAG & Vector Search
+	119	9
+	120	Pipelines, chunking, vector stores, hybrid search, reranking, security trimming and quality.
+	121	📚What Is RAG and Why Not Fine-Tune?What is RAG, and why use it instead of fine-tuning?
+	122	🔁RAG Pipeline End to EndWalk through a RAG pipeline end to end.
+	123	✂️Choosing a Chunking StrategyHow do you choose a chunking strategy?
+	124	🗃️Vector Stores from .NETWhich vector stores have you used from .NET?
+	125	🔀Hybrid SearchWhat is hybrid search, and why does it beat pure vector search?
+	126	🥇Semantic RerankingWhat does a semantic reranker add?
+	127	🔐Security Trimming in Multi-Tenant RAGHow do you enforce security trimming in RAG for multi-tenant apps?
+	128	♻️Keeping the Index FreshHow do you keep the RAG index fresh?
+	129	📏Measuring RAG QualityHow do you measure RAG quality?
+	130	Function Calling, Agents & MCP
+	131	9
+	132	Tool calling, automatic invocation, agents, multi-agent, MCP servers and agent safety.
+	133	🛠️Function (Tool) CallingWhat is function (tool) calling?Basic
+	134	🔄Automatic Function Invocation in .NETHow does automatic function invocation work in .NET?
+	135	✍️Writing Good Tool DescriptionsHow do you write tool descriptions that the model uses correctly?
+	136	🤖AI Agent vs ChatbotWhat is an AI agent, and how is it different from a chatbot?
+	137	👥Single Agent vs Multi-AgentSingle agent vs multi-agent: when is multi-agent justified?
+	138	🔗Model Context Protocol (MCP)What is the Model Context Protocol (MCP)?Intermediate
+	139	🧩Building an MCP Server in .NETHow would you build an MCP server in .NET?Intermediate
+	140	🛡️Keeping Agents Safe When They Take ActionsHow do you keep agents safe when they can take actions?
+	141	⏳Long-Running Agent WorkflowsHow do you handle long-running agent workflows?
+	142	🏭
+	143	Production Architecture
+	144	9
+	145	Rate limits, cost, caching, latency, AI gateways, observability, prompts and model upgrades.
+	146	🚦Handling 429s from Azure OpenAIHow do you handle rate limits (HTTP 429) from Azure OpenAI?
+	147	💰Controlling LLM CostHow do you control LLM cost?
+	148	🧊Caching for LLM AppsWhat caching works for LLM apps?
+	149	⚡Reducing Perceived LatencyHow do you reduce perceived latency in LLM features?
+	150	🚪Azure API Management as an AI GatewayWhere does Azure API Management fit in an AI architecture?
+	151	🔭Observing LLM Features in ProductionHow do you observe an LLM feature in production?
+	152	📝Managing and Versioning PromptsHow do you manage and version prompts?
+	153	🔁Designing for Model Upgrades and DeprecationsHow do you design for model upgrades and deprecations?
+	154	⏱️Sync Request vs Background Job for AI WorkWhen should AI work run in a synchronous request vs a background job?
+	155	
+	156	Security, Responsible AI & Evaluation
+	157	8
+	158	Prompt injection, PII, content safety, Responsible AI, testing and evaluating LLM output.
+	159	💉Prompt InjectionWhat is prompt injection, and how do you defend against it?
+	160	🔒Protecting Secrets and PIIHow do you protect secrets and PII in AI features?
+	161	🚨Azure AI Content SafetyWhat is Azure AI Content Safety used for?
+	162	⚖️Responsible AI Principles in CodeWhat are Microsoft’s Responsible AI principles, and how do they show up in code?
+	163	🧪Unit-Testing Code That Calls an LLMHow do you unit-test code that calls an LLM?
+	164	📐Evaluating LLM Output QualityHow do you evaluate LLM output quality?
+	165	🎰Handling Non-Determinism in TestsHow do you handle non-determinism in tests for LLM features?
+	166	📜Compliance Questions for AI FeaturesWhat compliance questions come up for AI features?
+	167	
+	168	Front-End AI UX
+	169	6
+	170	Streaming UIs, BFF, citations, errors, chat history and generative UI.
+	171	🌊Rendering a Streaming Response in the UIHow do you render a streaming response in the UI?
+	172	🚫Should the Browser Call the LLM API Directly?Should the browser ever call the LLM API directly?
+	173	🔖Citations and User TrustHow do you show citations and build user trust in AI answers?I
+	174	⚠️Errors, Timeouts and Partial AnswersHow do you handle errors, timeouts and partial answers in the UI?
+	175	💾Storing Chat HistoryHow do you store chat history?
+	176	🎨Generative UIWhat is “generative UI”?
+	177	
+	178	AI-Assisted Development
+	179	6
+	180	Copilot and coding agents: daily use, reviewing AI code, context, rollout and risks.
+	181	👩‍💻Using AI Coding Tools Day to DayHow do you use GitHub Copilot or other AI coding tools day to day?
+	182	🔍Reviewing AI-Generated CodeHow do you review AI-generated code?
+	183	🤖Using Coding Agents SafelyAgent mode vs autocomplete: how do you use coding agents safely?
+	184	🗂️Giving AI Tools Project ContextHow do you give AI coding tools project context?
+	185	🚀Rolling Out AI Coding Tools to a TeamHow would you roll out AI coding tools to a team?
+	186	⚠️Risks of AI-Assisted DevelopmentWhat risks does AI-assisted development introduce?
+	187	System Design Scenarios
+	188	6
+	189	Open-ended AI design rounds for senior and lead roles.
+	190	📚Design “Chat with Our Documents” for a Multi-Tenant SaaSDesign a “chat with our documents” feature for a multi-tenant SaaS.
+	191	📝Add AI Summaries to an Existing ASP.NET Core + SQL AppAdd AI-generated summaries to an existing ASP.NET Core + SQL app.
+	192	🎧Design a Support Agent That Can Look Up Orders and Issue RefundsDesign a support agent that can look up orders and issue refunds.
+	193	🚪Design an AI Gateway for 20 Internal TeamsDesign an AI gateway for 20 internal teams.
+	194	📄Extract Structured Data from Thousands of PDFsExtract structured data from thousands of PDFs (invoices, RFIs, drawings).
+	195	📉AI Feature Quality Dropped After a ReleaseYour AI feature’s quality dropped after a release. How do you investigate?
+	196	
+	197	SYSTEM DESIGN
+	198	Understand how scalable systems are designed, built and operated.
+	199	Interactive diagrams, animated request flows and real .NET and Azure examples, with the trade-offs interviewers actually ask about.
+	200	93 topics · 13 sections
+	201	See a request travel through a real system
+	202	INTERACTIVE ANIMATION
+	203	Life of a request: browser to database and back
+	204	Browser
+	205	Angular SPA
+	206	DNS
+	207	Azure DNS
+	208	CDN
+	209	edge cache
+	210	not cacheable
+	211	Front Door
+	212	WAF + routing
+	213	APIM
+	214	API gateway
+	215	ASP.NET Core
+	216	Orders API
+	217	Redis
+	218	Azure Cache
+	219	SQL Server
+	220	Azure SQL
+	221	STEP 3 OF 10
+	222	Reach the edge
+	223	The request arrives at the nearest edge PoP. Static files would be served from cache right here; this API call is dynamic, so it continues.
+	224	
+	225	
+	226	
+	227	
+	228	
+	229	
+	230	
+	231	
+	232	
+	233	
+	234	All steps
+	235	Resolve the name.The browser asks DNS for api.contoso.com. A CNAME points at the Front Door endpoint.
+	236	DNS answers.DNS returns an anycast IP, so the request will land on the nearest edge location. The answer is cached for its TTL.
+	237	Reach the edge.The request arrives at the nearest edge PoP. Static files would be served from cache right here; this API call is dynamic, so it continues.
+	238	Front Door: TLS, WAF, routing.Front Door terminates TLS, runs WAF rules and routes to the healthiest, closest regional backend.
+	239	API gateway.API Management validates the JWT, applies the per-client rate limit and forwards to the right backend version.
+	240	ASP.NET Core pipeline.Kestrel hands the request to the middleware pipeline: exception handling, authentication, authorization, then the endpoint.
+	241	Check the cache.Cache-aside: the API looks up order:42 in Redis first. This time it is a miss.
+	242	Query the database.On a miss the API queries SQL Server: the slowest hop in the chain, which is why we cache.
+	243	Populate the cache.The row comes back and the API stores it in Redis with a TTL, so the next read is a hit.
+	244	Response travels back.JSON returns through APIM, Front Door and the edge to the browser. Total ≈ 80 ms; a cache hit next time skips SQL entirely.
+	245	ClientNetwork / edgeComputeCacheData
+	246	
+	247	Click a component for details
+	248	Learning path
+	249	Read top to bottom, or jump to any section
+	250	00🧭How to Approach System Design Start hereA repeatable 12-step framework for any system design interview.How to Approach Any System Design Interview1 topics
+	251	01📐Fundamentals Requirements, scalability, availability, reliability, performance and CAP.What is System Design? · Functional Requirements · Non-Functional Requirements · Scalability +5 more9 topics
+	252	02🏛️Architecture Monoliths, modular monoliths, microservices, clean and event-driven architecture, serverless.Monolith · Modular Monolith · Microservices · SOA +4 more8 topics
+	253	03🌐Networking DNS, HTTP, TCP, TLS, REST, gRPC, WebSockets and API gateways.DNS · HTTP / HTTPS · TCP · TLS +4 more8 topics
+	254	04🚦Load & Traffic Management Load balancers, reverse proxies, CDNs, rate limiting, health checks and traffic routing.Load Balancer · Reverse Proxy · CDN · Rate Limiting +3 more7 topics
+	255	05⚡Caching Cache-aside, write-through, write-behind, Redis, invalidation and stampedes.Why Cache? · Cache-Aside · Write-Through · Write-Behind +4 more8 topics
+	256	06🗄️Databases SQL vs NoSQL, scaling, replicas, sharding, partitioning, replication and indexing.SQL vs NoSQL · Vertical Scaling · Horizontal Scaling · Read Replicas +4 more8 topics
+	257	07📨Messaging & Events Queues, pub/sub, Kafka, RabbitMQ, Azure Service Bus and dead-letter queues.Message Queue · Pub/Sub · Kafka · RabbitMQ +4 more8 topics
+	258	08🕸️Distributed Systems Consistency, distributed transactions, sagas, outbox, idempotency and locks.Consistency Models · Distributed Transactions · Saga Pattern · Outbox Pattern +4 more8 topics
+	259	09🛡️Reliability Retries, circuit breakers, timeouts, bulkheads, failover and disaster recovery.Retry with Backoff · Circuit Breaker · Timeout · Bulkhead +4 more8 topics
+	260	10🔐Security Authentication, authorization, OAuth 2.0, OpenID Connect, JWT, secrets and zero trust.Authentication · Authorization · OAuth 2.0 · OpenID Connect +4 more8 topics
+	261	11🔭Observability Logging, metrics, distributed tracing, correlation ids and alerting.Logging · Metrics · Distributed Tracing · Correlation ID +2 more6 topics
+	262	12🏗️Real-World Case Studies End-to-end designs: URL shortener, uploads, notifications, e-commerce, chat and more.URL Shortener · File Upload System · Notification System · E-

@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interview Assist - RAG-Powered AI Interview Simulator & Mastery Platform</title>
+  <meta name="description" content="Master technical interviews with grounded RAG memory, interactive MCQ, True/False, and Descriptive question rounds, and actionable improvement roadmaps.">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Top Application Header -->
+  <header class="app-header">
+    <div class="brand-container">
+      <div class="brand-logo">IA</div>
+      <div class="brand-text">
+        <h1>Interview Assist</h1>
+        <span>Semantic RAG Learning & Interview Simulator</span>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <nav class="nav-tabs" aria-label="Main Navigation">
+      <button class="nav-tab-btn active" data-tab="knowledge" id="tab-btn-knowledge">
+        <span>📚</span> Knowledge Vault
+      </button>
+      <button class="nav-tab-btn" data-tab="interview" id="tab-btn-interview">
+        <span>🎙️</span> Interview Arena
+      </button>
+      <button class="nav-tab-btn" data-tab="scorecard" id="tab-btn-scorecard">
+        <span>📊</span> Scorecard & Roadmap
+      </button>
+    </nav>
+
+    <!-- Header Actions -->
+    <div class="header-actions">
+      <div id="active-llm-badge" class="badge badge-success" style="padding: 0.5rem 0.85rem; font-size: 0.82rem; cursor: pointer; display: inline-flex; align-items: center; gap: 0.5rem; border-radius: 999px; transition: transform 0.2s;" title="Click to open AI Model & Provider Settings">
+        <span id="active-llm-icon" style="font-size: 1.05rem;">🦙</span>
+        <span id="active-llm-label" style="font-weight: 600;">Ollama: Connecting...</span>
+      </div>
+      <button class="btn btn-accent" id="quick-workspace-btn" title="Quickly import 37+ C#/.NET study files in current workspace">
+        <span>⚡</span> Quick Ingest Workspace
+      </button>
+      <button class="btn btn-secondary" id="open-settings-btn" title="Configure Local & Cloud LLMs">
+        <span>⚙️</span> Settings & Models
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="app-container">
+
+    <!-- ========================================================================= -->
+    <!-- TAB 1: KNOWLEDGE VAULT (INGESTION & RAG SEARCH) -->
+    <!-- ========================================================================= -->
+    <section id="view-knowledge" class="view-section active">
+      <div class="section-header">
+        <h2>Knowledge Vault & Semantic Memory</h2>
+        <p>Upload study materials (PDF, Markdown, TXT, DOCX) or ingest web URLs to ground your interview questions in real technical resources.</p>
+      </div>
+
+      <!-- Stats Row -->
+      <div class="grid-3" style="margin-bottom: 2rem;">
+        <div class="stat-card">
+          <div class="stat-icon">📄</div>
+          <div class="stat-info">
+            <h4>Documents Indexed</h4>
+            <div class="stat-value" id="stat-total-docs">0</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="color: var(--secondary); background: rgba(6, 182, 212, 0.15);">🧩</div>
+          <div class="stat-info">
+            <h4>Semantic Chunks</h4>
+            <div class="stat-value" id="stat-total-chunks">0</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="color: var(--success); background: var(--success-bg);">📝</div>
+          <div class="stat-info">
+            <h4>Indexed Words</h4>
+            <div class="stat-value" id="stat-total-words">0</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ingestion & Search Grid -->
+      <div class="grid-2" style="margin-bottom: 2.5rem;">
+        <!-- Left: Upload & Scrape -->
+        <div class="glass-card">
+          <h3 style="font-size: 1.15rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+            <span>📥</span> Add Learning Materials
+          </h3>
+
+          <!-- Drag and Dropzone -->
+          <div class="dropzone" id="dropzone">
+            <div class="dropzone-icon">📁</div>
+            <h3>Drag & Drop Files Here</h3>
+            <p>Supports PDF, Markdown (.md), Plain Text (.txt), and Word (.docx)</p>
+            <input type="file" id="file-input" multiple accept=".pdf,.md,.markdown,.txt,.docx,.doc" style="display: none;">
+          </div>
+
+          <!-- URL Scraper -->
+          <div style="margin-top: 1.5rem;">
+            <label for="url-input" style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 0.35rem;">
+              Or Ingest Web Documentation / Article URL:
+            </label>
+            <div class="url-input-group">
+              <input type="url" id="url-input" class="form-control" placeholder="https://learn.microsoft.com/en-us/dotnet/csharp/...">
+              <button class="btn btn-primary" id="scrape-url-btn" style="flex-shrink: 0;">
+                Scrape & Ingest
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Semantic Search Tester -->
+        <div class="glass-card">
+          <h3 style="font-size: 1.15rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+            <span>🔍</span> Test RAG Semantic Retrieval
+          </h3>
+          <p style="font-size: 0.85rem; color: var(--text-dim); margin-bottom: 1rem;">
+            Verify what semantic memory chunks the AI interviewer will retrieve for any question or concept.
+          </p>
+          <div class="url-input-group" style="margin-top: 0; margin-bottom: 1rem;">
+            <input type="text" id="rag-test-input" class="form-control" placeholder="e.g. Garbage Collection generations, async await, SQL clustered index...">
+            <button class="btn btn-secondary" id="rag-test-btn" style="flex-shrink: 0;">
+              Search Memory
+            </button>
+          </div>
+          <div id="rag-results-container" style="max-height: 280px; overflow-y: auto; padding-right: 0.25rem;">
+            <p style="color: var(--text-dim); font-size: 0.85rem; text-align: center; padding: 2rem 0;">
+              Enter a technical topic above to preview vector retrieval results.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ingested Documents Table -->
+      <div class="glass-card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.75rem;">
+          <div>
+            <h3 style="font-size: 1.15rem; margin: 0;">Indexed Document Vault</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0.2rem 0 0 0;">All materials currently active in the RAG knowledge pool.</p>
+          </div>
+          <div style="display: flex; gap: 0.75rem; align-items: center;">
+            <button class="btn btn-primary" id="btn-reindex-all" title="Rescan and re-index all uploaded files and workspace documents into vector memory">
+              <span>🔄</span> Refresh & Re-Index All
+            </button>
+          </div>
+        </div>
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Document / Source</th>
+                <th>Type</th>
+                <th>Chunks</th>
+                <th>Ingested At</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="docs-table-body">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ========================================================================= -->
+    <!-- TAB 2: INTERVIEW ARENA (CONFIGURATION & CHAT) -->
+    <!-- ========================================================================= -->
+    <section id="view-interview" class="view-section">
+      <!-- 2.1 Configuration Screen -->
+      <div id="interview-config-view" class="config-card">
+        <div class="section-header" style="text-align: center; margin-bottom: 2rem;">
+          <h2>Configure Your Interview Round</h2>
+          <p>Customize the question count, proficiency benchmark, and question formats.</p>
+        </div>
+
+        <div class="glass-card" style="padding: 2.25rem;">
+          <!-- 1. Proficiency Level Selection -->
+          <h3 style="font-size: 1.05rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.75rem;">
+            1. Select Target Proficiency Level
+          </h3>
+          <div class="level-cards">
+            <div class="level-card" data-level="beginner">
+              <div class="level-icon">🟢</div>
+              <div class="level-info">
+                <h4>Beginner / Junior</h4>
+                <p>Definitions, syntax basics, core OOP, simple queries</p>
+              </div>
+            </div>
+            <div class="level-card selected" data-level="intermediate">
+              <div class="level-icon">🔵</div>
+              <div class="level-info">
+                <h4>Intermediate / Mid</h4>
+                <p>Patterns, exception handling, EF Core, REST API best practices</p>
+              </div>
+            </div>
+            <div class="level-card" data-level="senior">
+              <div class="level-icon">🟣</div>
+              <div class="level-info">
+                <h4>Senior Engineer</h4>
+                <p>Concurrency, memory/GC internals, query optimization, security</p>
+              </div>
+            </div>
+            <div class="level-card" data-level="architect">
+              <div class="level-icon">👑</div>
+              <div class="level-info">
+                <h4>Principal / Architect</h4>
+                <p>Distributed systems, resilience, cloud tradeoffs, HA/DR design</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. Technology / Focus Area Selection (Dynamic from Knowledge Vault) -->
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.75rem; margin-bottom: 0.75rem;">
+            <h3 style="font-size: 1.05rem; font-weight: 700; color: var(--text-main); margin: 0;">
+              2. Select Technology / Focus Domain
+            </h3>
+            <button class="btn btn-secondary btn-sm" id="btn-refresh-domains" title="Refresh domains detected from uploaded documents and memory" style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.8rem; padding: 0.35rem 0.75rem;">
+              <span>🔄</span> Refresh Domains
+            </button>
+          </div>
+          <div class="area-cards" id="area-selection-container">
+            <!-- Dynamically populated from /api/knowledge/areas via JS -->
+            <div style="grid-column: 1 / -1; text-align: center; color: var(--text-dim); padding: 1rem;">
+              Loading available technology domains from knowledge base...
+            </div>
+          </div>
+
+          <!-- 3. Number of Questions -->
+          <h3 style="font-size: 1.05rem; font-weight: 700; color: var(--text-main); margin-top: 1.75rem; margin-bottom: 0.5rem;">
+            3. Number of Questions (Default: 10)
+          </h3>
+          <div class="count-options">
+            <button class="count-btn" data-count="5">5 Questions</button>
+            <button class="count-btn selected" data-count="10">10 Questions (Standard)</button>
+            <button class="count-btn" data-count="15">15 Questions</button>
+            <button class="count-btn" data-count="20">20 Questions</button>
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.75rem; margin-top: 0.5rem;">
+            <span style="font-size: 0.85rem; color: var(--text-dim);">Or custom amount (3–50):</span>
+            <input type="number" id="custom-count-input" class="form-control" style="width: 100px; padding: 0.4rem 0.75rem;" min="3" max="50" placeholder="10">
+          </div>
+
+          <!-- 3. Question Formats Mix -->
+          <h3 style="font-size: 1.05rem; font-weight: 700; color: var(--text-main); margin-top: 1.75rem; margin-bottom: 0.75rem;">
+            3. Question Formats Included
+          </h3>
+          <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
+            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+              <input type="checkbox" id="type-mcq" checked style="width: 18px; height: 18px; accent-color: var(--primary);">
+              <span>Multiple Choice (MCQ)</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+              <input type="checkbox" id="type-tf" checked style="width: 18px; height: 18px; accent-color: var(--primary);">
+              <span>True / False</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+              <input type="checkbox" id="type-desc" checked style="width: 18px; height: 18px; accent-color: var(--primary);">
+              <span>Descriptive & Scenario Analysis</span>
+            </label>
+          </div>
+
+          <!-- Launch Button -->
+          <div style="margin-top: 2.5rem; text-align: center;">
+            <button class="btn btn-primary" id="start-interview-btn" style="padding: 0.9rem 2.5rem; font-size: 1.05rem;">
+              <span>🚀</span> Begin Interview Round
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2.2 Active Interview Arena Screen -->
+      <div id="interview-arena-view" style="display: none;">
+        <div class="arena-layout">
+          <!-- Left: Session Navigator & Progress -->
+          <aside class="glass-card arena-sidebar">
+            <div class="progress-header">
+              <strong id="q-progress-text" style="font-size: 0.9rem;">Question 1 of 10</strong>
+              <span id="q-timer" class="badge badge-secondary" style="font-family: var(--font-code); font-size: 0.85rem;">00:00</span>
+            </div>
+            <div class="progress-bar-container">
+              <div class="progress-bar-fill" id="q-progress-bar" style="width: 10%;"></div>
+            </div>
+
+            <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-dim); text-transform: uppercase; margin-bottom: 0.5rem;">
+              Question Navigator
+            </div>
+            <div class="question-nav-grid" id="q-nav-grid">
+              <!-- Rendered via JS -->
+            </div>
+
+            <div style="margin-top: 2rem; border-top: 1px solid var(--border-subtle); padding-top: 1.5rem;">
+              <button class="btn btn-secondary" id="finish-interview-btn" style="width: 100%;">
+                <span>🏁</span> Finish & Grade Early
+              </button>
+            </div>
+          </aside>
+
+          <!-- Right: Interactive Question Stage -->
+          <main class="glass-card active-question-card">
+            <div>
+              <!-- Meta badges -->
+              <div class="q-meta-bar">
+                <div style="display: flex; gap: 0.5rem; align-items: center;">
+                  <span class="badge badge-primary" id="q-badge-type">MCQ</span>
+                  <span class="badge badge-purple" id="q-badge-level">SENIOR</span>
+                  <span class="badge badge-secondary" id="q-badge-topic">Core Architecture</span>
+                </div>
+                <button class="btn btn-secondary" id="hint-q-btn" style="padding: 0.35rem 0.75rem; font-size: 0.8rem;">
+                  <span>💡</span> Clarification / Hint
+                </button>
+              </div>
+
+              <!-- Hint / Clarification Box -->
+              <div id="q-hint-box" style="display: none;"></div>
+
+              <!-- Question Stem -->
+              <div class="q-stem" id="q-stem">
+                Loading question...
+              </div>
+
+              <!-- Answer Input Container (Dynamic) -->
+              <div id="q-answer-container">
+                <!-- Injected based on type (MCQ, True/False, Descriptive) -->
+              </div>
+            </div>
+
+            <!-- Footer Action Controls -->
+            <div class="q-footer">
+              <button class="btn btn-secondary" id="prev-q-btn">
+                <span>←</span> Previous
+              </button>
+              <div style="display: flex; gap: 0.75rem;">
+                <button class="btn btn-primary" id="submit-q-btn">
+                  <span>💾</span> Record Answer
+                </button>
+                <button class="btn btn-accent" id="next-q-btn">
+                  Next Question <span>→</span>
+                </button>
+              </div>
+            </div>
+          </main>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ========================================================================= -->
+    <!-- TAB 3: SCORECARD & ROADMAP (POST-INTERVIEW ANALYTICS) -->
+    <!-- ========================================================================= -->
+    <section id="view-scorecard" class="view-section">
+      <div class="section-header">
+        <h2>Interview Scorecard & Actionable Roadmap</h2>
+        <p>Comprehensive assessment results, benchmark rating, and structured action items to elevate your proficiency.</p>
+      </div>
+
+      <!-- Historical Rounds Drawer / Bar -->
+      <div style="margin-bottom: 2rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+          <h3 style="font-size: 1.05rem; font-weight: 700; color: var(--text-main); display: flex; align-items: center; gap: 0.5rem;">
+            <span>🕒</span> Previous Interview Rounds History
+          </h3>
+          <span style="font-size: 0.8rem; color: var(--text-dim);">Click any historical round to reload full review & roadmap</span>
+        </div>
+        <div class="history-bar" id="history-bar-container">
+          <p style="color: var(--text-dim); font-size: 0.85rem; padding: 0.5rem 0;">No prior interviews completed yet.</p>
+        </div>
+      </div>
+
+      <!-- Score Overview Row -->
+      <div class="glass-card score-overview">
+        <div class="radial-score-box">
+          <div class="radial-score-val" id="sc-overall-score">0%</div>
+          <div class="verdict-badge" id="sc-verdict">Awaiting Assessment</div>
+          <span class="badge badge-primary">Proficiency Benchmark</span>
+        </div>
+
+        <div>
+          <h3 style="font-size: 1.3rem; margin-bottom: 0.75rem;">Performance Summary</h3>
+          <p id="sc-summary" style="color: var(--text-muted); line-height: 1.7; margin-bottom: 1.5rem;">
+            Complete an interview round to receive in-depth scoring, strengths, growth areas, and personalized study recommendations.
+          </p>
+
+          <div class="grid-3">
+            <div class="stat-card" style="padding: 1rem;">
+              <div class="stat-icon" style="color: var(--success); background: var(--success-bg);">✓</div>
+              <div class="stat-info">
+                <h4>Mastered</h4>
+                <div class="stat-value" id="sc-correct-count" style="color: var(--success);">0</div>
+              </div>
+            </div>
+            <div class="stat-card" style="padding: 1rem;">
+              <div class="stat-icon" style="color: var(--warning); background: var(--warning-bg);">⚡</div>
+              <div class="stat-info">
+                <h4>Partial</h4>
+                <div class="stat-value" id="sc-partial-count" style="color: var(--warning);">0</div>
+              </div>
+            </div>
+            <div class="stat-card" style="padding: 1rem;">
+              <div class="stat-icon" style="color: var(--danger); background: var(--danger-bg);">✗</div>
+              <div class="stat-info">
+                <h4>Needs Focus</h4>
+                <div class="stat-value" id="sc-incorrect-count" style="color: var(--danger);">0</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Topic Performance & Actionable Roadmap Grid -->
+      <div class="grid-2" style="margin-bottom: 2.5rem;">
+        <!-- Left: Topic Breakdown -->
+        <div class="glass-card">
+          <h3 style="font-size: 1.15rem; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.5rem;">
+            <span>📈</span> Topic Mastery Breakdown
+          </h3>
+          <div id="sc-topic-bars">
+            <p style="color: var(--text-dim); text-align: center; padding: 2rem;">No topic data yet.</p>
+          </div>
+        </div>
+
+        <!-- Right: Actionable Roadmap -->
+        <div class="glass-card">
+          <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+            <span>🎯</span> Actionable Improvement Plan
+          </h3>
+          <p style="font-size: 0.85rem; color: var(--text-dim);">
+            Personalized guidance on what to do, how to do it, and how to improve in real interviews.
+          </p>
+          <div class="roadmap-grid" id="sc-roadmap-container">
+            <p style="color: var(--text-dim); text-align: center; padding: 2rem;">Complete an interview to generate your roadmap.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Detailed Question-by-Question Review -->
+      <div class="glass-card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+          <div>
+            <h3 style="font-size: 1.2rem;">In-Depth Question Review & Source Citations</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">Expand each item to review candidate vs ideal response and source documentation.</p>
+          </div>
+          <div style="display: flex; gap: 0.75rem;">
+            <button class="btn btn-secondary" id="retake-interview-btn">
+              <span>🔄</span> Retake Interview
+            </button>
+            <button class="btn btn-primary" id="export-report-btn">
+              <span>📥</span> Download Markdown Report
+            </button>
+          </div>
+        </div>
+
+        <div id="sc-review-accordion">
+          <!-- Rendered via JS -->
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- SETTINGS MODAL: MULTI-PROVIDER AI & LLM ENGINE HUB -->
+  <!-- ========================================================================= -->
+  <div class="modal-overlay" id="settings-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-content settings-modal-dialog">
+      <div class="modal-header">
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <div style="font-size: 1.5rem;">🤖</div>
+          <div>
+            <h3 id="modal-title" style="font-size: 1.25rem; font-weight: 700; margin: 0;">AI Engine & LLM Settings</h3>
+            <span style="font-size: 0.8rem; color: var(--text-dim);">Connect local runtimes (Ollama, LM Studio) or cloud providers (Gemini, Claude, OpenRouter)</span>
+          </div>
+        </div>
+        <button class="close-btn" id="close-settings-btn" aria-label="Close Settings">&times;</button>
+      </div>
+
+      <!-- Provider Navigation Tabs -->
+      <div class="settings-tabs-nav" role="tablist">
+        <button class="settings-tab-btn active" data-provider-tab="ollama" role="tab">
+          <span class="tab-icon">🦙</span>
+          <span class="tab-label">Ollama</span>
+          <span class="tab-status-dot" id="tab-dot-ollama"></span>
+        </button>
+        <button class="settings-tab-btn" data-provider-tab="lm_studio" role="tab">
+          <span class="tab-icon">🖥️</span>
+          <span class="tab-label">LM Studio</span>
+          <span class="tab-status-dot" id="tab-dot-lm_studio"></span>
+        </button>
+        <button class="settings-tab-btn" data-provider-tab="gemini" role="tab">
+          <span class="tab-icon">✨</span>
+          <span class="tab-label">Gemini</span>
+          <span class="tab-status-dot" id="tab-dot-gemini"></span>
+        </button>
+        <button class="settings-tab-btn" data-provider-tab="claude" role="tab">
+          <span class="tab-icon">🧠</span>
+          <span class="tab-label">Claude</span>
+          <span class="tab-status-dot" id="tab-dot-claude"></span>
+        </button>
+        <button class="settings-tab-btn" data-provider-tab="openrouter" role="tab">
+          <span class="tab-icon">🌐</span>
+          <span class="tab-label">OpenRouter</span>
+          <span class="tab-status-dot" id="tab-dot-openrouter"></span>
+        </button>
+        <button class="settings-tab-btn" data-provider-tab="preferences" role="tab">
+          <span class="tab-icon">⚙️</span>
+          <span class="tab-label">Preferences</span>
+        </button>
+      </div>
+
+      <!-- Settings Content Panels -->
+      <div class="settings-panels-container">
+
+        <!-- ==================== 1. OLLAMA PANEL ==================== -->
+        <div class="settings-panel active" id="panel-ollama">
+          <div class="provider-banner">
+            <div class="provider-meta">
+              <span class="provider-badge-local">LOCAL RUNTIME</span>
+              <h4>Ollama (Local GPU / Metal)</h4>
+              <p>Direct local inference without cloud telemetry. Fast, free, and completely offline private.</p>
+            </div>
+            <div class="provider-action-top">
+              <span class="active-status-tag" id="status-tag-ollama">STANDBY</span>
+              <button class="btn btn-sm btn-accent activate-provider-btn" data-provider="ollama" id="activate-btn-ollama">
+                ⚡ Set as Active LLM
+              </button>
+            </div>
+          </div>
+
+          <div class="settings-field-group">
+            <div class="field-label-row">
+              <label for="cfg-ollama-url">Ollama Base URL / Host</label>
+              <button class="btn-text-action reset-url-btn" data-target="cfg-ollama-url" data-default="http://localhost:11434">Reset Default</button>
+            </div>
+            <input type="text" id="cfg-ollama-url" class="form-control" value="http://localhost:11434" placeholder="http://localhost:11434">
+          </div>
+
+          <div class="settings-field-group">
+            <label for="cfg-ollama-model">Select Model</label>
+            <div style="display: flex; gap: 0.5rem;">
+              <select id="cfg-ollama-model" class="form-control" style="flex: 1;">
+                <option value="">Querying installed models...</option>
+              </select>
+              <button class="btn btn-secondary fetch-models-btn" data-provider="ollama" title="Query installed models from Ollama server">
+                🔄 Query Models
+              </button>
+            </div>
+            <div style="margin-top: 0.5rem;">
+              <input type="text" id="cfg-ollama-custom-model" class="form-control form-control-sm" placeholder="Or enter custom model tag (e.g. qwen3-coder:30b, llama3.2)...">
+            </div>
+          </div>
+
+          <!-- Diagnostic & Test Box -->
+          <div class="test-connection-card">
+            <div class="test-header-row">
+              <div>
+                <strong>Connection & Round-Trip Latency Test</strong>
+                <div style="font-size: 0.75rem; color: var(--text-dim);">Sends a verification ping prompt to measure model readiness and latency</div>
+              </div>
+              <button class="btn btn-sm btn-primary test-provider-btn" data-provider="ollama" id="test-btn-ollama">
+                🧪 Test Connection
+              </button>
+            </div>
+            <div class="test-result-box" id="test-result-ollama">
+              <span class="test-status-pill pill-idle">Ready to Test</span>
+              <span class="test-msg">Click "Test Connection" to ping Ollama server.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== 2. LM STUDIO PANEL ==================== -->
+        <div class="settings-panel" id="panel-lm_studio">
+          <div class="provider-banner">
+            <div class="provider-meta">
+              <span class="provider-badge-local">LOCAL RUNTIME</span>
+              <h4>LM Studio (OpenAI Compatible)</h4>
+              <p>Run GGUF models on Apple Silicon / NVIDIA GPUs via LM Studio's built-in local inference server.</p>
+            </div>
+            <div class="provider-action-top">
+              <span class="active-status-tag" id="status-tag-lm_studio">STANDBY</span>
+              <button class="btn btn-sm btn-accent activate-provider-btn" data-provider="lm_studio" id="activate-btn-lm_studio">
+                ⚡ Set as Active LLM
+              </button>
+            </div>
+          </div>
+
+          <div class="settings-field-group">
+            <div class="field-label-row">
+              <label for="cfg-lm_studio-url">LM Studio Server URL</label>
+              <button class="btn-text-action reset-url-btn" data-target="cfg-lm_studio-url" data-default="http://localhost:1234/v1">Reset Default</button>
+            </div>
+            <input type="text" id="cfg-lm_studio-url" class="form-control" value="http://localhost:1234/v1" placeholder="http://localhost:1234/v1">
+            <div style="font-size: 0.75rem; color: var(--text-dim); margin-top: 0.25rem;">
+              Ensure the LM Studio local server is started inside LM Studio (Developer tab &gt; Start Server).
+            </div>
+          </div>
+
+          <div class="settings-field-group">
+            <label for="cfg-lm_studio-model">Select Loaded Model</label>
+            <div style="display: flex; gap: 0.5rem;">
+              <select id="cfg-lm_studio-model" class="form-control" style="flex: 1;">
+                <option value="local-model">local-model (Active loaded model)</option>
+              </select>
+              <button class="btn btn-secondary fetch-models-btn" data-provider="lm_studio" title="Query loaded models in LM Studio">
+                🔄 Query Models
+              </button>
+            </div>
+            <div style="margin-top: 0.5rem;">
+              <input type="text" id="cfg-lm_studio-custom-model" class="form-control form-control-sm" placeholder="Or custom identifier (e.g. meta-llama-3.1-8b-instruct)...">
+            </div>
+          </div>
+
+          <!-- Diagnostic & Test Box -->
+          <div class="test-connection-card">
+            <div class="test-header-row">
+              <div>
+                <strong>Connection & Round-Trip Latency Test</strong>
+                <div style="font-size: 0.75rem; color: var(--text-dim);">Pings LM Studio's OpenAI-compatible endpoint at /v1/chat/completions</div>
+              </div>
+              <button class="btn btn-sm btn-primary test-provider-btn" data-provider="lm_studio" id="test-btn-lm_studio">
+                🧪 Test Connection
+              </button>
+            </div>
+            <div class="test-result-box" id="test-result-lm_studio">
+              <span class="test-status-pill pill-idle">Ready to Test</span>
+              <span class="test-msg">Click "Test Connection" to verify LM Studio server is running.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== 3. GOOGLE GEMINI PANEL ==================== -->
+        <div class="settings-panel" id="panel-gemini">
+          <div class="provider-banner">
+            <div class="provider-meta">
+              <span class="provider-badge-cloud">CLOUD API</span>
+              <h4>Google Gemini</h4>
+              <p>Google's frontier multimodal models with high speed, huge context windows, and structured reasoning.</p>
+            </div>
+            <div class="provider-action-top">
+              <span class="active-status-tag" id="status-tag-gemini">STANDBY</span>
+              <button class="btn btn-sm btn-accent activate-provider-btn" data-provider="gemini" id="activate-btn-gemini">
+                ⚡ Set as Active LLM
+              </button>
+            </div>
+          </div>
+
+          <div class="settings-field-group">
+            <label for="cfg-gemini-key">Gemini API Key</label>
+            <div class="password-input-group">
+              <input type="password" id="cfg-gemini-key" class="form-control" placeholder="AIzaSy...">
+              <button type="button" class="btn-toggle-eye" data-target="cfg-gemini-key" title="Toggle visibility">👁️</button>
+            </div>
+            <div style="font-size: 0.75rem; color: var(--text-dim); margin-top: 0.25rem;">
+              Keys are stored securely in local configuration storage (<span style="font-family: monospace;">app_settings.json</span>).
+            </div>
+          </div>
+
+          <div class="settings-field-group">
+            <label for="cfg-gemini-model">Gemini Model</label>
+            <select id="cfg-gemini-model" class="form-control">
+              <option value="gemini-2.5-flash">gemini-2.5-flash (Fast & recommended)</option>
+              <option value="gemini-2.5-pro">gemini-2.5-pro (Deep reasoning & architecture)</option>
+              <option value="gemini-1.5-flash">gemini-1.5-flash (High speed)</option>
+              <option value="gemini-1.5-pro">gemini-1.5-pro (Comprehensive)</option>
+            </select>
+          </div>
+
+          <!-- Diagnostic & Test Box -->
+          <div class="test-connection-card">
+            <div class="test-header-row">
+              <div>
+                <strong>API Key & Latency Test</strong>
+                <div style="font-size: 0.75rem; color: var(--text-dim);">Pings Google Generative Language API endpoint to verify credentials</div>
+              </div>
+              <button class="btn btn-sm btn-primary test-provider-btn" data-provider="gemini" id="test-btn-gemini">
+                🧪 Test Connection
+              </button>
+            </div>
+            <div class="test-result-box" id="test-result-gemini">
+              <span class="test-status-pill pill-idle">Ready to Test</span>
+              <span class="test-msg">Enter key and click "Test Connection" to verify.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== 4. ANTHROPIC CLAUDE PANEL ==================== -->
+        <div class="settings-panel" id="panel-claude">
+          <div class="provider-banner">
+            <div class="provider-meta">
+              <span class="provider-badge-cloud">CLOUD API</span>
+              <h4>Anthropic Claude</h4>
+              <p>Claude 3.7 Sonnet, 3.5 Sonnet, and Haiku for elite coding nuance and architectural interview rigor.</p>
+            </div>
+            <div class="provider-action-top">
+              <span class="active-status-tag" id="status-tag-claude">STANDBY</span>
+              <button class="btn btn-sm btn-accent activate-provider-btn" data-provider="claude" id="activate-btn-claude">
+                ⚡ Set as Active LLM
+              </button>
+            </div>
+          </div>
+
+          <div class="settings-field-group">
+            <label for="cfg-claude-key">Anthropic API Key</label>
+            <div class="password-input-group">
+              <input type="password" id="cfg-claude-key" class="form-control" placeholder="sk-ant-api...">
+              <button type="button" class="btn-toggle-eye" data-target="cfg-claude-key" title="Toggle visibility">👁️</button>
+            </div>
+          </div>
+
+          <div class="settings-field-group">
+            <label for="cfg-claude-model">Claude Model</label>
+            <select id="cfg-claude-model" class="form-control">
+              <option value="claude-3-7-sonnet-20250219">claude-3-7-sonnet-20250219 (Latest frontier)</option>
+              <option value="claude-3-5-sonnet-20241022">claude-3-5-sonnet-20241022 (Elite engineering)</option>
+              <option value="claude-3-5-haiku-20241022">claude-3-5-haiku-20241022 (Ultra-fast)</option>
+            </select>
+          </div>
+
+          <!-- Diagnostic & Test Box -->
+          <div class="test-connection-card">
+            <div class="test-header-row">
+              <div>
+                <strong>Anthropic API & Latency Test</strong>
+                <div style="font-size: 0.75rem; color: var(--text-dim);">Pings Anthropic /v1/messages endpoint with anthropic-version: 2023-06-01</div>
+              </div>
+              <button class="btn btn-sm btn-primary test-provider-btn" data-provider="claude" id="test-btn-claude">
+                🧪 Test Connection
+              </button>
+            </div>
+            <div class="test-result-box" id="test-result-claude">
+              <span class="test-status-pill pill-idle">Ready to Test</span>
+              <span class="test-msg">Enter Claude API key and click "Test Connection".</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== 5. OPENROUTER PANEL ==================== -->
+        <div class="settings-panel" id="panel-openrouter">
+          <div class="provider-banner">
+            <div class="provider-meta">
+              <span class="provider-badge-cloud">CLOUD GATEWAY</span>
+              <h4>OpenRouter Unified Gateway</h4>
+              <p>Unified API access to 200+ models: DeepSeek R1, Llama 3.3, Mistral Large, Qwen, and more.</p>
+            </div>
+            <div class="provider-action-top">
+              <span class="active-status-tag" id="status-tag-openrouter">STANDBY</span>
+              <button class="btn btn-sm btn-accent activate-provider-btn" data-provider="openrouter" id="activate-btn-openrouter">
+                ⚡ Set as Active LLM
+              </button>
+            </div>
+          </div>
+
+          <div class="settings-field-group">
+            <label for="cfg-openrouter-key">OpenRouter API Key</label>
+            <div class="password-input-group">
+              <input type="password" id="cfg-openrouter-key" class="form-control" placeholder="sk-or-v1-...">
+              <button type="button" class="btn-toggle-eye" data-target="cfg-openrouter-key" title="Toggle visibility">👁️</button>
+            </div>
+          </div>
+
+          <div class="settings-field-group">
+            <div class="field-label-row">
+              <label for="cfg-openrouter-url">Gateway Base URL</label>
+              <button class="btn-text-action reset-url-btn" data-target="cfg-openrouter-url" data-default="https://openrouter.ai/api/v1">Reset Default</button>
+            </div>
+            <input type="text" id="cfg-openrouter-url" class="form-control" value="https://openrouter.ai/api/v1" placeholder="https://openrouter.ai/api/v1">
+          </div>
+
+          <div class="settings-field-group">
+            <label for="cfg-openrouter-model">Select Model</label>
+            <div style="display: flex; gap: 0.5rem;">
+              <select id="cfg-openrouter-model" class="form-control" style="flex: 1;">
+                <option value="meta-llama/llama-3.3-70b-instruct">meta-llama/llama-3.3-70b-instruct</option>
+                <option value="deepseek/deepseek-chat">deepseek/deepseek-chat</option>
+                <option value="deepseek/deepseek-r1">deepseek/deepseek-r1</option>
+                <option value="google/gemini-2.5-flash">google/gemini-2.5-flash</option>
+                <option value="anthropic/claude-3.5-sonnet">anthropic/claude-3.5-sonnet</option>
+                <option value="mistralai/mistral-large-2407">mistralai/mistral-large-2407</option>
+                <option value="qwen/qwen-2.5-72b-instruct">qwen/qwen-2.5-72b-instruct</option>
+              </select>
+              <button class="btn btn-secondary fetch-models-btn" data-provider="openrouter" title="Fetch live models from OpenRouter">
+                🔄 Fetch Models
+              </button>
+            </div>
+            <div style="margin-top: 0.5rem;">
+              <input type="text" id="cfg-openrouter-custom-model" class="form-control form-control-sm" placeholder="Or enter exact OpenRouter model id (e.g. meta-llama/llama-3.1-405b-instruct)...">
+            </div>
+          </div>
+
+          <!-- Diagnostic & Test Box -->
+          <div class="test-connection-card">
+            <div class="test-header-row">
+              <div>
+                <strong>OpenRouter Gateway & Latency Test</strong>
+                <div style="font-size: 0.75rem; color: var(--text-dim);">Pings OpenRouter completions endpoint with configured model</div>
+              </div>
+              <button class="btn btn-sm btn-primary test-provider-btn" data-provider="openrouter" id="test-btn-openrouter">
+                🧪 Test Connection
+              </button>
+            </div>
+            <div class="test-result-box" id="test-result-openrouter">
+              <span class="test-status-pill pill-idle">Ready to Test</span>
+              <span class="test-msg">Enter API key and click "Test Connection".</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== 6. PREFERENCES PANEL ==================== -->
+        <div class="settings-panel" id="panel-preferences">
+          <div class="provider-banner">
+            <div class="provider-meta">
+              <span class="provider-badge-local">SYSTEM</span>
+              <h4>Interview Generation Tuning</h4>
+              <p>Configure model inference temperature, token ceilings, and fallback safety behaviors.</p>
+            </div>
+          </div>
+
+          <div class="settings-field-group">
+            <label for="cfg-pref-temperature">Creativity & Variation (Temperature: <span id="temp-val-display">0.7</span>)</label>
+            <input type="range" id="cfg-pref-temperature" min="0.0" max="1.0" step="0.05" value="0.7" style="width: 100%;">
+            <div style="display: flex; justify-content: space-between; font-size: 0.7rem; color: var(--text-dim);">
+              <span>0.0 (Deterministic / Strict)</span>
+              <span>0.7 (Balanced / Recommended)</span>
+              <span>1.0 (Creative / Exploratory)</span>
+            </div>
+          </div>
+
+          <div class="settings-field-group" style="margin-top: 1rem;">
+            <label style="display: flex; align-items: center; gap: 0.6rem; cursor: pointer;">
+              <input type="checkbox" id="cfg-pref-fallback" checked style="width: 18px; height: 18px; accent-color: var(--primary);">
+              <div>
+                <span style="font-weight: 600; font-size: 0.9rem;">Enable Curated Offline Fallback Bank</span>
+                <div style="font-size: 0.75rem; color: var(--text-dim);">If the selected LLM is temporarily unreachable or times out, immediately serve hand-curated questions instead of failing.</div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="modal-footer" style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border-subtle);">
+        <div id="settings-status-info" style="font-size: 0.8rem; color: var(--text-dim);">
+          Active Provider: <strong id="footer-active-provider" style="color: var(--primary-light);">Ollama</strong>
+        </div>
+        <div style="display: flex; gap: 0.75rem;">
+          <button class="btn btn-secondary" id="cancel-settings-btn">Close</button>
+          <button class="btn btn-primary" id="save-settings-btn">💾 Save All Settings</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- GLOBAL LOADING OVERLAY -->
+  <!-- ========================================================================= -->
+  <div class="loading-overlay" id="global-loader" role="status" aria-live="polite">
+    <div class="loader-spinner"></div>
+    <div class="loader-title" id="loader-title">Synthesizing Questions with Local Ollama...</div>
+    <div class="loader-subtext" id="loader-subtext">Retrieving RAG semantic memory and tailoring questions to your target proficiency. This typically takes 8-15 seconds.</div>
+  </div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
